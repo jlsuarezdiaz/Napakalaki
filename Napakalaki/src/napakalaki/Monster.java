@@ -8,15 +8,8 @@ package napakalaki;
 
 /**
  *
- * @author jlsuarezdiaz, andreshp
+ * @author andreshp
  */
-public class Napakalaki {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        System.out.println("Hola GIT. I LOVE LSI.");
-    }
+public class Monster {
     
 }
