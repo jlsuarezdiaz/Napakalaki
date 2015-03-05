@@ -10,8 +10,10 @@ import java.util.ArrayList; // ArrayList included
 import java.util.Arrays;    // Arrays included
 
 /**
- *
- * @author andreshp
+ * Test Main to try the changes in the program.
+ * The monsters are created and some operations with them are done.
+ * 
+ * @author andreshp, jlsuarez
  */
 public class TestNapakalaki {
     /**

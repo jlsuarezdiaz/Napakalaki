@@ -10,6 +10,7 @@ package napakalaki;
  * Monster Class.
  * This class has all the information related to the monsters
  * in Napakalaki game.
+ * 
  * @author andreshp, jlsuarez
  */
 public class Monster {

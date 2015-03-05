@@ -12,6 +12,7 @@ import java.util.ArrayList; // ArrayList included
  * Bad Consequence Class.
  * It indicates the consequences of losing to the monster.
  * These consequences are lost of levels, treasures and even death.
+ * 
  * @author andreshp, jlsuarez
  */
 public class BadConsequence {
