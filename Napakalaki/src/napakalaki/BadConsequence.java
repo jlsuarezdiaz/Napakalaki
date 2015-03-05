@@ -7,8 +7,10 @@
 package napakalaki;
 
 /**
- *
- * @author andreshp
+ * Bad Consequence Class.
+ * It indicates the consequences of losing to the monster.
+ * These consequences are lost of levels, treasures and even death.
+ * @author andreshp, jlsuarez
  */
 public class BadConsequence {
 
@@ -35,6 +37,15 @@ public class BadConsequence {
      */
     private boolean death;
     
+    /**
+     * 
+     */
+    private ArrayList<TreasureKind> specificVisibleTreasures;
+    /**
+     * 
+     */
+    private ArrayList<TreasureKind> specificHiddenTreasures;
+    
     //--------------- Constructors ---------------//
     
     /**
@@ -53,13 +64,22 @@ public class BadConsequence {
         this.text = text;
         this.death = death;
     }
+    /**
+     * Constructor that initializes the attributes text, levels and both treasures array.
+     */
+    BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible, ArrayList<TreasureKind> tHidden){
+        this.text = text;
+        this.levels = levels;
+        this.specificVisibleTreasures = tVisible;
+        this.specificHiddenTreasures = tHidden;
+    }
     
     //--------------- Gets Methods ---------------//
 
     /**
      * Get the text attribute.
      * @return text
-     */
+     */ 
     public String getText(){
         return text;
     }
@@ -90,5 +110,11 @@ public class BadConsequence {
      */
     public boolean getDeath(){
         return death;
+    }
+    
+    public String toString(){
+        return "Text = " + text + "\nLevels = " + Integer.toString(levels)
+                + "nVisibleTreasures = " + Integer.toString(nVisibleTreasures)
+                + "Death = " + Boolean.toString(death);
     }
 }
