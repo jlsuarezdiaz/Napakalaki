@@ -6,6 +6,8 @@
 
 package napakalaki;
 
+import java.util.ArrayList; // ArrayList included
+
 /**
  * Bad Consequence Class.
  * It indicates the consequences of losing to the monster.
@@ -67,7 +69,8 @@ public class BadConsequence {
     /**
      * Constructor that initializes the attributes text, levels and both treasures array.
      */
-    BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible, ArrayList<TreasureKind> tHidden){
+    BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible,
+            ArrayList<TreasureKind> tHidden){
         this.text = text;
         this.levels = levels;
         this.specificVisibleTreasures = tVisible;
