@@ -68,7 +68,7 @@ public class Monster {
     
     /**
      * Gets a string with the monster's info.
-     * @return 
+     * @return string with information.
      */
     public String toString(){
        return "Name = " + this.name + " level = " + Integer.toString(combatLevel) + " prize = [" + prize.toString()
