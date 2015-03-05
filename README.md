@@ -11,3 +11,7 @@ The game Napakalaki developped for PDO at University of Granada.
 - Make an Enum called TreasureKind with the values {ARMOR, ONEHAND, BOTHHANDS, HELMET, SHOE, NECKLACE}.
 - Add the monsters in sesion 2.
 - Ruby!
+
+## Shorcuts for NetBeans
+
+Tools -> Options -> Key Map
