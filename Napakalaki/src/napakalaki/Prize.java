@@ -17,5 +17,25 @@ public class Prize {
     //Cabecera del método
     //[public|protected|private] [static] [abstract|final] returnType
     //nombreMetodo ([listParametros]) [throws listaExcepciones]
+    private int treasures;
+    
+    private int levels;
+
+    public Prize(int treasures, int levels){
+        this.treasures = treasures;
+        this.levels = levels;
+    }
+    
+    public int getTreasures(){
+        return this.treasures;
+    }
+    
+    public int getLevels(){
+        return this.levels;
+    }
+    
+    public String toString(){
+        return "Treasures = " + Integer.toString(treasures) + " levels = " + Integer.toString(levels);
+    }
     
 }
