@@ -37,3 +37,4 @@ public class Monster {
        return "Name = " + this.name + " level = " + Integer.toString(combatLevel) + " prize = [" + prize.toString()
                + "] bad consequence = [" + badCons.toString() + "]";
    }
+}
