@@ -38,11 +38,11 @@ public class BadConsequence {
     private boolean death;
     
     /**
-     * 
+     * Array with the visible treasures.
      */
     private ArrayList<TreasureKind> specificVisibleTreasures;
     /**
-     * 
+     * Array with the hidden treasures.
      */
     private ArrayList<TreasureKind> specificHiddenTreasures;
     
@@ -111,10 +111,17 @@ public class BadConsequence {
     public boolean getDeath(){
         return death;
     }
-    
+
+    //--------------- tpString Method ---------------//
+
+    /**
+     * Returns a string with the Bad Consequence instance contents.
+     * @return String with the contens.
+     */
     public String toString(){
         return "Text = " + text + "\nLevels = " + Integer.toString(levels)
-                + "nVisibleTreasures = " + Integer.toString(nVisibleTreasures)
-                + "Death = " + Boolean.toString(death);
+                + "\nnVisibleTreasures = " + Integer.toString(nVisibleTreasures)
+                + "\nnHiddenTreasures = " + Integer.toString(nHiddenTreasures)
+                + "\nDeath = " + Boolean.toString(death);
     }
 }
