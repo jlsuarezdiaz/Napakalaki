@@ -6,8 +6,8 @@
 package napakalaki;
 
 /**
- *
- * @author Juan Luis
+ * Enumerate type which includes the available kinds of treasure.
+ * @author andreshp, jlsuarez
  */
 public enum TreasureKind {
     ARMOR, ONEHAND, BOTHHANDS, HELMET, SHOE, NECKLACE

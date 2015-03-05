@@ -7,33 +7,52 @@
 package napakalaki;
 
 /**
- *
- * @author andreshp
+ * Prize Class.
+ * This class contains the data related to the prizes
+ * in Napakalaki game.
+ * @author andreshp, jlsuarez
  */
 public class Prize {
-    //Definición de variables que almacenan el estado de objetos de esta clase
-    //[public|protected|private] [static] [final] tipo nomVar [=inicialización];
-    //Definición de los métodos que definan la funcionalidad de los objetos
-    //Cabecera del método
-    //[public|protected|private] [static] [abstract|final] returnType
-    //nombreMetodo ([listParametros]) [throws listaExcepciones]
+    /**
+     * Amount of treasures bonus.
+     */
     private int treasures;
     
+    /**
+     * Amount of levels bonus.
+     */
     private int levels;
 
+    /**
+     * Constructor
+     * @param treasures Treasures bonus for the prize.
+     * @param levels Levels bonus for the prize.
+     */
     public Prize(int treasures, int levels){
         this.treasures = treasures;
         this.levels = levels;
     }
     
+    /**
+     * Get the treasures bonus.
+     * @return treasures.
+     */
     public int getTreasures(){
         return this.treasures;
     }
     
+    /**
+     * Get the level bonus.
+     * @return levels.
+     */
     public int getLevels(){
         return this.levels;
     }
     
+    /**
+     * Gets a string with the prize's info.
+     * @return string with information.
+     */
     public String toString(){
         return "Treasures = " + Integer.toString(treasures) + " levels = " + Integer.toString(levels);
     }
