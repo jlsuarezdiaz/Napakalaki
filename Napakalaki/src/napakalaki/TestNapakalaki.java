@@ -27,75 +27,75 @@ public class TestNapakalaki {
         
         //---------------- Added Monster ----------------//
 
-        // Monster: Byakhees de bonanza
-        badConsequence = new BadConsequence("Pierdes tu armadura visible y otra oculta", 0, 
+        // Monster: 3 Byakhees de bonanza
+        badConsequence = new BadConsequence("Pierdes tu armadura visible y otra oculta.", 0,
                 new ArrayList(Arrays.asList(TreasureKind.ONEHAND)),
                 new ArrayList(Arrays.asList(TreasureKind.ONEHAND)));
         prize = new Prize(2,1);
-        monsters.add(new Monster("Byakhees de bonanza", 8, badConsequence, prize));
+        monsters.add(new Monster("3 Byakhees de bonanza", 8, badConsequence, prize));
         
         // Monster: Chibithulhu
-        badConsequence = new BadConsequence("Embobados con el lindo primigenio te descartas de tu casco visible", 0,
+        badConsequence = new BadConsequence("Embobados con el lindo primigenio te descartas de tu casco visible.", 0,
                 new ArrayList(Arrays.asList(TreasureKind.HELMET)), new ArrayList());
         prize = new Prize(1,1);
         monsters.add(new Monster("Chibithulhu", 2, badConsequence, prize));
 
         // Monster: El sopor de Dunwich
-        badConsequence = new BadConsequence("El primordial bostezo contagioso. Pierdes el calzado visible", 0, 
-                        new ArrayList(Arrays.asList(TreasureKind.SHOE)), new ArrayList());
+        badConsequence = new BadConsequence("El primordial bostezo contagioso. Pierdes el calzado visible.", 0, 
+                new ArrayList(Arrays.asList(TreasureKind.SHOE)), new ArrayList());
         prize = new Prize(1,1);
         monsters.add(new Monster("El sopor de Dunwich", 2, badConsequence, prize));
         
         // Monster: Ángeles de la noche ibicenca
         badConsequence = new BadConsequence("Te atrapan para llevarte de fiesta y te dejan caer "
-                + "en mitad del vuelo. Descarta 1 mano visible y 1 mano oculta", 0, 
+                + "en mitad del vuelo. Descarta 1 mano visible y 1 mano oculta.", 0, 
                 new ArrayList(Arrays.asList(TreasureKind.ONEHAND)), 
                 new ArrayList(Arrays.asList(TreasureKind.ONEHAND)));
         prize = new Prize(4,1);
         monsters.add(new Monster("Ángeles de la noche ibicenca", 14, badConsequence, prize));
         
         // Monster: El gorrón en el umbral
-        badConsequence = new BadConsequence("Pierdes todos tus tesoros visibles", 0, 5, 0);
+        badConsequence = new BadConsequence("Pierdes todos tus tesoros visibles.", 0, 6, 0);
         prize = new Prize(3,1);
         monsters.add(new Monster("El gorrón en el umbral", 10, badConsequence, prize));
 
         // Monster: H.P. Munchcraft
-        badConsequence = new BadConsequence("Pierdes la armadura visible", 0, 
+        badConsequence = new BadConsequence("Pierdes la armadura visible.", 0, 
                 new ArrayList(Arrays.asList(TreasureKind.ARMOR)),
                 new ArrayList());
         prize = new Prize(2,1);
         monsters.add(new Monster("H.P. Munchcraft", 6, badConsequence, prize));
         
         // Monster: Bichgooth
-        badConsequence = new BadConsequence("Sientes bichos bajo la ropa. Descarta la armadura visible", 0, 
+        badConsequence = new BadConsequence("Sientes bichos bajo la ropa. Descarta la armadura visible.", 0, 
                 new ArrayList(Arrays.asList(TreasureKind.ARMOR)),
                 new ArrayList());
         prize = new Prize(1,1);
         monsters.add(new Monster("Bichgooth", 2, badConsequence, prize));
         
         // Monster: El rey de rosa
-        badConsequence = new BadConsequence("Pierdes 5 niveles y 3 tesoros visibles", 5, 3, 0);
+        badConsequence = new BadConsequence("Pierdes 5 niveles y 3 tesoros visibles.", 5, 3, 0);
         prize = new Prize(4,2);
         monsters.add(new Monster("El rey de rosa", 13, badConsequence, prize));
         
         // Monster: La que redacta en las tinieblas
-        badConsequence = new BadConsequence("Toses los pulmones y pierdes 2 niveles", 2, 0, 0);
+        badConsequence = new BadConsequence("Toses los pulmones y pierdes 2 niveles.", 2, 0, 0);
         prize = new Prize(1,1);
         monsters.add(new Monster("La que redacta en las tinieblas", 2, badConsequence, prize));
 
         // Monster: Los hondos
         badConsequence = new BadConsequence("Estos mostruos resultan bastante superficiales "
-                + "y te aburren mortalmente. Estas muerto", true);
-        prize = new Prize(2,1);
+                + "y te aburren mortalmente. Estas muerto.", true);
+        prize = new Prize(2,1); 
         monsters.add(new Monster("Los hondos", 8, badConsequence, prize));
         
         // Monster: Semillas Cthulhu
-        badConsequence = new BadConsequence("Pierdes dos niveles y dos tesoros ocultos.", 2, 0, 2);
+        badConsequence = new BadConsequence("Pierdes 2 niveles y 2 tesoros ocultos.", 2, 0, 2);
         prize = new Prize(2,1);
         monsters.add(new Monster("Semillas Cthulhu", 4, badConsequence, prize));
 
         // Monster: Pollipólipo volante
-        badConsequence = new BadConsequence("Da mucho asquito. Pierdes 3 niveles", 3, 0, 0);
+        badConsequence = new BadConsequence("Da mucho asquito. Pierdes 3 niveles.", 3, 0, 0);
         prize = new Prize(1,1);
         monsters.add(new Monster("Pollipólipo volante", 3, badConsequence, prize));
 
