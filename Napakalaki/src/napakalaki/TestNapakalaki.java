@@ -94,30 +94,37 @@ public class TestNapakalaki {
         prize = new Prize(2,1);
         monsters.add(new Monster("Semillas Cthulhu", 4, badConsequence, prize));
 
+        // Monster: Dameargo
+        badConsequence = new BadConsequence("Te intentas escaquear. Pierdes una mano visible.", 0,
+                new ArrayList(Arrays.asList(TreasureKind.ONEHAND)),
+                new ArrayList());
+        prize = new Prize(2,1);
+        monsters.add(new Monster("Dameargo", 1, badConsequence, prize));
+
         // Monster: Pollipólipo volante
         badConsequence = new BadConsequence("Da mucho asquito. Pierdes 3 niveles.", 3, 0, 0);
         prize = new Prize(1,1);
         monsters.add(new Monster("Pollipólipo volante", 3, badConsequence, prize));
 
         // Monster: Yskhtihyssg-Goth
-        badConsequence = new BadConsequence("No le hace gracia que pronuncien mal su nombre. Estás muerto", true);
+        badConsequence = new BadConsequence("No le hace gracia que pronuncien mal su nombre. Estás muerto.", true);
         prize = new Prize(3,1);
         monsters.add(new Monster("Yskhtihyssg-Goth", 12, badConsequence, prize));
-        
+
         // Monster: Familia feliz
         badConsequence = new BadConsequence("La familia te atrapa. Estás muerto", true);
         prize = new Prize(4,1);
         monsters.add(new Monster("Familia feliz", 1, badConsequence, prize));
         
         // Monster: Roboggoth
-        badConsequence = new BadConsequence("La quinta directiva primaria te obliga a perder dos niveles "
-                + "y un tesoro de dos manos visible", 2, new ArrayList(Arrays.asList(TreasureKind.BOTHHANDS)),
+        badConsequence = new BadConsequence("La quinta directiva primaria te obliga a perder 2 niveles "
+                + "y un tesoro de 2 manos visible.", 2, new ArrayList(Arrays.asList(TreasureKind.BOTHHANDS)),
                 new ArrayList());
         prize = new Prize(2,1);
         monsters.add(new Monster("Roboggoth", 8, badConsequence, prize));
-        
+
         // Monster: El espia
-        badConsequence = new BadConsequence("Te asusta en la noche. Pierdes un casco visible", 0, 
+        badConsequence = new BadConsequence("Te asusta en la noche. Pierdes un casco visible.", 0, 
                 new ArrayList(Arrays.asList(TreasureKind.HELMET)), new ArrayList());
         prize = new Prize(1,1);
         monsters.add(new Monster("El espia", 5, badConsequence, prize));
@@ -129,7 +136,7 @@ public class TestNapakalaki {
 
         // Monster: Bicéfalo
         badConsequence = new BadConsequence("Te faltan manos para tanta cabeza. Pierdes 3 niveles y "
-                + "tus tesoros visibles de las manos", 3, 
+                + "tus tesoros visibles de las manos.", 3, 
                 new ArrayList(Arrays.asList(TreasureKind.ONEHAND, TreasureKind.BOTHHANDS)), new ArrayList());
         prize = new Prize(1,1);
         monsters.add(new Monster("Bicéfalo", 20, badConsequence, prize));
