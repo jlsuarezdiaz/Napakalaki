@@ -23,26 +23,32 @@ public class BadConsequence {
      * Text that explains what does the bad consequence do.
      */
     private String text;
+
     /**
      * Levels that are lost with the bad consequence.
      */
     private int levels;
+
     /**
      * Number of Visible Treasures that are lost. 
      */
     private int nVisibleTreasures;
+
     /**
      * Number of Hidden Treasures that are lost. 
      */
     private int nHiddenTreasures;
+
     /**
      * Boolean that indicates if the bad consequence is death.
      */
     private boolean death;    
+
     /**
      * Array with the visible treasures.
      */
     private ArrayList<TreasureKind> specificVisibleTreasures;
+
     /**
      * Array with the hidden treasures.
      */
@@ -63,6 +69,7 @@ public class BadConsequence {
         this.specificVisibleTreasures = null;
         this.specificHiddenTreasures = null;
     }
+
     /**
      * Constructor that initializes the attributes text and death.
      */
@@ -76,6 +83,7 @@ public class BadConsequence {
         this.specificVisibleTreasures = null;
         this.specificHiddenTreasures = null;
     }
+
     /**
      * Constructor that initializes the attributes text, levels and both treasures array.
      */
@@ -91,7 +99,7 @@ public class BadConsequence {
         this.nVisibleTreasures = 0;
     }
     
-    //--------------- Gets Methods ---------------//
+    //--------------- Get Methods ---------------//
 
     /**
      * Get the text attribute.
@@ -100,6 +108,7 @@ public class BadConsequence {
     public String getText(){
         return text;
     }
+
     /**
      * Get the levels attribute.
      * @return levels
@@ -107,6 +116,7 @@ public class BadConsequence {
     public int getLevels(){
         return levels;
     }
+
     /**
      * Get the nVisibleTreasures attribute.
      * @return nVisibleTreasures
@@ -114,6 +124,7 @@ public class BadConsequence {
     public int getNVisibleTreasures(){
         return nVisibleTreasures;
     }
+
     /**
      * Get the nHiddenTreasures attribute.
      * @return nHiddenTreasures
@@ -121,6 +132,7 @@ public class BadConsequence {
     public int getNHiddenTreasures(){
         return nHiddenTreasures;
     }
+
     /**
      * Get the death attribute.
      * @return death
