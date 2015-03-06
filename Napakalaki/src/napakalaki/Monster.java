@@ -18,12 +18,12 @@ public class Monster {
     //--------------- Private Attributes ---------------//
     
     /**
-     * Monter's name
+     * Monter's name.
      */
     private String name;
     
     /**
-     * Monster's level
+     * Monster's level.
      */
     private int combatLevel;
     
@@ -36,22 +36,8 @@ public class Monster {
      * Consequences of being defeated.
      */
     private BadConsequence badCons;
-    
-    /**
-     * Get the name attribute
-     * @return name
-     */
-    public String getName(){
-        return this.name;
-    }
-    
-    /**
-     * Get the level attribute.
-     * @return combatLevel
-     */
-    public int getCombatLevel(){
-        return this.combatLevel;
-    }
+
+    //--------------- Constructors ---------------//
     
     /**
      * Constructor.
@@ -66,7 +52,27 @@ public class Monster {
         this.prize = prize;
         this.badCons = bc;
     }
+
+    //--------------- Get Methods ---------------//
+
+    /**
+     * Get the name attribute.
+     * @return name
+     */
+    public String getName(){
+        return this.name;
+    }
     
+    /**
+     * Get the level attribute.
+     * @return combatLevel
+     */
+    public int getCombatLevel(){
+        return this.combatLevel;
+    }
+
+    //--------------- toString Method ---------------//
+
     /**
      * Gets a string with the monster's info.
      * @return string with information.
