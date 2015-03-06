@@ -38,8 +38,7 @@ public class BadConsequence {
     /**
      * Boolean that indicates if the bad consequence is death.
      */
-    private boolean death;
-    
+    private boolean death;    
     /**
      * Array with the visible treasures.
      */
@@ -52,13 +51,17 @@ public class BadConsequence {
     //--------------- Constructors ---------------//
     
     /**
-     * Constructor that initializes every attribute but death.
+     * Constructor that initializes every attribute but the arrays and death.
      */
     public BadConsequence(String text, int levels, int nVisible, int nHidden){
         this.text = text;
         this.levels = levels;
         this.nVisibleTreasures = nVisible;
         this.nHiddenTreasures = nHidden;
+
+        // Initialize values by defeat
+        this.specificVisibleTreasures = null;
+        this.specificHiddenTreasures = null;
     }
     /**
      * Constructor that initializes the attributes text and death.
@@ -66,6 +69,12 @@ public class BadConsequence {
     public BadConsequence(String text, boolean death){
         this.text = text;
         this.death = death;
+        
+        // Initialize values by defeat
+        this.nHiddenTreasures = 0;
+        this.nVisibleTreasures = 0;
+        this.specificVisibleTreasures = null;
+        this.specificHiddenTreasures = null;
     }
     /**
      * Constructor that initializes the attributes text, levels and both treasures array.
@@ -76,6 +85,10 @@ public class BadConsequence {
         this.levels = levels;
         this.specificVisibleTreasures = tVisible;
         this.specificHiddenTreasures = tHidden;
+        
+        // Initialize values by defeat
+        this.nHiddenTreasures = 0;
+        this.nVisibleTreasures = 0;
     }
     
     //--------------- Gets Methods ---------------//
@@ -116,7 +129,7 @@ public class BadConsequence {
         return death;
     }
 
-    //--------------- tpString Method ---------------//
+    //--------------- toString Method ---------------//
 
     /**
      * Returns a string with the Bad Consequence instance contents.
