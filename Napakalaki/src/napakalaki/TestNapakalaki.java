@@ -124,7 +124,7 @@ public class TestNapakalaki {
         monsters.add(new Monster("Roboggoth", 8, badConsequence, prize));
 
         // Monster: El espia
-        badConsequence = new BadConsequence("Te asusta en la noche. Pierdes un casco visible.", 0, 
+        badConsequence = new BadConsequence("Te asusta en la noche. Pierdes un casco visible.", 0,
                 new ArrayList(Arrays.asList(TreasureKind.HELMET)), new ArrayList());
         prize = new Prize(1,1);
         monsters.add(new Monster("El espia", 5, badConsequence, prize));

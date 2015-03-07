@@ -64,7 +64,7 @@ public class Prize {
      * @return string with information.
      */
     public String toString(){
-        return "Treasures = " + Integer.toString(treasures) + " levels = " + Integer.toString(levels);
+        return "Treasures = " + Integer.toString(treasures) + "Levels = " + Integer.toString(levels);
     }
     
 }

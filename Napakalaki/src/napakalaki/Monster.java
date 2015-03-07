@@ -44,7 +44,7 @@ public class Monster {
      * @param name Monster's name.
      * @param level Monster's level.
      * @param bc Bad consequence.
-     * @param prize  Prize.
+     * @param prize Prize.
      */
     public Monster(String name, int level, BadConsequence bc, Prize prize){
         this.name = name;
@@ -78,7 +78,8 @@ public class Monster {
      * @return string with information.
      */
     public String toString(){
-       return "Name = " + this.name + " level = " + Integer.toString(combatLevel) + " prize = [" + prize.toString()
-               + "] bad consequence = [" + badCons.toString() + "]";
+       return "Name = " + this.name + "\nLevel = " + Integer.toString(combatLevel) 
+               + " prize = [" + prize.toString() + "] bad consequence = [" + 
+               badCons.toString() + "]";
    }
 }
