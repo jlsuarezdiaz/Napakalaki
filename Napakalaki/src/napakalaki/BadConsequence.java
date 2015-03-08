@@ -145,7 +145,7 @@ public class BadConsequence {
 
     /**
      * Returns a string with the Bad Consequence instance contents.
-     * @return String with the contens.
+     * @return String with the contents.
      */
     public String toString(){
         return "Text = " + text + "\nLevels = " + Integer.toString(levels)
