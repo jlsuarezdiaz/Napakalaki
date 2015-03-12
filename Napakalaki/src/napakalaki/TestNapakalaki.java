@@ -112,7 +112,7 @@ public class TestNapakalaki {
         monsters.add(new Monster("Yskhtihyssg-Goth", 12, badConsequence, prize));
 
         // Monster: Familia feliz
-        badConsequence = new BadConsequence("La familia te atrapa. Estás muerto", true);
+        badConsequence = new BadConsequence("La familia te atrapa. Estás muerto.", true);
         prize = new Prize(4,1);
         monsters.add(new Monster("Familia feliz", 1, badConsequence, prize));
         
