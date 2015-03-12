@@ -25,7 +25,7 @@ public class TestNapakalaki {
         BadConsequence badConsequence;
         Prize prize;
         
-        //---------------- Added Monster ----------------//
+        //---------------- Added Monsters ----------------//
 
         // Monster: 3 Byakhees de bonanza
         badConsequence = new BadConsequence("Pierdes tu armadura visible y otra oculta.", 0,
@@ -140,5 +140,7 @@ public class TestNapakalaki {
                 new ArrayList(Arrays.asList(TreasureKind.ONEHAND, TreasureKind.BOTHHANDS)), new ArrayList());
         prize = new Prize(1,1);
         monsters.add(new Monster("Bicéfalo", 20, badConsequence, prize));
+    
+        
     }
 }

@@ -53,6 +53,7 @@ public class BadConsequence {
      * Array with the hidden treasures.
      */
     private ArrayList<TreasureKind> specificHiddenTreasures;
+    private Object StringUtils;
     
     //--------------- Constructors ---------------//
     
@@ -65,7 +66,8 @@ public class BadConsequence {
         this.nVisibleTreasures = nVisible;
         this.nHiddenTreasures = nHidden;
 
-        // Initialize values by defeat
+        // Initialize values by default
+        this.death = false;
         this.specificVisibleTreasures = null;
         this.specificHiddenTreasures = null;
     }
@@ -77,7 +79,8 @@ public class BadConsequence {
         this.text = text;
         this.death = death;
         
-        // Initialize values by defeat
+        // Initialize values by default
+        this.levels = 0;
         this.nHiddenTreasures = 0;
         this.nVisibleTreasures = 0;
         this.specificVisibleTreasures = null;
@@ -94,7 +97,8 @@ public class BadConsequence {
         this.specificVisibleTreasures = tVisible;
         this.specificHiddenTreasures = tHidden;
         
-        // Initialize values by defeat
+        // Initialize values by default
+        this.death = false;
         this.nHiddenTreasures = 0;
         this.nVisibleTreasures = 0;
     }
@@ -145,12 +149,14 @@ public class BadConsequence {
 
     /**
      * Returns a string with the Bad Consequence instance contents.
+     * @param spaces Spaces in each line from second to end.
      * @return String with the contents.
      */
-    public String toString(){
-        return "Text = " + text + "\nLevels = " + Integer.toString(levels)
-                + "\nnVisibleTreasures = " + Integer.toString(nVisibleTreasures)
-                + "\nnHiddenTreasures = " + Integer.toString(nHiddenTreasures)
-                + "\nDeath = " + Boolean.toString(death);
+    public String toString(int spaces){
+        String strSpaces = new String(new char[spaces]).replace('\0', ' ');
+        return strSpaces + "Text = " + text + "\nLevels = " + Integer.toString(levels)
+               + "\n"+ strSpaces + "nVisibleTreasures = " + Integer.toString(nVisibleTreasures)
+               + "\n"+ strSpaces + "nHiddenTreasures = " + Integer.toString(nHiddenTreasures)
+               + "\n"+ strSpaces + "Death = " + Boolean.toString(death);
     }
 }
