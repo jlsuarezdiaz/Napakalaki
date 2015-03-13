@@ -25,7 +25,7 @@ public class TestNapakalaki {
         BadConsequence badConsequence;
         Prize prize;
         
-        //---------------- Added Monsters ----------------//
+        //----------------- Add Monsters -----------------//
 
         // Monster: 3 Byakhees de bonanza
         badConsequence = new BadConsequence("Pierdes tu armadura visible y otra oculta.", 0,
@@ -141,6 +141,45 @@ public class TestNapakalaki {
         prize = new Prize(1,1);
         monsters.add(new Monster("Bicéfalo", 20, badConsequence, prize));
     
+        //----------------- Operations asked -----------------//
+
+        // Print monsters with combat level greater than 10 
+        System.out.println("Monsters with Combat Level greater than 10:\n");
+        for (Monster monster : monsters){
+            if (monster.getCombatLevel() > 10){
+                System.out.println(monster.toString() + "\n");
+            }
+        }
         
+        // Print monsters with just losing levels as Bad Consequence
+        System.out.println("Monsters with just losing levels as Bad Consequence:\n");
+        for (Monster monster : monsters){
+            badConsequence = monster.getBadConsequence();
+            if (badConsequence.getDeath() == false && badConsequence.getNVisibleTreasures() == 0 
+                    && badConsequence.getNHiddenTreasures() == 0 
+                    && badConsequence.getSpecificVisibleTreasures() == null
+                    && badConsequence.getSpecificHiddenTreasures() == null){
+                System.out.println(monster.toString() + "\n");    
+            }
+        }
+
+        // Print monsters with just losing levels as Bad Consequence
+        System.out.println("Monsters with Prize Levels greater than 1:\n");
+        for (Monster monster : monsters){
+            prize = monster.getPrize();
+            if (prize.getLevels() > 1){
+                System.out.println(monster.toString() + "\n");    
+            }
+        }
+
+        // Print monsters which make you lose at least ONEHAND as Bad Consequence
+        System.out.println("Monsters which make you lose at least ONEHAND as Bad Consequence:\n");
+        for (Monster monster : monsters){
+            badConsequence = monster.getBadConsequence();
+            if (badConsequence.getSpecificVisibleTreasures().contains(TreasureKind.ONEHAND)
+                    || badConsequence.getSpecificHiddenTreasures().contains(TreasureKind.ONEHAND)){
+                System.out.println(monster.toString() + "\n");    
+            }
+        }
     }
 }
