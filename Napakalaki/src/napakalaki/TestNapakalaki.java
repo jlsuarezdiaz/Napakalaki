@@ -21,7 +21,7 @@ public class TestNapakalaki {
      * @param args the command line arguments.
      */
     public static void main(String[] args) {
-        ArrayList<Monster> monsters = new ArrayList();
+        ArrayList<Monster> monsters = new ArrayList<>();
         BadConsequence badConsequence;
         Prize prize;
         
@@ -176,8 +176,10 @@ public class TestNapakalaki {
         System.out.println("Monsters which make you lose at least ONEHAND as Bad Consequence:\n");
         for (Monster monster : monsters){
             badConsequence = monster.getBadConsequence();
-            if (badConsequence.getSpecificVisibleTreasures().contains(TreasureKind.ONEHAND)
-                    || badConsequence.getSpecificHiddenTreasures().contains(TreasureKind.ONEHAND)){
+            if (    (badConsequence.getSpecificVisibleTreasures() != null 
+                     && badConsequence.getSpecificVisibleTreasures().contains(TreasureKind.ONEHAND))
+                 || (badConsequence.getSpecificHiddenTreasures() != null
+                     && badConsequence.getSpecificHiddenTreasures().contains(TreasureKind.ONEHAND))) {
                 System.out.println(monster.toString() + "\n");    
             }
         }
