@@ -71,6 +71,22 @@ public class Monster {
         return this.combatLevel;
     }
 
+    /**
+     * Get the Bad Consequence attribute.
+     * @return badCons
+     */
+    public BadConsequence getBadConsequence(){
+        return this.badCons;
+    }
+
+    /**
+     * Get the Prize attribute.
+     * @return prize
+     */
+    public Prize getPrize(){
+        return this.prize;
+    }
+
     //--------------- toString Method ---------------//
 
     /**
@@ -79,7 +95,7 @@ public class Monster {
      */
     public String toString(){
        return "Name = " + this.name + "\nLevel = " + Integer.toString(combatLevel) 
-               + " prize = [" + prize.toString() + "] bad consequence = [" + 
-               badCons.toString() + "]";
+               + "\nPrize = [" + prize.toString() + "] \nBad Consequence = [\n" + 
+               badCons.toString() + "\n]";
    }
 }

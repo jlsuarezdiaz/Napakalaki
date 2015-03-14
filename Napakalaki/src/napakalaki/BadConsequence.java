@@ -145,6 +145,22 @@ public class BadConsequence {
         return death;
     }
 
+    /**
+     * Get the specificVisibleTreasures attribute.
+     * @return specificVisibleTreasures
+     */
+    public ArrayList<TreasureKind> getSpecificVisibleTreasures(){
+        return specificVisibleTreasures;
+    }
+
+    /**
+     * Get the specificHiddenTreasures attribute.
+     * @return specificHiddenTreasures
+     */
+    public ArrayList<TreasureKind> getSpecificHiddenTreasures(){
+        return specificHiddenTreasures;
+    }
+
     //--------------- toString Method ---------------//
 
     /**
@@ -152,9 +168,10 @@ public class BadConsequence {
      * @param spaces Spaces in each line from second to end.
      * @return String with the contents.
      */
-    public String toString(int spaces){
-        String strSpaces = new String(new char[spaces]).replace('\0', ' ');
-        return strSpaces + "Text = " + text + "\nLevels = " + Integer.toString(levels)
+    public String toString(){
+        String strSpaces = new String(new char[5]).replace('\0', ' ');
+        return strSpaces + "Text = " + text 
+               + "\n"+ strSpaces + "Levels = " + Integer.toString(levels)
                + "\n"+ strSpaces + "nVisibleTreasures = " + Integer.toString(nVisibleTreasures)
                + "\n"+ strSpaces + "nHiddenTreasures = " + Integer.toString(nHiddenTreasures)
                + "\n"+ strSpaces + "Death = " + Boolean.toString(death);
