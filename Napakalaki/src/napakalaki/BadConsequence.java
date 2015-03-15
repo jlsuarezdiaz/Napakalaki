@@ -7,6 +7,7 @@
 package napakalaki;
 
 import java.util.ArrayList; // ArrayList included
+import java.lang.*;
 
 /**
  * Bad Consequence Class.
@@ -169,10 +170,36 @@ public class BadConsequence {
      */
     public String toString(){
         String strSpaces = new String(new char[5]).replace('\0', ' ');
+        String specificVisibleTreasures_str = "", specificHiddenTreasures_str = "";
+        
+        // Get the specific visible treasures as string
+        if (specificVisibleTreasures == null){
+            specificVisibleTreasures_str = " Ninguno";
+        }
+        else{
+            for (TreasureKind treasure : specificVisibleTreasures){
+                specificVisibleTreasures_str += " " + treasure.name();
+            }
+            
+        }
+        
+        // Get the specific hidden treasures as string
+        if (specificHiddenTreasures == null){
+            specificHiddenTreasures_str = " Ninguno";
+        }
+        else{
+            for (TreasureKind treasure : specificHiddenTreasures){
+                specificHiddenTreasures_str += " " + treasure.name();
+            }
+            
+        }
+
         return strSpaces + "Text = " + text 
                + "\n"+ strSpaces + "Levels = " + Integer.toString(levels)
                + "\n"+ strSpaces + "nVisibleTreasures = " + Integer.toString(nVisibleTreasures)
                + "\n"+ strSpaces + "nHiddenTreasures = " + Integer.toString(nHiddenTreasures)
+               + "\n"+ strSpaces + "specificVisibleTreasures =" + specificVisibleTreasures_str
+               + "\n"+ strSpaces + "specificHiddenTreasures ="  + specificHiddenTreasures_str
                + "\n"+ strSpaces + "Death = " + Boolean.toString(death);
     }
 }
