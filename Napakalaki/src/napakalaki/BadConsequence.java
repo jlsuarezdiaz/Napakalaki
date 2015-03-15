@@ -53,7 +53,7 @@ public class BadConsequence {
      * Array with the hidden treasures.
      */
     private ArrayList<TreasureKind> specificHiddenTreasures;
-    private Object StringUtils;
+    
     
     //--------------- Constructors ---------------//
     
@@ -165,7 +165,6 @@ public class BadConsequence {
 
     /**
      * Returns a string with the Bad Consequence instance contents.
-     * @param spaces Spaces in each line from second to end.
      * @return String with the contents.
      */
     public String toString(){
