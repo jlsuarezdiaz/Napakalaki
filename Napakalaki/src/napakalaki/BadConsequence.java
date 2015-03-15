@@ -169,7 +169,10 @@ public class BadConsequence {
      * @return String with the contents.
      */
     public String toString(){
-        String strSpaces = new String(new char[5]).replace('\0', ' ');
+        // Read only variable with the number of spaces to print in each line.
+        final int num_spaces = 5;
+        
+        String strSpaces = new String(new char[num_spaces]).replace('\0', ' ');
         String specificVisibleTreasures_str = "", specificHiddenTreasures_str = "";
         
         // Get the specific visible treasures as string
