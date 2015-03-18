@@ -55,7 +55,7 @@ public class TestNapakalaki {
         monsters.add(new Monster("Ángeles de la noche ibicenca", 14, badConsequence, prize));
         
         // Monster: El gorrón en el umbral
-        badConsequence = new BadConsequence("Pierdes todos tus tesoros visibles.", 0, 6, 0);
+        badConsequence = new BadConsequence("Pierdes todos tus tesoros visibles.", 0, 100, 0);
         prize = new Prize(3,1);
         monsters.add(new Monster("El gorrón en el umbral", 10, badConsequence, prize));
 
