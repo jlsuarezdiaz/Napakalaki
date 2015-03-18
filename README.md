@@ -10,18 +10,16 @@ The game Napakalaki developped for PDO at University of Granada.
 
 - Really cool monsters!
 
+![Angeles](./images/AngelesDeLaNocheIbicenca.png)
+
 ## Install
 
-- Clone or download the repository, open it with NetBeans and feel free
-  to execute it!
+- Clone or download the repository, open it with NetBeans and feel free to 
+  execute it!
 - To generate the documentation with NetBeans go to the project and with 
-right click on it select *Generate Javadoc*.
+  right click on it select *Generate Javadoc*.
 
 ## Authors
 
 - Andrés Herrera Poyatos ([andreshp](https://github.com/andreshp))
 - Juan Luis Suárez Díaz ([jlsuarezdiaz](https://github.com/jlsuarezdiaz))
-
-## Shorcuts for NetBeans
-
-Tools -> Options -> Key Map
