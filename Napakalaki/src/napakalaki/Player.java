@@ -46,6 +46,11 @@ public class Player {
      */
     private ArrayList<Treasure> hiddenTreasures;
     
+    /**
+     * Player's pending Bad Consequence.
+     */
+    private BadConsequence pendingBadConsequence;
+    
     //--------------- Private Methods ----------------//
     
     /**
@@ -73,8 +78,26 @@ public class Player {
     
     
     private void setPendingBadConsequence(BadConsequence b){
+        this.pendingBadConsequence = b;
+    }
+    
+    private void die(){
+        this.dead = true;
+        this.level = 1;
+        this.visibleTreasures = new ArrayList();
+        this.hiddenTreasures = new ArrayList();
+    }
+    
+    private void discardNecklaceIfVisible(){
         
     }
+    
+    private void dieIfNoTreasures(){
+        
+    }
+
+    
+    
     
     //--------------- Constructors ---------------//
     
