@@ -38,7 +38,9 @@ public class Treasure {
      * Kind of treasure.
      */
     private TreasureKind type;
-    //--------------- Public methods ---------------//
+    
+    
+    //--------------- Constructors ---------------//
     
     /**
      * Constructor.
@@ -50,6 +52,8 @@ public class Treasure {
         this.maxBonus = max;
         this.type = kind;
     }
+    
+    //--------------- Get Methods ---------------//
     
     public String getName(){
         return this.name;
