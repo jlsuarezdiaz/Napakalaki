@@ -10,11 +10,11 @@ import java.util.Random;
 /**
  * Dice class.
  * This class represents a dice structure used in Napakalaki game.
- * @author Juan Luis
+ * @author andreshp, jlsuarez
  */
 public class Dice {
     /**
-     * Class Instance
+     * Class instance
      */
     private static Dice instance = null;
     
@@ -36,6 +36,10 @@ public class Dice {
         return instance;
     }
     
+    /**
+     * @brief Throws the dice and gets the value.
+     * @return Value obtained from the dice (from 1 to 6).
+     */
     public int nextNumber(){
        Random rand = new Random();
        return rand.nextInt(6)+1;
