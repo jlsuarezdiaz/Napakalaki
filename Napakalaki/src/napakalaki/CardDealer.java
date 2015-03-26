@@ -13,6 +13,7 @@ import java.util.Collections; // Collections to shuffle ArrayList.
 /**
  * CardDealer Class.
  * This class manages everything related to decks of cards in Napakalaki game.
+ * It is a singleton class, no more than one instance is allowed.
  *
  * @author andreshp, jlsuarez
  */
@@ -20,6 +21,7 @@ public class CardDealer {
 
     /**
      * Instance of card dealer.
+     * 
      * It is the only valid instance of card dealer.
      * It can be obtained with getInstance.
      */
@@ -49,6 +51,7 @@ public class CardDealer {
 
     /** 
      * Card Dealer constructor.
+     * 
      * It is private since we are not letting to create more than one
      * instance. To get that instance use the method getInstance.
      */
