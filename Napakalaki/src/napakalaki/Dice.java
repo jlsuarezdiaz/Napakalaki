@@ -13,16 +13,24 @@ import java.util.Random;
  * @author andreshp, jlsuarez
  */
 public class Dice {
+    
+    //------------- Private attributes ---------------//
+        
     /**
      * Class instance
      */
     private static Dice instance = null;
     
     /**
+     * Random numbers generator.
+     */
+    Random rand;
+    
+    /**
      * Private constructor
      */
     private Dice(){
-        
+        rand = new Random();
     }
     
     /**
@@ -41,7 +49,6 @@ public class Dice {
      * @return Value obtained from the dice (from 1 to 6).
      */
     public int nextNumber(){
-       Random rand = new Random();
-       return rand.nextInt(6)+1;
+        return rand.nextInt(6)+1;
     }
 }
