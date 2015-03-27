@@ -161,6 +161,23 @@ public class BadConsequence {
         return specificHiddenTreasures;
     }
 
+    //--------------- isEmpty Method ---------------//
+
+    /**
+     * Check if the Bad Consequence is empty.
+     * 
+     * A BadConsequence is empty if every attribute is initialized to 0, false,
+     * null or "" in case of strings.
+     * 
+     * @return Result of the comparison.
+     */
+    public boolean isEmpty(){
+        return  (text == null || "".equals(text)) && death == false && 
+            nVisibleTreasures == 0 && nHiddenTreasures == 0 && 
+            specificVisibleTreasures == null && specificHiddenTreasures == null;
+    }
+
+    
     //--------------- toString Method ---------------//
 
     /**
