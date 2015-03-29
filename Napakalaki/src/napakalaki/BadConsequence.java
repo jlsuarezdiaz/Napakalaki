@@ -90,7 +90,7 @@ public class BadConsequence {
     /**
      * Constructor that initializes the attributes text, levels and both treasures array.
      */
-    BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible,
+    public BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible,
             ArrayList<TreasureKind> tHidden){
         this.text = text;
         this.levels = levels;
