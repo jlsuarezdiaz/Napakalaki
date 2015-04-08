@@ -17,7 +17,7 @@ import java.util.ArrayList; // ArrayList included
  */
 public class BadConsequence {
 
-    //--------------- Private Attributes ---------------//
+    //--------------- ATTRIBUTES ---------------//
     
     /**
      * Text that explains what does the bad consequence do.
@@ -55,7 +55,7 @@ public class BadConsequence {
     private ArrayList<TreasureKind> specificHiddenTreasures;
     
     
-    //--------------- Constructors ---------------//
+    //--------------- CONSTRUCTORS ---------------//
     
     /**
      * Constructor that initializes every attribute but the arrays and death.
@@ -103,7 +103,7 @@ public class BadConsequence {
         this.nVisibleTreasures = 0;
     }
     
-    //--------------- Get Methods ---------------//
+    //--------------- GET METHODS ---------------//
 
     /**
      * Get the text attribute.
@@ -161,7 +161,7 @@ public class BadConsequence {
         return specificHiddenTreasures;
     }
 
-    //--------------- isEmpty Method ---------------//
+    //--------------- OTHER PUBLIC METHODS ---------------//
 
     /**
      * Check if the Bad Consequence is empty.
@@ -176,9 +176,6 @@ public class BadConsequence {
             nVisibleTreasures == 0 && nHiddenTreasures == 0 && 
             specificVisibleTreasures == null && specificHiddenTreasures == null;
     }
-
-    
-    //--------------- toString Method ---------------//
 
     /**
      * Returns a string with the Bad Consequence instance contents.
