@@ -19,7 +19,7 @@ import java.util.Arrays;    // Arrays included
  * 
  * @author andreshp, jlsuarez
  */
-public class TestNapakalaki {
+public class Test1 {
     /**
      * Main for testing the program.
      * @param args the command line arguments.
