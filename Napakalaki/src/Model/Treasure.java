@@ -12,7 +12,7 @@ package Model;
  */
 public class Treasure {
     
-    //------------- Private attributes ---------------//
+    //------------- ATTRIBUTES ---------------//
     
     /**
      * Text with treasure's name.
@@ -40,37 +40,67 @@ public class Treasure {
     private TreasureKind type;
     
     
-    //--------------- Constructors ---------------//
+    //--------------- CONSTRUCTORS ---------------//
     
     /**
-     * Constructor.
+     * Class Constructor.
+     * Initializes name, goldCoins, minBonus, maxBonus and type to the values
+     * given as parameters.
+     * @param name Treasure's name.
+     * @param goldCoins Treasure's value in gold coins.
+     * @param minBonus Treasure's bonus in case the player isn't equiped with a necklace.
+     * @param maxBonus Treasure's bonus in case the player is equiped with a necklace.
+     * @param type Treasure's type. 
      */
-    public Treasure(String name, int gold, int min, int max, TreasureKind kind){
+    public Treasure(String name, int goldCoins, int minBonus, int maxBonus, TreasureKind type){
         this.name = name;
-        this.goldCoins = gold;
-        this.minBonus = min;
-        this.maxBonus = max;
-        this.type = kind;
+        this.goldCoins = goldCoins;
+        this.minBonus = minBonus;
+        this.maxBonus = maxBonus;
+        this.type = type;
     }
     
-    //--------------- Get Methods ---------------//
+    //--------------- GETS METHODS ---------------//
     
+    /**
+     * Gets the treasure's name.
+     * @return name
+     */
     public String getName(){
         return this.name;
     }
     
+    /**
+     * Gets the treasure's value in gold coins.
+     * @return goldCoins
+     */
     public int getGoldCoins(){
         return this.goldCoins;
     }
     
+    /**
+     * Gets the treasure's minimum bonus.
+     * It is applied if the player isn't equiped with a necklace.
+     * @return minBonus
+     */
     public int getMinBonus(){
         return this.minBonus;
     }
     
+    /**
+     * Gets the treasure's maximum bonus.
+     * It is applied if the player is equiped with a necklace.
+     * @return maxBonus
+     */
     public int getMaxBonus(){
         return this.maxBonus;
     }
     
+    /**
+     * Gets the treasure's type.
+     * It can be a HELMET, NECKLACE, BOTHHANDS, ONEHAND, ARMOR, SHOE
+     * @return type
+     */
     public TreasureKind getType(){
         return this.type;
     }
