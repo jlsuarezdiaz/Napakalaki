@@ -9,8 +9,10 @@ package Test;
 import Model.BadConsequence;
 import Model.CardDealer;
 import Model.Monster;
+import Model.Treasure;
 import Model.Prize;
 import Model.TreasureKind;
+import Model.Dice;
 
 /**
  * Test Main to try the changes in the program.
@@ -27,9 +29,11 @@ public class Test2 {
 
         CardDealer cards = CardDealer.getInstance();
         cards.initCards();
-        Monster monster;    
+        Monster monster;   
+        Treasure treasure;
         BadConsequence badConsequence;
         Prize prize;
+        Dice dice = Dice.getInstance();
         
         //----------------- Operations with the deck -----------------//
 
@@ -81,5 +85,49 @@ public class Test2 {
             }
             cards.giveMonsterBack(monster);
         }
+        
+        // Print treasures whose bonus does not improve while wearing the necklace
+        System.out.println("Treasures whose bonus does not improve while wearing the necklace:\n");
+        for(int i = 0; i < 32; i++){
+            treasure = cards.nextTreasure();
+            if(treasure.getMinBonus() == treasure.getMaxBonus())
+                System.out.println(treasure.toString() + "\n");
+            cards.giveTreasureBack(treasure);
+        }
+        
+        // Print treasures while 100 or less gold coins:
+        System.out.println("Treasures with 100 or less gold coins:\n");
+        for(int i = 0; i < 32; i++){
+            treasure = cards.nextTreasure();
+            if(treasure.getGoldCoins() <= 100)
+                System.out.println(treasure.toString() + "\n");
+            cards.giveTreasureBack(treasure);
+        }
+        
+        // Print treasures you can wear in the hands:
+        System.out.println("Treasures you can wear in the hands:\n");
+        for(int i = 0; i < 32; i++){
+            treasure = cards.nextTreasure();
+            if(treasure.getType() == TreasureKind.ONEHAND || treasure.getType() == TreasureKind.BOTHHANDS)
+                System.out.println(treasure.toString() + "\n");
+            cards.giveTreasureBack(treasure);
+        }
+        
+        // Print treasures while 100 or less gold coins:
+        System.out.println("Treasure whose name starts with 'Necro':\n");
+        for(int i = 0; i < 32; i++){
+            treasure = cards.nextTreasure();
+            if(treasure.getName().startsWith("Necro"))
+                System.out.println(treasure.toString() + "\n");
+            cards.giveTreasureBack(treasure);
+        }
+        
+        // --- TESTING DICE --- //
+        System.out.print("Testing the dice: ");
+        for(int i = 0; i < 28; i++)
+            System.out.print(Integer.toString(dice.nextNumber()) + " ");
+        
+        System.out.println("\n");
+
     }
 }

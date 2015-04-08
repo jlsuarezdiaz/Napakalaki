@@ -104,4 +104,10 @@ public class Treasure {
     public TreasureKind getType(){
         return this.type;
     }
+    
+    public String toString(){
+        return "Name = " + this.name + "\nGold Coins = " + this.goldCoins + "\nMinimum Bonus = "
+               + this.minBonus + "\nMaximum Bonus = " + this.maxBonus + "\nKind of the trasure = "
+               + this.type.name();
+    }
 }
