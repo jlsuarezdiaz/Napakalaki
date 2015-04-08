@@ -40,6 +40,7 @@ public class Test2 {
             if (monster.getCombatLevel() > 10){
                 System.out.println(monster.toString() + "\n");
             }
+            cards.giveMonsterBack(monster);
         }
         
         // Print monsters with just losing levels as Bad Consequence
@@ -53,6 +54,7 @@ public class Test2 {
                     && badConsequence.getSpecificHiddenTreasures() == null){
                 System.out.println(monster.toString() + "\n");    
             }
+            cards.giveMonsterBack(monster);
         }
 
         // Print monsters with just losing levels as Bad Consequence
@@ -63,6 +65,7 @@ public class Test2 {
             if (prize.getLevels() > 1){
                 System.out.println(monster.toString() + "\n");    
             }
+            cards.giveMonsterBack(monster);
         }
 
         // Print monsters which make you lose at least ONEHAND as Bad Consequence
@@ -76,6 +79,7 @@ public class Test2 {
                      && badConsequence.getSpecificHiddenTreasures().contains(TreasureKind.ONEHAND))) {
                 System.out.println(monster.toString() + "\n");    
             }
+            cards.giveMonsterBack(monster);
         }
     }
 }
