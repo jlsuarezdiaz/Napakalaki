@@ -6,6 +6,8 @@
 
 package Model;
 
+import java.util.ArrayList;
+
 /**
  * Napakalaki class
  * Main class of Napakalaki game.
@@ -22,6 +24,21 @@ public class Napakalaki {
      * It can be obtained with getInstance.
      */
     private static Napakalaki instance = null;
+
+    /**
+     * Current player in the game.
+     */
+    private Player currentPlayer;
+    
+    /**
+     * List with the players in the game.
+     */
+    private ArrayList<Player> players;
+    
+    /**
+     * Current monster in the game.
+     */
+    private Monster currentMonster;
 
     //----------------------- PRIVATE METHODS -----------------------//
 
