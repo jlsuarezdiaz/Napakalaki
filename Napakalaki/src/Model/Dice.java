@@ -19,7 +19,9 @@ public class Dice {
         
     /**
      * Class instance.
-     * Just this istance is allowed.
+     * 
+     * It is the only valid instance of Dice.
+     * It can be obtained with getInstance.
      */
     private static Dice instance = null;
     
