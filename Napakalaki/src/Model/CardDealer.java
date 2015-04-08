@@ -11,13 +11,15 @@ import java.util.Arrays;      // Arrays included
 import java.util.Collections; // Collections to shuffle ArrayList.
 
 /**
- * CardDealer Class.
+ * Card Dealer Class.
  * This class manages everything related to decks of cards in Napakalaki game.
  * It is a singleton class, no more than one instance is allowed.
  *
  * @author andreshp, jlsuarez
  */
 public class CardDealer {
+
+    //----------------------- ATTRIBUTES -----------------------//
 
     /**
      * Instance of card dealer.
@@ -49,6 +51,8 @@ public class CardDealer {
      */
     private ArrayList <Treasure> unusedTreasures;
 
+    //----------------------- PRIVATE METHODS -----------------------//
+
     /** 
      * Card Dealer constructor.
      * 
@@ -57,14 +61,14 @@ public class CardDealer {
      */
     private CardDealer() {
     }
-    
+
     /**
      * Initialize the treasures' deck.
      * Every treasure is added to unusedTreasures.
      */
     private void initTreasureCardDeck(){
 
-        //--------------------- ADD THE TREASURES ----------------------//
+        // Adds the treasures
 
         // Treasure: ¡Sí mi amo!
         unusedTreasures.add(new Treasure("¡Sí mi amo!",0,4,7,TreasureKind.HELMET));
@@ -172,9 +176,9 @@ public class CardDealer {
         BadConsequence badConsequence;
         Prize prize;
         
-        //------------------------ ADD THE MONSTERS ------------------------//
+        // Add the monsters
 
-                // Monster: 3 Byakhees de bonanza
+        // Monster: 3 Byakhees de bonanza
         badConsequence = new BadConsequence("Pierdes tu armadura visible y otra oculta.", 0,
                 new ArrayList(Arrays.asList(TreasureKind.ARMOR)),
                 new ArrayList(Arrays.asList(TreasureKind.ARMOR)));
@@ -305,6 +309,8 @@ public class CardDealer {
         Collections.shuffle(unusedMonsters);
     }
 
+    //----------------------- PUBLIC METHODS -----------------------//
+
     /**
      * Get the singlenton instance of the class.
      * @return instance
@@ -315,7 +321,7 @@ public class CardDealer {
         }
         return instance;
     }
-    
+
     /**
      * Get the following treasure in the treasures' deck.
      * If the deck is empty then usedTreasures is assigned to the treasures'
@@ -348,8 +354,9 @@ public class CardDealer {
     
     /**
      * Adds a treasure to the used treasures' deck.
-     * @param t Treasure that has been used. Precondition: The treasure is 
-     * supposed not to be in the unused treasures' deck.
+     * @param t Treasure that has been used. 
+     * Precondition: The treasure is supposed not to be in the unused 
+     * treasures' deck.
      */
     public void giveTreasureBack(Treasure t){
         usedTreasures.add(t);
@@ -357,8 +364,9 @@ public class CardDealer {
     
     /**
      * Adds a monster to the used monsters' deck.
-     * @param m Monster that has been used. Precondition: The monster is 
-     * supposed not to be in the unused monsters' deck.
+     * @param m Monster that has been used. 
+     * Precondition: The monster is supposed not to be in the unused 
+     * monsters' deck.
      */
     public void giveMonsterBack(Monster m){
         usedMonsters.add(m);    
