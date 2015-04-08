@@ -58,8 +58,14 @@ public class CardDealer {
      * 
      * It is private since we are not letting to create more than one
      * instance. To get that instance use the method getInstance.
+     * 
+     * Initializes the attributes by default.
      */
     private CardDealer() {
+        this.usedMonsters = new ArrayList<>();
+        this.usedTreasures =  new ArrayList<>();
+        this.unusedMonsters = new ArrayList<>();
+        this.unusedTreasures =  new ArrayList<>();
     }
 
     /**
