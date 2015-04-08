@@ -74,7 +74,7 @@ public class Player {
      * @param levels Amount of levels to decrease.
      */
     private void decreaseLevels(int levels){
-        this.level = (this.level - levels >= 1)?this.level - levels: 1;
+        this.level = (this.level - levels >= 1)? this.level - levels: 1;
     }
     
     /**
@@ -131,13 +131,13 @@ public class Player {
      */
     protected float computeGoldCoinsValue(ArrayList<Treasure> t){
         int sum = 0;
-        for(Treasure p : t){
+        for (Treasure p : t){
             sum += p.getGoldCoins();
         }
-        return (float)sum/1000;
+        return (int)(sum/1000.0);
     }
     
-        //--------------- Constructors ---------------//
+    //--------------- CONSTRUCTOR ---------------//
     
     /**
      * Constructor by player's name.
@@ -152,7 +152,7 @@ public class Player {
         this.pendingBadConsequence = null;
     }
     
-        //-------------- Public Methods ---------------//
+    //-------------- PUBLIC METHODS ---------------//
     
     /**
      * Applies the prize given as argument.
