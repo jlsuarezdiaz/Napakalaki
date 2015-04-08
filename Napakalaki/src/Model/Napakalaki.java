@@ -49,6 +49,9 @@ public class Napakalaki {
      * instance. To get that instance use the method getInstance.
      */
     private Napakalaki() {
+        currentPlayer = null;
+        players = new ArrayList<>();
+        currentMonster = null;
     }
 
     private void initPlayers(String [] names){       
