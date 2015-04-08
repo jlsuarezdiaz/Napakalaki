@@ -13,6 +13,8 @@ package Model;
  */
 public class Napakalaki {
    
+    //----------------------- ATTRIBUTES -----------------------//
+
     /**
      * Instance of Napakalaki.
      * 
@@ -20,6 +22,8 @@ public class Napakalaki {
      * It can be obtained with getInstance.
      */
     private static Napakalaki instance = null;
+
+    //----------------------- PRIVATE METHODS -----------------------//
 
     /** 
      * Napakalaki constructor.
@@ -30,15 +34,15 @@ public class Napakalaki {
     private Napakalaki() {
     }
 
-    private void initPlayers(String [] names){
-        
+    private void initPlayers(String [] names){       
     }
-    
     private Player nextPlayer(){
         return null;
     }
-    
-     /**
+
+    //----------------------- PUBLIC METHODS -----------------------//
+
+    /**
      * Get the singlenton instance of the class.
      * @return instance
      */
@@ -47,60 +51,44 @@ public class Napakalaki {
             instance = new Napakalaki();
         }
         return instance;
-    }   
+    }
 
     public CombatResult combat(){
         return null;        
     }
-    
-    public void discardVisibleTreasure(Treasure t){
-        
+    public void discardVisibleTreasure(Treasure t){   
     }
-    
     public void discardHiddenTreasure(Treasure t){
-    
     }
-    
     public boolean makeTreasureVisible(Treasure t){
         return false;
     }
-    
     public boolean buyLevels(Treasure [] visible, Treasure [] hidden){
         return false;
     }
-    
-    public void initGame(String [] players){
-        
+    public void initGame(String [] players){   
     }
-    
     public Player getCurrentPlayer(){
         return null;        
     }
-    
     public Monster getCurrentMonster(){
         return null;        
     }
-    
     public boolean canMakeTreasureVisible(Treasure t){
         return false;        
     }
-    
     public Treasure [] getVisibleTreasures(){
         return null;
     }
-    
     public Treasure [] getHiddenTreasures(){
         return null;
     }
-    
     public boolean nextTurn(){
         return false;
     }
-    
     public boolean nextTurnAllowed(){
         return false;
     }
-    
     public boolean endOfGame(CombatResult result){
         return false;
     }
