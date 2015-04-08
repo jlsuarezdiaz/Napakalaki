@@ -3,6 +3,7 @@
 // Universidad de Granada, March, 2015
 // Programación Orientada a Objetos - Napakalaki
 //////////////////////////////////////////////////////////////////////////////////////
+
 package Model;
 
 import java.util.Random;
@@ -14,10 +15,11 @@ import java.util.Random;
  */
 public class Dice {
     
-    //------------- Private attributes ---------------//
+    //----------------------- ATTRIBUTES -----------------------//
         
     /**
-     * Class instance
+     * Class instance.
+     * Just this istance is allowed.
      */
     private static Dice instance = null;
     
@@ -25,20 +27,25 @@ public class Dice {
      * Random numbers generator.
      */
     Random rand;
+
     
+    //----------------------- PRIVATE METHODS -----------------------//
+
     /**
      * Private constructor
      */
     private Dice(){
         rand = new Random();
     }
-    
+
+    //----------------------- PUBLIC METHODS -----------------------//
+
     /**
      * @brief gets a single instance of the class.
      * @return class instance.
      */
     public static Dice getInstance(){
-        if(instance == null){
+        if (instance == null){
             instance = new Dice();
         }
         return instance;
