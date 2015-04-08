@@ -15,7 +15,7 @@ package Model;
  */
 public class Monster {
     
-    //--------------- Private Attributes ---------------//
+    //--------------- ATTRIBUTES ---------------//
     
     /**
      * Monter's name.
@@ -37,10 +37,11 @@ public class Monster {
      */
     private BadConsequence badCons;
 
-    //--------------- Constructors ---------------//
+    //--------------- CONSTRUCTOR ---------------//
     
     /**
-     * Constructor.
+     * Class Constructor.
+     * Initializes all the attributes.
      * @param name Monster's name.
      * @param level Monster's level.
      * @param bc Bad consequence.
@@ -53,7 +54,7 @@ public class Monster {
         this.badCons = bc;
     }
 
-    //--------------- Get Methods ---------------//
+    //--------------- GET METHODS ---------------//
 
     /**
      * Get the name attribute.
@@ -87,7 +88,7 @@ public class Monster {
         return this.prize;
     }
 
-    //--------------- toString Method ---------------//
+    //--------------- TOSTRING METHOD ---------------//
 
     /**
      * Gets a string with the monster's info.
