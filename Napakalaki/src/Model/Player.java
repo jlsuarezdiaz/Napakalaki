@@ -1,8 +1,9 @@
-//////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 // Authors: Juan Luis Suárez Díaz, Andrés Herrera Poyatos
 // Universidad de Granada, March, 2015
 // Programación Orientada a Objetos - Napakalaki
-//////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
 package Model;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  */
 public class Player {
     
-    //------------- Private attributes ---------------//
+    //------------------ ATTRIBUTES --------------------//
     
     /**
      * Player's name.
@@ -30,12 +31,7 @@ public class Player {
      * Attribute shows whether the player is dead.
      */
     private boolean dead;
-    
-    /**
-     * Constant value showing maximum number of Hidden Treasure enabled.
-     */
-    private static final int MAXHIDDENTREASURES = 4;
-    
+        
     /**
      * Player's visible treasures.
      */
@@ -51,7 +47,12 @@ public class Player {
      */
     private BadConsequence pendingBadConsequence;
     
-    //--------------- Private Methods ----------------//
+    /**
+     * Constant value showing maximum number of Hidden Treasure enabled.
+     */
+    private static final int MAXHIDDENTREASURES = 4;
+
+    //----------------- PRIVATE METHODS ------------------//
     
     /**
      * Brings the player to life.

@@ -1,8 +1,8 @@
-//////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 // Authors: Juan Luis Suárez Díaz, Andrés Herrera Poyatos
 // Universidad de Granada, March, 2015
 // Programación Orientada a Objetos - Napakalaki
-//////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 package Model;
 
@@ -15,7 +15,7 @@ package Model;
  */
 public class Prize {
    
-    //--------------- Private Attributes ---------------//
+    //--------------- ATTRIBUTES ---------------//
 
     /**
      * Amount of treasures bonus.
@@ -27,7 +27,7 @@ public class Prize {
      */
     private int levels;
 
-    //--------------- Constructors ---------------//
+    //--------------- CONSTRUCTORS ---------------//
 
     /**
      * Constructor
@@ -39,7 +39,7 @@ public class Prize {
         this.levels = levels;
     }
 
-    //--------------- Get Methods ---------------//
+    //--------------- GET METHODS ---------------//
 
     /**
      * Get the treasures bonus.
@@ -57,7 +57,7 @@ public class Prize {
         return this.levels;
     }
 
-    //--------------- toString Method ---------------//
+    //--------------- TOSTRING METHOD ---------------//
    
     /**
      * Gets a string with the prize's info.
