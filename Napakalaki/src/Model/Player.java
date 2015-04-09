@@ -98,9 +98,15 @@ public class Player {
     
     /**
      * Discards the necklace if it is a visible treasure.
+     * In that case, it is given back to the card dealer.
      */
     private void discardNecklaceIfVisible(){
-        
+        for (int i = 0; i < visibleTreasures.size(); i++){
+            if (visibleTreasures.get(i).getType() == TreasureKind.NECKLACE) {
+                CardDealer instance = CardDealer.getInstance();
+                instance.giveTreasureBack(visibleTreasures.remove(i));
+            }
+        }
     }
     
     /**
@@ -122,7 +128,7 @@ public class Player {
         return (level + levels) < 10;
     }
     
-    //--------------- Protected methods ---------------//
+    //--------------- PROTECTED METHODS ---------------//
     
     /**
      * Gets the total levels that the player can buy with the given treasures list.
@@ -130,11 +136,11 @@ public class Player {
      * @return Amount of levels the player is able to buy (no rounded).
      */
     protected float computeGoldCoinsValue(ArrayList<Treasure> t){
-        int sum = 0;
+        float sum = 0;
         for (Treasure p : t){
             sum += p.getGoldCoins();
         }
-        return (int)(sum/1000.0);
+        return (float)(sum / 1000.0);
     }
     
     //--------------- CONSTRUCTOR ---------------//
@@ -192,11 +198,25 @@ public class Player {
     
     /**
      * It checks if the given treasure can be made visible.
-     * @param t Treasure ti check
-     * @return ---Boolean---
+     * A treasure can be made visible if the player is not already equiped with
+     * a treasure of the same type. If the treasure is ONEHAND, then the player
+     * is allow to wear two of those.
+     * 
+     * @param t Treasure to check.
+     * @return Boolean with the checking's result.
      */
     public boolean canMakeTreasureVisible(Treasure t){
-        //Return temporal
+        int numOneHand = 0;
+        for (Treasure vt : visibleTreasures){
+            if (t.getType() == vt.getType()){
+                if (t.getType() == TreasureKind.ONEHAND && numOneHand == 0){
+                    numOneHand += 1;
+                }
+                else{
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
@@ -243,7 +263,7 @@ public class Player {
                 isNecklace = true;
         }
         
-        return (isNecklace)?sum_max:sum_min;
+        return isNecklace? sum_max : sum_min;
     }
     
     /**
