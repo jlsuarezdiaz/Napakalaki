@@ -164,6 +164,52 @@ public class BadConsequence {
     //--------------- OTHER PUBLIC METHODS ---------------//
 
     /**
+     * Substracts the visible treasure given from the bad consequence.
+     * 
+     * If the bad consequence just ask for a number of visible treasures then
+     * that number is decremented. Else if the bad consequence ask for specific
+     * visible treasures, substract t.getType() from the specific treasures
+     * asked.
+     * 
+     * @param t Treasure to substract.
+     */
+    public void substractVisibleTreasure(Treasure t){
+        if (nVisibleTreasures > 0){
+            nVisibleTreasures -= 1;
+        }
+        else{
+            for (TreasureKind vt : specificVisibleTreasures){
+                if (vt == t.getType()){
+                    specificVisibleTreasures.remove(vt);
+                }
+            }
+        }
+    }
+
+    /**
+     * Substracts the hidden treasure given from the bad consequence.
+     * 
+     * If the bad consequence just ask for a number of hidden treasures then
+     * that number is decremented. Else if the bad consequence ask for specific
+     * hidden treasures, substract t.getType() from the specific treasures
+     * asked.
+     * 
+     * @param t Treasure to substract.
+     */
+    public void substractHiddenTreasure(Treasure t){
+        if (nHiddenTreasures > 0){
+            nHiddenTreasures -= 1;
+        }
+        else{
+            for (TreasureKind vt : specificHiddenTreasures){
+                if (vt == t.getType()){
+                    specificHiddenTreasures.remove(vt);
+                }
+            }
+        }
+    }
+
+    /**
      * Check if the Bad Consequence is empty.
      * 
      * A BadConsequence is empty if every attribute is initialized to 0, false,
