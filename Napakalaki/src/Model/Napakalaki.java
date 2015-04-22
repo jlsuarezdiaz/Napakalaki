@@ -7,6 +7,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Napakalaki class
@@ -31,6 +32,11 @@ public class Napakalaki {
     private Player currentPlayer;
     
     /**
+     * Current player index in the game.
+     */
+    private int currentPlayerIndex;
+    
+    /**
      * List with the players in the game.
      */
     private ArrayList<Player> players;
@@ -50,14 +56,36 @@ public class Napakalaki {
      */
     private Napakalaki() {
         currentPlayer = null;
+        currentPlayerIndex = 0;
         players = new ArrayList<>();
         currentMonster = null;
     }
 
-    private void initPlayers(String [] names){       
+    /**
+     * Initialize players for the game.
+     * @param names array with players' names.
+     */
+    private void initPlayers(String [] names){
+        for(String name: names){
+            players.add(new Player(name));
+        }
     }
+    
+    /**
+     * Method that changes the current player in the game.
+     * @return New current player.
+     */
     private Player nextPlayer(){
-        return null;
+        Random rand = new Random();
+        if(currentPlayer == null){
+            currentPlayerIndex = rand.nextInt(players.size());
+        }
+        else{
+            currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+        }
+        currentPlayer = players.get(currentPlayerIndex);
+        return currentPlayer;
+        
     }
 
     //----------------------- PUBLIC METHODS -----------------------//
@@ -89,10 +117,10 @@ public class Napakalaki {
     public void initGame(String [] players){   
     }
     public Player getCurrentPlayer(){
-        return null;        
+        return currentPlayer;        
     }
     public Monster getCurrentMonster(){
-        return null;        
+        return currentMonster;        
     }
     public boolean canMakeTreasureVisible(Treasure t){
         return false;        
@@ -106,10 +134,21 @@ public class Napakalaki {
     public boolean nextTurn(){
         return false;
     }
+    
+    /**
+     * Checks if current player in the game can finish his or her turn properly.
+     * @return Boolean indicating whether player can leave the turn.
+     */
     public boolean nextTurnAllowed(){
-        return false;
+        return currentPlayer.validState();
     }
+    
+    /**
+     * Checks if the game has finished according to last battle result.
+     * @param result Result of the combat.
+     * @return Boolean indicating whether the game has finished.
+     */
     public boolean endOfGame(CombatResult result){
-        return false;
+        return result == CombatResult.WINANDWINGAME;
     }
 }
