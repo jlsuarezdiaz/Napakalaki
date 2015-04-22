@@ -101,27 +101,78 @@ public class Napakalaki {
         return instance;
     }
 
+    /**
+     * Combat with current player against current monster.
+     * @return Result of the battle.
+     */
     public CombatResult combat(){
-        return null;        
+        return currentPlayer.combat(currentMonster);
     }
-    public void discardVisibleTreasure(Treasure t){   
+    
+    /**
+     * Erase the given treasures from the player list of visible treasures.
+     * @param t Treasures to erase.
+     */
+    public void discardVisibleTreasure(Treasure t){ 
+        currentPlayer.discardVisibleTreasure(t);
     }
+    
+    /**
+     * Erase the given treasures from the player list of hidden treasures.
+     * @param t Treasures to erase.
+     */
     public void discardHiddenTreasure(Treasure t){
+        currentPlayer.discardHiddenTreasure(t);
     }
+    
+    /**
+     * Makes visible a treasure.
+     * @param t Treasure to make visible.
+     * @return true if and only if current player could make visible the treasure properly.
+     */
     public boolean makeTreasureVisible(Treasure t){
-        return false;
+        boolean can = currentPlayer.canMakeTreasureVisible(t);
+        if(can)
+            currentPlayer.makeTreasureVisible(t);
+        return can;
     }
-    public boolean buyLevels(Treasure [] visible, Treasure [] hidden){
-        return false;
+    
+    /**
+     * Buy levels before combat a monster.
+     * @param visible Visible treasures used to get levels.
+     * @param hidden Hidden treasures used to get levels.
+     * @return true if and only if level purchase was effective.
+     */
+    public boolean buyLevels(ArrayList <Treasure> visible, ArrayList <Treasure> hidden){
+        return currentPlayer.buyLevels(visible, hidden);
     }
-    public void initGame(String [] players){   
+    
+    /**
+     * Initialize  main things needed to play Napakalaki game.
+     * @param players Array with players' names.
+     */
+    public void initGame(String [] players){
+        CardDealer.getInstance().initCards();
+        initPlayers(players);
+        nextTurn();
     }
+    
+    /**
+     * Gets current player in the game.
+     * @return Current Player.
+     */
     public Player getCurrentPlayer(){
         return currentPlayer;        
     }
+    
+    /**
+     * Gets current monster in the game.
+     * @return Current Monster.
+     */
     public Monster getCurrentMonster(){
         return currentMonster;        
     }
+    
     public boolean canMakeTreasureVisible(Treasure t){
         return false;        
     }
@@ -132,7 +183,19 @@ public class Napakalaki {
         return null;
     }
     public boolean nextTurn(){
-        return false;
+        boolean stateOK = nextTurnAllowed();
+        CardDealer dealer = CardDealer.getInstance();
+        
+        if(stateOK){
+            dealer.giveMonsterBack(currentMonster);
+            currentMonster = dealer.getInstance().nextMonster();
+            nextPlayer();
+            
+            if(currentPlayer.isDead())
+                currentPlayer.initTreasures();
+            
+        }
+        return stateOK;
     }
     
     /**

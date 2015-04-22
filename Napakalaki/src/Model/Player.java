@@ -189,7 +189,7 @@ public class Player {
     /**
      * Makes visible the treasure given as argument.
      * @param t Treasure to make visible.
-     * @return ---Boolean---
+     * @return true if and only if player could make visible the treasure properly.
      */
     public boolean makeTreasureVisible(Treasure t){
         //Return temporal
