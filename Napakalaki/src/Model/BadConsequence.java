@@ -141,7 +141,7 @@ public class BadConsequence {
      * Get the death attribute.
      * @return death
      */
-    public boolean getDeath(){
+    public boolean kills(){
         return death;
     }
 
@@ -260,8 +260,23 @@ public class BadConsequence {
                + "\n"+ strSpaces + "Levels = " + Integer.toString(levels)
                + "\n"+ strSpaces + "nVisibleTreasures = " + Integer.toString(nVisibleTreasures)
                + "\n"+ strSpaces + "nHiddenTreasures = " + Integer.toString(nHiddenTreasures)
-               + "\n"+ strSpaces + "specificVisibleTreasures =" + specificVisibleTreasures_str
-               + "\n"+ strSpaces + "specificHiddenTreasures ="  + specificHiddenTreasures_str
+               + "\n"+ strSpaces + "specificVisibleTreasures = " + specificVisibleTreasures_str
+               + "\n"+ strSpaces + "specificHiddenTreasures = "  + specificHiddenTreasures_str
                + "\n"+ strSpaces + "Death = " + Boolean.toString(death);
+    }
+    
+    BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> visible, ArrayList<Treasure> hidden){
+        if(this.specificVisibleTreasures == null && this.specificHiddenTreasures == null){
+            if(this.nVisibleTreasures > visible.size())
+                this.nVisibleTreasures = visible.size();
+            if(this.nHiddenTreasures > hidden.size())
+                this.nHiddenTreasures = hidden.size();
+        }
+        else{
+            for(TreasureKind k: specificVisibleTreasures){
+
+            }
+        }
+        return null;
     }
 }

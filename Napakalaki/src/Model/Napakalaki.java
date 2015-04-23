@@ -106,7 +106,9 @@ public class Napakalaki {
      * @return Result of the battle.
      */
     public CombatResult combat(){
-        return currentPlayer.combat(currentMonster);
+        CombatResult combatResult = currentPlayer.combat(currentMonster);
+        CardDealer.getInstance().giveMonsterBack(currentMonster);
+        return combatResult;
     }
     
     /**
@@ -131,10 +133,7 @@ public class Napakalaki {
      * @return true if and only if current player could make visible the treasure properly.
      */
     public boolean makeTreasureVisible(Treasure t){
-        boolean can = currentPlayer.canMakeTreasureVisible(t);
-        if(can)
-            currentPlayer.makeTreasureVisible(t);
-        return can;
+        return currentPlayer.makeTreasureVisible(t);    
     }
     
     /**
@@ -187,7 +186,6 @@ public class Napakalaki {
         CardDealer dealer = CardDealer.getInstance();
         
         if(stateOK){
-            dealer.giveMonsterBack(currentMonster);
             currentMonster = dealer.getInstance().nextMonster();
             nextPlayer();
             

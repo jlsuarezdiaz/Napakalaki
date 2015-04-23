@@ -91,9 +91,18 @@ public class Player {
     private void die(){
         this.dead = true;
         this.level = 1;
-        //...
-        //this.visibleTreasures = new ArrayList();
-        //this.hiddenTreasures = new ArrayList();
+        CardDealer dealer = CardDealer.getInstance();
+        
+        for(Treasure t: visibleTreasures){
+            dealer.giveTreasureBack(t);
+        }
+        
+        for(Treasure t: hiddenTreasures){
+            dealer.giveTreasureBack(t);
+        }
+        
+        visibleTreasures.clear();
+        hiddenTreasures.clear();
     }
     
     /**
@@ -165,7 +174,14 @@ public class Player {
      * @param p Prize to apply.
      */
     public void applyPrize(Prize p){
+        int nLevels = p.getLevels();
+        this.increaseLevels(nLevels);
+        int nPrize = p.getTreasures();
+        CardDealer dealer = CardDealer.getInstance();
         
+        for(int i = 0; i < nPrize; i++){
+            hiddenTreasures.add(dealer.nextTreasure());
+        }
     }
     
     /**
@@ -174,8 +190,38 @@ public class Player {
      * @return Result of the battle.
      */
     public CombatResult combat(Monster m){
-        //Return temporal
-        return CombatResult.WIN;
+        int myLevel = this.getCombatLevel();
+        int levelMonster = m.getCombatLevel();
+        CombatResult combatResult;
+        
+        if(myLevel > levelMonster){
+            Prize prize = m.getPrize();
+            this.applyPrize(prize);
+            if(this.level < 10)
+                combatResult = CombatResult.WIN;
+            else
+                combatResult = CombatResult.WINANDWINGAME;
+        }
+        
+        else{
+            int escape = Dice.getInstance().nextNumber();
+            if(escape < 5){
+                BadConsequence bad = m.getBadConsequence();
+                boolean amIdead = bad.kills();
+                
+                if(amIdead){
+                    die();
+                    combatResult = CombatResult.LOSEANDDIE;
+                }
+                else{
+                    this.applyBadConsequence(bad);
+                    combatResult = CombatResult.LOSE;
+                }
+            }
+            else
+                combatResult = CombatResult.LOSEANDESCAPE;
+        }
+        return combatResult;
     }
     
     /**
@@ -183,7 +229,10 @@ public class Player {
      * @param bad Bad Consequence to apply.
      */
     public void applyBadConsequence(BadConsequence bad){
-        
+        int nLevels = bad.getLevels();
+        this.decreaseLevels(nLevels);
+        BadConsequence pendingBad = bad.adjustToFitTreasureLists(visibleTreasures,hiddenTreasures);
+        this.setPendingBadConsequence(pendingBad);
     }
     
     /**
@@ -192,8 +241,12 @@ public class Player {
      * @return true if and only if player could make visible the treasure properly.
      */
     public boolean makeTreasureVisible(Treasure t){
-        //Return temporal
-        return true;
+        boolean can = canMakeTreasureVisible(t);
+        if(can){
+            visibleTreasures.add(t);
+            hiddenTreasures.remove(t);
+        }
+        return can;
     }
     
     /**
@@ -225,7 +278,13 @@ public class Player {
      * @param t Treasure to discard.
      */
     public void discardVisibleTreasure(Treasure t){
+        visibleTreasures.remove(t);
         
+        if(pendingBadConsequence != null && !pendingBadConsequence.isEmpty()){
+            pendingBadConsequence.substractVisibleTreasure(t);
+        }
+        CardDealer.getInstance().giveTreasureBack(t);
+        dieIfNoTreasures();
     }
     
     /**
@@ -233,7 +292,13 @@ public class Player {
      * @param t Treasure to discard.
      */
     public void discardHiddenTreasure(Treasure t){
+        hiddenTreasures.remove(t);
         
+        if(pendingBadConsequence != null && !pendingBadConsequence.isEmpty()){
+            pendingBadConsequence.substractHiddenTreasure(t);
+        }
+        CardDealer.getInstance().giveTreasureBack(t);
+        dieIfNoTreasures();
     }
     
     /**
@@ -243,8 +308,20 @@ public class Player {
      * @return --- Boolean ---
      */
     public boolean buyLevels(ArrayList<Treasure> visible, ArrayList<Treasure> hidden){
-        //Return temporal.
-        return true;
+        float levels = this.computeGoldCoinsValue(visible);
+        levels += this.computeGoldCoinsValue(hidden);
+        boolean canI = this.canIBuyLevels((int) levels);
+        
+        if(canI){
+            this.increaseLevels((int) levels);
+            for(Treasure t : visible){
+                this.discardVisibleTreasure(t);
+            }
+            for(Treasure t: hidden){
+                this.discardHiddenTreasure(t);
+            }
+        }
+        return canI;
     }
     
     /**
@@ -277,11 +354,16 @@ public class Player {
     
     /**
      * Inits treasures.
-     * @return ---Boolean---
+     * @return 
      */
-    public boolean initTreasures(){
-        //Return temporal
-        return true;
+    public void initTreasures(){
+        this.bringToLife();
+        int number = Dice.getInstance().nextNumber();
+        int times = (number == 1)?1:(number == 6)?3:2;
+        
+        for(int i = 1; i <= times; i++)
+            hiddenTreasures.add(CardDealer.getInstance().nextTreasure());
+        
     }    
     
     /**
