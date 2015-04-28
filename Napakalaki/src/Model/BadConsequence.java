@@ -7,6 +7,7 @@
 package Model;
 
 import java.util.ArrayList; // ArrayList included
+import java.util.Collections;
 
 /**
  * Bad Consequence Class.
@@ -265,18 +266,61 @@ public class BadConsequence {
                + "\n"+ strSpaces + "Death = " + Boolean.toString(death);
     }
     
-    BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> visible, ArrayList<Treasure> hidden){
+    /**
+     * Create a new BadConsequence in order to get the player to be able to carry it out completely.
+     * @param visible Visible trasures of the player.
+     * @param hidden Hidden treasures of the player
+     * @return A new bad consequence reduced according to visible and hidden player treasures.
+     */
+    public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> visible, ArrayList<Treasure> hidden){
+        BadConsequence newbad = null;
         if(this.specificVisibleTreasures == null && this.specificHiddenTreasures == null){
-            if(this.nVisibleTreasures > visible.size())
-                this.nVisibleTreasures = visible.size();
-            if(this.nHiddenTreasures > hidden.size())
-                this.nHiddenTreasures = hidden.size();
+            int newnvisible = Integer.max(this.nVisibleTreasures,visible.size()),
+                newnhidden = Integer.max(this.nHiddenTreasures,hidden.size());
+            newbad = new BadConsequence(this.text, this.levels, newnvisible, newnhidden);
         }
         else{
+            ArrayList<TreasureKind> newspecvisible = new ArrayList(), newspechidden = new ArrayList();
+            ArrayList<TreasureKind> mapvis = new ArrayList(), maphid = new ArrayList();
+            
+            for(Treasure t: visible)
+                mapvis.add(t.getType());
+                       
+            for(Treasure t: hidden)
+                maphid.add(t.getType());
+            
+            
+            int freq_new = 0, freq_play = 0;
+            TreasureKind last = null;
             for(TreasureKind k: specificVisibleTreasures){
-
+                if(k != last){
+                   last = k;
+                   freq_new = 0;
+                   freq_play = Collections.frequency(mapvis, k);
+                }
+                
+                if(freq_new < freq_play){
+                    newspecvisible.add(k);
+                    freq_new++;
+                }
             }
+            
+            freq_new = freq_play = 0; last = null;
+            for(TreasureKind k: specificHiddenTreasures){
+                if(k != last){
+                   last = k;
+                   freq_new = 0;
+                   freq_play = Collections.frequency(maphid, k);
+                }
+                
+                if(freq_new < freq_play){
+                    newspechidden.add(k);
+                    freq_new++;
+                }
+            }
+            newbad = new BadConsequence(text, levels, newspecvisible, newspechidden);
+            
         }
-        return null;
+        return newbad;
     }
 }

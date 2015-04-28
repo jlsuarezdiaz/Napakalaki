@@ -52,7 +52,7 @@ public class Test2 {
         for (int i = 0; i < 19; i++){
             monster = cards.nextMonster();
             badConsequence = monster.getBadConsequence();
-            if (badConsequence.getDeath() == false && badConsequence.getNVisibleTreasures() == 0 
+            if (badConsequence.kills() == false && badConsequence.getNVisibleTreasures() == 0 
                     && badConsequence.getNHiddenTreasures() == 0 
                     && badConsequence.getSpecificVisibleTreasures() == null
                     && badConsequence.getSpecificHiddenTreasures() == null){

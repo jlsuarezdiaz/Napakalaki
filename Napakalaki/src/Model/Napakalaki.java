@@ -65,7 +65,7 @@ public class Napakalaki {
      * Initialize players for the game.
      * @param names array with players' names.
      */
-    private void initPlayers(String [] names){
+    private void initPlayers(ArrayList<String> names){
         for(String name: names){
             players.add(new Player(name));
         }
@@ -150,7 +150,7 @@ public class Napakalaki {
      * Initialize  main things needed to play Napakalaki game.
      * @param players Array with players' names.
      */
-    public void initGame(String [] players){
+    public void initGame(ArrayList<String> players){
         CardDealer.getInstance().initCards();
         initPlayers(players);
         nextTurn();
@@ -172,15 +172,35 @@ public class Napakalaki {
         return currentMonster;        
     }
     
+    /**
+     * Checks if current player can make a treasure visible
+     * @param t Treasure to make visible.
+     * @return True if and only if treasure can be made visible.
+     */
     public boolean canMakeTreasureVisible(Treasure t){
-        return false;        
+        return currentPlayer.canMakeTreasureVisible(t);
     }
-    public Treasure [] getVisibleTreasures(){
-        return null;
+    
+    /**
+     * Get Visible Treasures.
+     * @return Current player's visible treasures.
+     */
+    public ArrayList<Treasure> getVisibleTreasures(){
+        return currentPlayer.getVisibleTreasures();
     }
-    public Treasure [] getHiddenTreasures(){
-        return null;
+    
+    /**
+     * Get Hidden Treasures.
+     * @return Current player's hidden treasures.
+     */
+    public ArrayList<Treasure> getHiddenTreasures(){
+        return currentPlayer.getHiddenTreasures();
     }
+    
+    /**
+     * Set next turn in the game, if it is possible.
+     * @return true if and only if next turn was set properly.
+     */
     public boolean nextTurn(){
         boolean stateOK = nextTurnAllowed();
         CardDealer dealer = CardDealer.getInstance();

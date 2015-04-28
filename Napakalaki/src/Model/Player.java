@@ -170,6 +170,14 @@ public class Player {
     //-------------- PUBLIC METHODS ---------------//
     
     /**
+     * Get player's name.
+     * @return player's name.
+     */
+    public String getName(){
+        return name;
+    }
+    
+    /**
      * Applies the prize given as argument.
      * @param p Prize to apply.
      */

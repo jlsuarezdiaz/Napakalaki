@@ -159,7 +159,7 @@ public class Test1 {
         System.out.println("Monsters with just losing levels as Bad Consequence:\n");
         for (Monster monster : monsters){
             badConsequence = monster.getBadConsequence();
-            if (badConsequence.getDeath() == false && badConsequence.getNVisibleTreasures() == 0 
+            if (badConsequence.kills() == false && badConsequence.getNVisibleTreasures() == 0 
                     && badConsequence.getNHiddenTreasures() == 0 
                     && badConsequence.getSpecificVisibleTreasures() == null
                     && badConsequence.getSpecificHiddenTreasures() == null){
