@@ -405,4 +405,12 @@ public class Player {
     public ArrayList<Treasure> getHiddenTreasures(){
         return this.hiddenTreasures;
     }
+    
+    /**
+     * Gets a string with player's info.
+     * @return Player's info.
+     */
+    public String toString(){
+        return this.name;
+    }
 }   
