@@ -219,9 +219,9 @@ public class BadConsequence {
      * @return Result of the comparison.
      */
     public boolean isEmpty(){
-        return  (text == null || "".equals(text)) && death == false && 
-            nVisibleTreasures == 0 && nHiddenTreasures == 0 && 
-            specificVisibleTreasures == null && specificHiddenTreasures == null;
+        return  !death && nVisibleTreasures == 0 && nHiddenTreasures == 0 && 
+            (specificVisibleTreasures == null || specificVisibleTreasures.isEmpty()) &&
+            (specificHiddenTreasures == null || specificHiddenTreasures.isEmpty());
     }
 
     /**
@@ -277,7 +277,7 @@ public class BadConsequence {
         if(this.specificVisibleTreasures == null && this.specificHiddenTreasures == null){
             int newnvisible = Integer.max(this.nVisibleTreasures,visible.size()),
                 newnhidden = Integer.max(this.nHiddenTreasures,hidden.size());
-            newbad = new BadConsequence(this.text, this.levels, newnvisible, newnhidden);
+            newbad = new BadConsequence(this.text, 0, newnvisible, newnhidden);
         }
         else{
             ArrayList<TreasureKind> newspecvisible = new ArrayList(), newspechidden = new ArrayList();
@@ -318,7 +318,7 @@ public class BadConsequence {
                     freq_new++;
                 }
             }
-            newbad = new BadConsequence(text, levels, newspecvisible, newspechidden);
+            newbad = new BadConsequence(text, 0, newspecvisible, newspechidden);
             
         }
         return newbad;

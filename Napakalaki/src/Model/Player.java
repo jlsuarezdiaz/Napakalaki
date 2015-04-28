@@ -348,7 +348,7 @@ public class Player {
                 isNecklace = true;
         }
         
-        return isNecklace? sum_max : sum_min;
+        return level + (isNecklace? sum_max : sum_min);
     }
     
     /**
@@ -357,7 +357,8 @@ public class Player {
      * number of hidden treasures.
      */
     public boolean validState(){
-        return (this.pendingBadConsequence == null && this.hiddenTreasures.size() <= Player.MAXHIDDENTREASURES);
+        return (this.pendingBadConsequence == null || this.pendingBadConsequence.isEmpty())
+               && this.hiddenTreasures.size() <= Player.MAXHIDDENTREASURES;
     }
     
     /**
@@ -411,6 +412,8 @@ public class Player {
      * @return Player's info.
      */
     public String toString(){
-        return this.name;
+        return this.name + "\nLevel: " + Integer.toString(level) + 
+                " Combat Level: " + Integer.toString(getCombatLevel()) + "\nMal rollo pendiente: " +
+                ((pendingBadConsequence==null||pendingBadConsequence.isEmpty())?"OK":this.pendingBadConsequence.toString());
     }
 }   
