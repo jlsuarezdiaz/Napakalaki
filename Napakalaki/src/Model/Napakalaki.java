@@ -221,7 +221,7 @@ public class Napakalaki {
      * @return Boolean indicating whether player can leave the turn.
      */
     public boolean nextTurnAllowed(){
-        return currentPlayer.validState();
+        return currentPlayer == null || currentPlayer.validState();
     }
     
     /**
