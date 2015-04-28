@@ -175,16 +175,10 @@ public class BadConsequence {
      * @param t Treasure to substract.
      */
     public void substractVisibleTreasure(Treasure t){
-        if (nVisibleTreasures > 0){
-            nVisibleTreasures -= 1;
-        }
-        else{
-            for (TreasureKind vt : specificVisibleTreasures){
-                if (vt == t.getType()){
-                    specificVisibleTreasures.remove(vt);
-                }
-            }
-        }
+        if (nVisibleTreasures > 0)
+            nVisibleTreasures--;
+        else
+            specificVisibleTreasures.remove(t.getType());
     }
 
     /**
@@ -198,16 +192,10 @@ public class BadConsequence {
      * @param t Treasure to substract.
      */
     public void substractHiddenTreasure(Treasure t){
-        if (nHiddenTreasures > 0){
-            nHiddenTreasures -= 1;
-        }
-        else{
-            for (TreasureKind vt : specificHiddenTreasures){
-                if (vt == t.getType()){
-                    specificHiddenTreasures.remove(vt);
-                }
-            }
-        }
+        if (nHiddenTreasures > 0)
+            nHiddenTreasures--;
+        else
+            specificHiddenTreasures.remove(t.getType());
     }
 
     /**
@@ -275,8 +263,8 @@ public class BadConsequence {
     public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> visible, ArrayList<Treasure> hidden){
         BadConsequence newbad = null;
         if(this.specificVisibleTreasures == null && this.specificHiddenTreasures == null){
-            int newnvisible = Integer.max(this.nVisibleTreasures,visible.size()),
-                newnhidden = Integer.max(this.nHiddenTreasures,hidden.size());
+            int newnvisible = Integer.min(this.nVisibleTreasures,visible.size()),
+                newnhidden = Integer.min(this.nHiddenTreasures,hidden.size());
             newbad = new BadConsequence(this.text, 0, newnvisible, newnhidden);
         }
         else{

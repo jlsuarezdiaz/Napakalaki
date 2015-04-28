@@ -229,6 +229,7 @@ public class Player {
             else
                 combatResult = CombatResult.LOSEANDESCAPE;
         }
+        discardNecklaceIfVisible();
         return combatResult;
     }
     
@@ -268,7 +269,13 @@ public class Player {
      */
     public boolean canMakeTreasureVisible(Treasure t){
         int numOneHand = 0;
+        boolean both = t.getType() == TreasureKind.BOTHHANDS,
+                one = t.getType() == TreasureKind.ONEHAND;
         for (Treasure vt : visibleTreasures){
+            if((both && vt.getType() == TreasureKind.ONEHAND) 
+             ||(one && vt.getType() == TreasureKind.BOTHHANDS))
+                return false;
+                
             if (t.getType() == vt.getType()){
                 if (t.getType() == TreasureKind.ONEHAND && numOneHand == 0){
                     numOneHand += 1;
@@ -343,7 +350,7 @@ public class Player {
         
         for(Treasure t : visibleTreasures){
             sum_min += t.getMinBonus();
-            sum_max += t.getMinBonus();
+            sum_max += t.getMaxBonus();
             if(t.getType() == TreasureKind.NECKLACE)
                 isNecklace = true;
         }
