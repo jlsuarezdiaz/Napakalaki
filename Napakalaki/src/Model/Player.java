@@ -58,7 +58,7 @@ public class Player {
      * Brings the player to life.
      */
     private void bringToLife(){
-        this.dead = true;
+        this.dead = false;
     }
     
     /**
