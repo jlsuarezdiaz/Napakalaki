@@ -267,7 +267,7 @@ public class BadConsequence {
         if(this.specificVisibleTreasures == null && this.specificHiddenTreasures == null){
             int newnvisible = Integer.min(this.nVisibleTreasures,visible.size()),
                 newnhidden = Integer.min(this.nHiddenTreasures,hidden.size());
-            newbad = new BadConsequence(this.text, 0, newnvisible, newnhidden);
+            newbad = new BadConsequence("Queda por cumplir:", 0, newnvisible, newnhidden);
         }
         else{
             ArrayList<TreasureKind> newspecvisible = new ArrayList(), newspechidden = new ArrayList();
