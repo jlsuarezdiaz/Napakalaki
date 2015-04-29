@@ -261,7 +261,9 @@ public class BadConsequence {
      * @return A new bad consequence reduced according to visible and hidden player treasures.
      */
     public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> visible, ArrayList<Treasure> hidden){
+
         BadConsequence newbad = null;
+        
         if(this.specificVisibleTreasures == null && this.specificHiddenTreasures == null){
             int newnvisible = Integer.min(this.nVisibleTreasures,visible.size()),
                 newnhidden = Integer.min(this.nHiddenTreasures,hidden.size());
@@ -306,7 +308,7 @@ public class BadConsequence {
                     freq_new++;
                 }
             }
-            newbad = new BadConsequence(text, 0, newspecvisible, newspechidden);
+            newbad = new BadConsequence("Queda por cumplir:", 0, newspecvisible, newspechidden);
             
         }
         return newbad;
