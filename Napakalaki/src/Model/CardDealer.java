@@ -294,7 +294,7 @@ public class CardDealer {
         // Monster: Bicéfalo
         badConsequence = new BadConsequence("Te faltan manos para tanta cabeza. Pierdes 3 niveles y "
                 + "tus tesoros visibles de las manos.", 3, 
-                new ArrayList(Arrays.asList(TreasureKind.ONEHAND, TreasureKind.BOTHHANDS)), new ArrayList());
+                new ArrayList(Arrays.asList(TreasureKind.ONEHAND, TreasureKind.ONEHAND, TreasureKind.BOTHHANDS)), new ArrayList());
         prize = new Prize(1,1);
         unusedMonsters.add(new Monster("Bicéfalo", 20, badConsequence, prize));
     }
