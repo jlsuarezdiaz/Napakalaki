@@ -108,6 +108,14 @@ public class Napakalaki {
     public CombatResult combat(){
         CombatResult combatResult = currentPlayer.combat(currentMonster);
         CardDealer.getInstance().giveMonsterBack(currentMonster);
+        
+        // If the player was converted to cultist then do it
+        if (combatResult == CombatResult.LOSEANDCONVERT){
+            Cultist cultistCard = CardDealer.getInstance().nextCultist();
+            currentPlayer = new CultistPlayer(currentPlayer, cultistCard);
+            players.set(currentPlayerIndex, currentPlayer);
+        }
+
         return combatResult;
     }
     
