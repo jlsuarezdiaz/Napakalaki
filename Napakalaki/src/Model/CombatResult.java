@@ -12,5 +12,5 @@ package Model;
  * @author andreshp, jlsuarez
  */
 public enum CombatResult {
-    WINANDWINGAME, WIN, LOSE, LOSEANDESCAPE, LOSEANDDIE
+    WINANDWINGAME, WIN, LOSE, LOSEANDESCAPE, LOSEANDDIE, LOSEANDCONVERT
 }
