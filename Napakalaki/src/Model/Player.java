@@ -213,7 +213,7 @@ public class Player {
      */
     public CombatResult combat(Monster m){
         int myLevel = this.getCombatLevel();
-        int levelMonster = m.getCombatLevel();
+        int levelMonster = getOpponentLevel(m);
         CombatResult combatResult;
         
         if(myLevel > levelMonster){
