@@ -51,6 +51,12 @@ public class CardDealer {
      */
     private ArrayList <Treasure> unusedTreasures;
 
+    /**
+     * List with the unused cultists in the game.
+     * It can be considered the cultists' deck.
+     */
+    private ArrayList <Cultist> unusedCultists;
+
     //----------------------- PRIVATE METHODS -----------------------//
 
     /** 
@@ -297,8 +303,76 @@ public class CardDealer {
                 new ArrayList(Arrays.asList(TreasureKind.ONEHAND, TreasureKind.ONEHAND, TreasureKind.BOTHHANDS)), new ArrayList());
         prize = new Prize(1,1);
         unusedMonsters.add(new Monster("Bicéfalo", 20, badConsequence, prize));
+
+        // Cultist Monsters
+        
+        // Monster: El mal indecible impronunciable
+        badConsequence = new BadConsequence("Pierdes 1 mano visible", 0, 
+                new ArrayList(Arrays.asList(TreasureKind.ONEHAND)), new ArrayList());
+        prize = new Prize(3,1);
+        unusedMonsters.add(new Monster ("El mal indecible impronunciable", 10, badConsequence, prize,-2));
+
+        // Monster: Testigos Oculares
+        badConsequence = new BadConsequence("Pierdes tus tesoros visibles. Jajaja", 0, 100, 0);
+        prize = new Prize(2,1);
+        unusedMonsters.add(new Monster ("Testigos Oculares", 6, badConsequence, prize, 2));
+        
+        // Monster: El gran cthulhu
+        badConsequence = new BadConsequence("Hoy no es tu día de suerte. Mueres", true);
+        prize = new Prize(2,5);
+        unusedMonsters.add(new Monster ("El gran cthulhu", 20, badConsequence, prize, 4));
+
+        // Monster: Serpiente Político
+        badConsequence = new BadConsequence("Tu gobierno te recorta 2 niveles", 2, 0, 0);
+        prize = new Prize(2,1);
+        unusedMonsters.add(new Monster ("Serpiente Político", 8, badConsequence, prize, -2));
+
+        // Monster: Felpuggoth
+        badConsequence = new BadConsequence("Pierdes tu casco y tu armadura visible. "
+                + "Pierdes tus manos ocultas.", 
+                0, new ArrayList(Arrays.asList(TreasureKind.HELMET,TreasureKind.ARMOR)), 
+                new ArrayList(Arrays.asList(TreasureKind.ONEHAND,TreasureKind.ONEHAND)));
+        prize = new Prize(1,1);
+        unusedMonsters.add(new Monster ("Felpuggoth", 2, badConsequence, prize, 5));
+
+        // Monster: Shoggoth
+        badConsequence = new BadConsequence("Pierdes 2 niveles", 2, 0, 0);
+        prize = new Prize(4,2);
+        unusedMonsters.add(new Monster ("Shoggoth", 16, badConsequence, prize, -4));
+
+        // Monster: Lolitagooth
+        badConsequence = new BadConsequence("Pintalabios negro. Pierdes 2 niveles", 2, 0, 0);
+        prize = new Prize(1,1);
+        unusedMonsters.add(new Monster ("Lolitagooth", 2, badConsequence, prize, 3));
     }
-    
+
+    /**
+     * Initialize the cultists' deck.
+     * Every cultist is added to unusedCultists.
+     */
+    private void initCultistCardDeck(){
+        
+        // Add the cultist cards
+        
+        // Cultist 1
+        unusedCultists.add(new Cultist("Sectario", 1));
+
+        // Cultist 2
+        unusedCultists.add(new Cultist("Sectario", 2));
+
+        // Cultist 3
+        unusedCultists.add(new Cultist("Sectario", 1));
+
+        // Cultist 4
+        unusedCultists.add(new Cultist("Sectario", 2));
+
+        // Cultist 5
+        unusedCultists.add(new Cultist("Sectario", 1));
+
+        // Cultist 6
+        unusedCultists.add(new Cultist("Sectario", 1));
+    }
+
     /**
      * Shuffles all the treasures.
      * Internally, it shuffles unusedTreasures.
@@ -313,6 +387,14 @@ public class CardDealer {
      */
     private void shuffleMonsters(){
         Collections.shuffle(unusedMonsters);
+    }
+
+    /**
+     * Shuffles all the cultist cards.
+     * Internally, it shuffles unusedCultists.
+     */
+    private void shuffleCultists(){
+        Collections.shuffle(unusedCultists);
     }
 
     //----------------------- PUBLIC METHODS -----------------------//
@@ -357,7 +439,15 @@ public class CardDealer {
         }
         return unusedMonsters.remove(unusedMonsters.size() -1);
     }
-    
+
+    /**
+     * Get the following cultist in the cultists' deck.
+     * @return The cultist at the top of the deck.
+     */
+    public Cultist nextCultist(){
+        return unusedCultists.remove(unusedCultists.size() -1);
+    }
+
     /**
      * Adds a treasure to the used treasures' deck.
      * @param t Treasure that has been used. 
@@ -379,15 +469,16 @@ public class CardDealer {
     }
     
     /**
-     * Initializes both treasures and monsters decks and shuffles them.
+     * Initializes treasures, cultists and monsters decks and shuffles them.
      * 
-     * Calls the private methods initTreasureCardDeck and initMonsterCardDeck
-     * to initialize both decks and the respective shuffle methods.
+     * Calls the private methods init*****CardDeck and the shuffle methods.
      */
     public void initCards(){
         initTreasureCardDeck();
         shuffleTreasures();
         initMonsterCardDeck();
         shuffleMonsters();
+        initCultistCardDeck();
+        shuffleCultists();
     }
 }
