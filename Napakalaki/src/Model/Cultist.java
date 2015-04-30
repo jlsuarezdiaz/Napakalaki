@@ -51,6 +51,6 @@ public class Cultist implements Card{
      * cultist player number.
      */
     public int getSpecialValue() {
-        return getBasicValue()*CultistPlayer.getTotalCultistPlayer();
+        return getBasicValue()*CultistPlayer.getTotalCultistPlayers();
     }
 }
