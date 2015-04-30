@@ -13,11 +13,13 @@ public interface Card {
     
     /**
      * Get the basic card value.
+     * @return Integer with the value.
      */
     public int getBasicValue();
 
     /**
      * Get the special card value.
+     * @return Integer with the value.
      */
     public int getSpecialValue(); 
 }
