@@ -33,6 +33,8 @@ public class Cultist implements Card{
         this.gainedLevels = gainedLevels;
     }    
 
+    //--------------- CARD INTERFACE METHODS ---------------//
+
     @Override
     /**
      * Override getBasicValue form Card.
