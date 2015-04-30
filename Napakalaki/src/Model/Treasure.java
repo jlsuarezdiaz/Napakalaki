@@ -10,7 +10,7 @@ package Model;
  * This class represents a treasure in Napakalaki game.
  * @author andreshp, jlsuarez
  */
-public class Treasure {
+public class Treasure implements Card {
     
     //------------- ATTRIBUTES ---------------//
     
@@ -109,5 +109,25 @@ public class Treasure {
         return "Name = " + this.name + "\nGold Coins = " + this.goldCoins + "\nMinimum Bonus = "
                + this.minBonus + "\nMaximum Bonus = " + this.maxBonus + "\nKind of the trasure = "
                + this.type.name();
+    }
+
+    //--------------- CARD INTERFACE METHODS ---------------//
+
+    @Override
+    /**
+     * Override getBasicValue form Card.
+     * @return Treasure's minimum bonus.
+     */
+    public int getBasicValue() {
+        return getMinBonus();
+    }
+
+    @Override
+    /**
+     * Override getSpecialValue form Card.
+     * @return Treasure's maximum bonus.
+     */
+    public int getSpecialValue() {
+        return getMaxBonus();
     }
 }
