@@ -37,10 +37,16 @@ public class Monster {
      */
     private BadConsequence badCons;
 
+    /**
+     * Levels that changes the monster combatLevel if he fights against a
+     * cultist player.
+     */
+    private int levelsChangeAgainstCultistPlayer;
+    
     //--------------- CONSTRUCTOR ---------------//
     
     /**
-     * Class Constructor.
+     * Class Constructor for a usual monster.
      * Initializes all the attributes.
      * @param name Monster's name.
      * @param level Monster's level.
@@ -52,6 +58,24 @@ public class Monster {
         this.combatLevel = level;
         this.prize = prize;
         this.badCons = bc;
+        this.levelsChangeAgainstCultistPlayer = 0;
+    }
+
+    /**
+     * Class Constructor for a monster whose combat level changes against a
+     * cultist player.
+     * Initializes all the attributes.
+     * @param name Monster's name.
+     * @param level Monster's level.
+     * @param bc Bad consequence.
+     * @param levelsChangeAgainstCultistPlayer Integer with the attribute's value.
+     */
+    public Monster(String name, int level, BadConsequence bc, Prize prize, int levelsChangeAgainstCultistPlayer){
+        this.name = name;
+        this.combatLevel = level;
+        this.prize = prize;
+        this.badCons = bc;
+        this.levelsChangeAgainstCultistPlayer = levelsChangeAgainstCultistPlayer;
     }
 
     //--------------- GET METHODS ---------------//
