@@ -152,7 +152,7 @@ public class Player {
         return (float)(sum / 1000.0);
     }
     
-    //--------------- CONSTRUCTOR ---------------//
+    //--------------- CONSTRUCTORS ---------------//
     
     /**
      * Constructor by player's name.
@@ -166,6 +166,20 @@ public class Player {
         this.visibleTreasures = new ArrayList();
         this.pendingBadConsequence = null;
     }
+
+    /**
+     * Copy constructor.
+     * @param other Another player.
+     */
+    public Player(Player other){
+        this.name = other.name;
+        this.level = other.level;
+        this.dead = other.dead;
+        this.hiddenTreasures = other.getHiddenTreasures();
+        this.visibleTreasures = other.getVisibleTreasures();
+        this.pendingBadConsequence = other.pendingBadConsequence;
+    }
+
     
     //-------------- PUBLIC METHODS ---------------//
     
@@ -423,4 +437,23 @@ public class Player {
                 " Combat Level: " + Integer.toString(getCombatLevel()) + "\nMal rollo pendiente: " +
                 ((pendingBadConsequence==null||pendingBadConsequence.isEmpty())?"OK":this.pendingBadConsequence.toString());
     }
+
+    /**
+     * Gets the opponent monster combat level.
+     * @param m Monster to fight against.
+     * @return Monster's combat level.
+     */
+    public int getOpponentLevel(Monster m){  
+        return m.getBasicValue();
+    }
+    
+    /**
+     * Indicates if the player should be converted to cultist.
+     * A player should be converted if the dice obtains a 6.
+     * @return True if the player should be converted. False otherwise.
+     */
+    public boolean shouldConvert(){
+        return Dice.getInstance().nextNumber() == 6;
+    }
+
 }   
