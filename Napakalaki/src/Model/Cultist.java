@@ -34,12 +34,21 @@ public class Cultist implements Card{
     }    
 
     @Override
+    /**
+     * Override getBasicValue form Card.
+     * @return The basic gainedLevels of the cultist card.
+     */
     public int getBasicValue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return gainedLevels;
     }
 
     @Override
+    /**
+     * Override getSpecialValue form Card.
+     * @return The gainedLevels of the cultist card taking into account the
+     * cultist player number.
+     */
     public int getSpecialValue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return getBasicValue()*CultistPlayer.getTotalCultistPlayer();
     }
 }
