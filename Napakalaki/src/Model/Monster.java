@@ -13,7 +13,7 @@ package Model;
  * 
  * @author andreshp, jlsuarez
  */
-public class Monster {
+public class Monster implements Card{
     
     //--------------- ATTRIBUTES ---------------//
     
@@ -122,5 +122,25 @@ public class Monster {
        return "Name = " + this.name + "\nLevel = " + Integer.toString(combatLevel) 
                + "\nPrize = [" + prize.toString() + "] \nBad Consequence = [\n" + 
                badCons.toString() + "\n]";
-   }
+    }
+
+    //--------------- CARD INTERFACE METHODS ---------------//
+    
+    @Override
+    /**
+     * Override getBasicValue form Card.
+     * @return Monster's combat level.
+     */
+    public int getBasicValue() {
+        return getCombatLevel();
+    }
+
+    @Override
+    /**
+     * Override getSpecialValue form Card.
+     * @return Monster's combat level against a cultist player.
+     */
+    public int getSpecialValue() {
+        return getCombatLevel() + levelsChangeAgainstCultistPlayer;
+    }
 }
