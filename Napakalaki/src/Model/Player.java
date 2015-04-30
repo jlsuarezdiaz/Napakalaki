@@ -230,14 +230,20 @@ public class Player {
             if(escape < 5){
                 BadConsequence bad = m.getBadConsequence();
                 boolean amIdead = bad.kills();
-                
+
                 if(amIdead){
                     die();
                     combatResult = CombatResult.LOSEANDDIE;
                 }
                 else{
                     this.applyBadConsequence(bad);
-                    combatResult = CombatResult.LOSE;
+                    boolean convertCultist = shouldConvert();
+                    if (convertCultist){
+                        combatResult = CombatResult.LOSEANDCONVERT;
+                    }
+                    else{
+                        combatResult = CombatResult.LOSE;
+                    }
                 }
             }
             else
