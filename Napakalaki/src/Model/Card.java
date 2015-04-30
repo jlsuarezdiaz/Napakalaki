@@ -11,7 +11,13 @@ package Model;
  */
 public interface Card {
     
+    /**
+     * Get the basic card value.
+     */
     public int getBasicValue();
 
+    /**
+     * Get the special card value.
+     */
     public int getSpecialValue(); 
 }
