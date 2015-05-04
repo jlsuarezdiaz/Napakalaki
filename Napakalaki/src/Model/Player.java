@@ -449,7 +449,7 @@ public class Player {
      * @param m Monster to fight against.
      * @return Monster's combat level.
      */
-    public int getOpponentLevel(Monster m){  
+    protected int getOpponentLevel(Monster m){  
         return m.getBasicValue();
     }
     
