@@ -458,7 +458,7 @@ public class Player {
      * A player should be converted if the dice obtains a 6.
      * @return True if the player should be converted. False otherwise.
      */
-    public boolean shouldConvert(){
+    protected boolean shouldConvert(){
         return Dice.getInstance().nextNumber() == 6;
     }
 
