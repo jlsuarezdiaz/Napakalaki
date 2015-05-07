@@ -449,7 +449,7 @@ public class Player {
      * @param m Monster to fight against.
      * @return Monster's combat level.
      */
-    public int getOpponentLevel(Monster m){  
+    protected int getOpponentLevel(Monster m){  
         return m.getBasicValue();
     }
     
@@ -458,7 +458,7 @@ public class Player {
      * A player should be converted if the dice obtains a 6.
      * @return True if the player should be converted. False otherwise.
      */
-    public boolean shouldConvert(){
+    protected boolean shouldConvert(){
         return Dice.getInstance().nextNumber() == 6;
     }
 
