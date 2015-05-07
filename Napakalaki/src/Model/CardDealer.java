@@ -72,6 +72,7 @@ public class CardDealer {
         this.usedTreasures =  new ArrayList<>();
         this.unusedMonsters = new ArrayList<>();
         this.unusedTreasures =  new ArrayList<>();
+        this.unusedCultists =  new ArrayList<>();
     }
 
     /**
@@ -322,6 +323,12 @@ public class CardDealer {
                         TreasureKind.ONEHAND, TreasureKind.BOTHHANDS)), new ArrayList());
         prize = new Prize(1,1);
         unusedMonsters.add(new Monster("Bicéfalo", 20, badConsequence, prize));
+
+        // Monster: Profesor de PDOO
+        badConsequence = new BadConsequenceDeath("Su calva te deslumbra."
+                + " Estás muerto", true);
+        prize = new Prize(-10,-10);
+        unusedMonsters.add(new Monster("Profesor de PDDO", 28, badConsequence, prize));
 
         // Cultist Monsters
         
