@@ -16,93 +16,69 @@ import java.util.Collections;
  * 
  * @author andreshp, jlsuarez
  */
-public class BadConsequence {
+public abstract class BadConsequence {
 
     //--------------- ATTRIBUTES ---------------//
     
     /**
      * Text that explains what does the bad consequence do.
      */
-    private String text;
+    protected String text;
 
     /**
      * Levels that are lost with the bad consequence.
      */
-    private int levels;
+    protected int levels;
 
     /**
      * Number of Visible Treasures that are lost. 
      */
-    private int nVisibleTreasures;
+    protected int nVisibleTreasures;
 
     /**
      * Number of Hidden Treasures that are lost. 
      */
-    private int nHiddenTreasures;
+    protected int nHiddenTreasures;
 
     /**
      * Boolean that indicates if the bad consequence is death.
      */
-    private boolean death;    
+    protected boolean death;
 
     /**
      * Array with the visible treasures.
      */
-    private ArrayList<TreasureKind> specificVisibleTreasures;
+    protected ArrayList<TreasureKind> specificVisibleTreasures;
 
     /**
      * Array with the hidden treasures.
      */
-    private ArrayList<TreasureKind> specificHiddenTreasures;
+    protected ArrayList<TreasureKind> specificHiddenTreasures;
     
     
     //--------------- CONSTRUCTORS ---------------//
     
     /**
      * Constructor that initializes every attribute but the arrays and death.
+     * @param text
+     * @param nVisible
+     * @param nHidden
+     * @param specificVisibleTreasures
+     * @param specificHiddenTreasures
+     * @param death
      */
-    public BadConsequence(String text, int levels, int nVisible, int nHidden){
+    public BadConsequence(String text, int levels, int nVisible, int nHidden, 
+            ArrayList<TreasureKind> specificVisibleTreasures, ArrayList<TreasureKind> specificHiddenTreasures,
+            boolean death){
         this.text = text;
         this.levels = levels;
         this.nVisibleTreasures = nVisible;
         this.nHiddenTreasures = nHidden;
-
-        // Initialize values by default
-        this.death = false;
-        this.specificVisibleTreasures = null;
-        this.specificHiddenTreasures = null;
-    }
-
-    /**
-     * Constructor that initializes the attributes text and death.
-     */
-    public BadConsequence(String text, boolean death){
-        this.text = text;
+        this.specificVisibleTreasures = specificVisibleTreasures;
+        this.specificHiddenTreasures = specificHiddenTreasures;
         this.death = death;
-        
-        // Initialize values by default
-        this.levels = 0;
-        this.nHiddenTreasures = 0;
-        this.nVisibleTreasures = 0;
-        this.specificVisibleTreasures = null;
-        this.specificHiddenTreasures = null;
     }
 
-    /**
-     * Constructor that initializes the attributes text, levels and both treasures array.
-     */
-    public BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible,
-            ArrayList<TreasureKind> tHidden){
-        this.text = text;
-        this.levels = levels;
-        this.specificVisibleTreasures = tVisible;
-        this.specificHiddenTreasures = tHidden;
-        
-        // Initialize values by default
-        this.death = false;
-        this.nHiddenTreasures = 0;
-        this.nVisibleTreasures = 0;
-    }
     
     //--------------- GET METHODS ---------------//
 
@@ -264,10 +240,10 @@ public class BadConsequence {
 
         BadConsequence newbad = null;
         
-        if(this.specificVisibleTreasures == null && this.specificHiddenTreasures == null){
+        if (this.specificVisibleTreasures == null && this.specificHiddenTreasures == null){
             int newnvisible = Integer.min(this.nVisibleTreasures,visible.size()),
                 newnhidden = Integer.min(this.nHiddenTreasures,hidden.size());
-            newbad = new BadConsequence("Queda por cumplir:", 0, newnvisible, newnhidden);
+            newbad = new BadConsequenceNumberTreasures("Queda por cumplir:", 0, newnvisible, newnhidden);
         }
         else{
             ArrayList<TreasureKind> newspecvisible = new ArrayList(), newspechidden = new ArrayList();
@@ -278,8 +254,7 @@ public class BadConsequence {
                        
             for(Treasure t: hidden)
                 maphid.add(t.getType());
-            
-            
+
             int freq_new = 0, freq_play = 0;
             TreasureKind last = null;
             for(TreasureKind k: specificVisibleTreasures){
@@ -294,7 +269,7 @@ public class BadConsequence {
                     freq_new++;
                 }
             }
-            
+
             freq_new = freq_play = 0; last = null;
             for(TreasureKind k: specificHiddenTreasures){
                 if(k != last){
@@ -308,8 +283,7 @@ public class BadConsequence {
                     freq_new++;
                 }
             }
-            newbad = new BadConsequence("Queda por cumplir:", 0, newspecvisible, newspechidden);
-            
+            newbad = new BadConsequenceSpecificTreasures("Queda por cumplir:", 0, newspecvisible, newspechidden);
         }
         return newbad;
     }
