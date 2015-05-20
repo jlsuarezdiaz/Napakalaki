@@ -14,78 +14,76 @@ import java.util.Collections;
  * @author andreshp
  */
 public class BadConsequenceSpecificTreasures extends BadConsequence {
+
+    //--------------- ATTRIBUTES ---------------//
+
+    /**
+     * Levels that are lost with the bad consequence.
+     */
+    protected int levels;
+
+    /**
+     * Array with the visible treasures.
+     */
+    protected ArrayList<TreasureKind> specificVisibleTreasures;
+
+    /**
+     * Array with the hidden treasures.
+     */
+    protected ArrayList<TreasureKind> specificHiddenTreasures;
+
     /**
      * Constructor that initializes the attributes text, levels and both treasures array.
+     * @param text Bad Consequence text.
+     * @param levels Levels that the player loses as bad consequence.
+     * @param tVisible Specific visible treasures kind that the player loses.
+     * @param tHidden Specific hidden treasures kind that the player loses.
      */
     public BadConsequenceSpecificTreasures(String text, int levels, ArrayList<TreasureKind> tVisible,
             ArrayList<TreasureKind> tHidden){
-        super(text,levels,0,0,tVisible,tHidden,false);
+        this.text = text;
+        this.levels = levels;
+        this.specificVisibleTreasures = tVisible;
+        this.specificHiddenTreasures = tHidden;
     }
-    
+
+    //--------------- GET METHODS ---------------//
+
     /**
-     * Subtracts the visible treasure given from the bad consequence.
-     * 
-     * Subtract t.getType() from the specific treasures
-     * asked.
-     * 
-     * @param t Treasure to subtract.
+     * Get the levels attribute.
+     * @return levels
      */
     @Override
-    public void subtractVisibleTreasure(Treasure t){
-        specificVisibleTreasures.remove(t.getType());
+    public int getLevels(){
+        return levels;
     }
 
     /**
-     * Subtracts the hidden treasure given from the bad consequence.
-     * 
-     * Subtract t.getType() from the specific treasures
-     * asked.
-     * 
-     * @param t Treasure to subtract.
+     * Get the specificVisibleTreasures attribute.
+     * @return specificVisibleTreasures
+     */
+    public ArrayList<TreasureKind> getSpecificVisibleTreasures(){
+        return specificVisibleTreasures;
+    }
+
+    /**
+     * Get the specificHiddenTreasures attribute.
+     * @return specificHiddenTreasures
+     */
+    public ArrayList<TreasureKind> getSpecificHiddenTreasures(){
+        return specificHiddenTreasures;
+    }
+
+    /**
+     * Check if the bad consequence kills the player.
+     * @return false
      */
     @Override
-    public void subtractHiddenTreasure(Treasure t){
-        specificVisibleTreasures.remove(t.getType());
+    public boolean kills(){
+        return false;
     }
 
-    /**
-     * Returns a string with the Bad Consequence instance contents.
-     * @return String with the contents.
-     */
-    public String toString(){
-        // Read only variable with the number of spaces to print in each line.
-        final int num_spaces = 5;
-        
-        String strSpaces = new String(new char[num_spaces]).replace('\0', ' ');
-        String specificVisibleTreasures_str = "", specificHiddenTreasures_str = "";
-        
-        // Get the specific visible treasures as string
-        if (specificVisibleTreasures == null || specificVisibleTreasures.isEmpty()){
-            specificVisibleTreasures_str = " Ninguno";
-        }
-        else{
-            for (TreasureKind treasure : specificVisibleTreasures){
-                specificVisibleTreasures_str += " " + treasure.name();
-            }
-            
-        }
-        
-        // Get the specific hidden treasures as string
-        if (specificHiddenTreasures == null || specificHiddenTreasures.isEmpty()){
-            specificHiddenTreasures_str = " Ninguno";
-        }
-        else{
-            for (TreasureKind treasure : specificHiddenTreasures){
-                specificHiddenTreasures_str += " " + treasure.name();
-            }
-            
-        }
-
-        return strSpaces + "Text = " + text 
-               + "\n"+ strSpaces + "Levels = " + Integer.toString(levels)
-               + "\n"+ strSpaces + "specificVisibleTreasures = " + specificVisibleTreasures_str
-               + "\n"+ strSpaces + "specificHiddenTreasures = "  + specificHiddenTreasures_str;
-    }
+    //--------------- OTHER PUBLIC METHODS ---------------//
 
     /**
      * Create a new BadConsequence in order to get the player to be able to carry it out completely.
@@ -141,5 +139,87 @@ public class BadConsequenceSpecificTreasures extends BadConsequence {
             }
         }   
         return new BadConsequenceSpecificTreasures("Queda por cumplir:", 0, newSpecVisible, newSpecHidden);
+    }
+
+    /**
+     * Check if the Bad Consequence is empty.
+     * 
+     * A BadConsequenceSpecificTreasures is empty levels is 0 and both treasures
+     * list are empty or null.
+     * 
+     * @return Result of the comparison.
+     */
+    @Override
+    public boolean isEmpty(){
+        return levels == 0
+            && (specificVisibleTreasures == null || specificVisibleTreasures.isEmpty())
+            && (specificHiddenTreasures == null || specificHiddenTreasures.isEmpty());
+    }
+
+    /**
+     * Subtracts the visible treasure given from the bad consequence.
+     * 
+     * Subtract t.getType() from the specific treasures
+     * asked.
+     * 
+     * @param t Treasure to subtract.
+     */
+    @Override
+    public void subtractVisibleTreasure(Treasure t){
+        specificVisibleTreasures.remove(t.getType());
+    }
+
+    /**
+     * Subtracts the hidden treasure given from the bad consequence.
+     * 
+     * Subtract t.getType() from the specific treasures
+     * asked.
+     * 
+     * @param t Treasure to subtract.
+     */
+    @Override
+    public void subtractHiddenTreasure(Treasure t){
+        specificVisibleTreasures.remove(t.getType());
+    }
+
+    /**
+     * Returns a string with the Bad Consequence instance contents.
+     * @param numSpaces Integer with the number of spaces in the paragraph indentation.
+     * @return String with the contents.
+     */
+    @Override
+    public String toString(int numSpaces){
+
+        String strSpaces = new String(new char[numSpaces]).replace('\0', ' ');
+        String specificVisibleTreasures_str = "", specificHiddenTreasures_str = "";
+        
+        // Get the specific visible treasures as string
+        if (specificVisibleTreasures == null || specificVisibleTreasures.isEmpty()){
+            specificVisibleTreasures_str = " Ninguno";
+        }
+        else{
+            for (TreasureKind treasure : specificVisibleTreasures){
+                specificVisibleTreasures_str += " " + treasure.name();
+            }
+            
+        }
+        
+        // Get the specific hidden treasures as string
+        if (specificHiddenTreasures == null || specificHiddenTreasures.isEmpty()){
+            specificHiddenTreasures_str = " Ninguno";
+        }
+        else{
+            for (TreasureKind treasure : specificHiddenTreasures){
+                specificHiddenTreasures_str += " " + treasure.name();
+                System.out.println(treasure.name());
+            }
+            
+        }
+
+        return super.toString(numSpaces) 
+               + strSpaces + "Text = " + text 
+               + "\n"+ strSpaces + "Levels = " + Integer.toString(levels)
+               + "\n"+ strSpaces + "specificVisibleTreasures = " + specificVisibleTreasures_str
+               + "\n"+ strSpaces + "specificHiddenTreasures = "  + specificHiddenTreasures_str;
     }
 }
