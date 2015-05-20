@@ -124,7 +124,7 @@ public class Treasure implements Card {
     @Override
     public String toString(){
         return "Name = " + this.name + "\nGold Coins = " + this.goldCoins + "\nMinimum Bonus = "
-               + this.minBonus + "\nMaximum Bonus = " + this.maxBonus + "\nKind of the trasure = "
+               + this.minBonus + "\nMaximum Bonus = " + this.maxBonus + "\nTreasure kind = "
                + this.type.name();
     }
 
