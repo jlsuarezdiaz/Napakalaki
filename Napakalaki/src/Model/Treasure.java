@@ -40,7 +40,7 @@ public class Treasure implements Card {
      */
     private TreasureKind type;
 
-    //--------------- CONSTRUCTOR ---------------//
+    //--------------- CONSTRUCTORS ---------------//
     
     /**
      * Class Constructor.
@@ -59,7 +59,19 @@ public class Treasure implements Card {
         this.maxBonus = maxBonus;
         this.type = type;
     }
-    
+
+    /**
+     * Copy constructor.
+     * @param other Treasure to be copied.
+     */
+    public Treasure(Treasure other){
+        this.name = other.name;
+        this.goldCoins = other.goldCoins;
+        this.minBonus = other.minBonus;
+        this.maxBonus = other.maxBonus;
+        this.type = other.type;
+    }
+
     //--------------- GETS METHODS ---------------//
     
     /**
