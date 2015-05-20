@@ -65,9 +65,13 @@ public class GameTester {
             case LOSEANDDIE :
               System.out.println ("\n\n Perdiste el combate y además estás muerto");
               break;
+            case LOSEANDCONVERT:
+                System.out.println("\n\n Has perdido el combate y te has convertido en sectario");
+                break;
           }
           if (combatResult != CombatResult.WINANDWINGAME) {
             do { // Hasta que se avance de turno 
+              currentPlayer = game.getCurrentPlayer();  //Por si ha habido conversión a sectario
               System.out.println ("******* ******* ******* ******* ******* ******* *******");
               System.out.println ("\n\n Turno de: " + currentPlayer.toString());
               command = getCommandAfterFighting();
