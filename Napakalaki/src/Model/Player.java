@@ -132,7 +132,7 @@ public class Player {
      * Sets a bad consequence as pending.
      * @param b Bad Consequence to assign as pending.
      */ 
-    private void setPendingBadConsequence(BadConsequence b){
+    public void setPendingBadConsequence(BadConsequence b){
         this.pendingBadConsequence = b;
     }
 
