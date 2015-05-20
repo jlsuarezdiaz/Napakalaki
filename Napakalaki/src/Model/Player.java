@@ -180,7 +180,6 @@ public class Player {
         this.pendingBadConsequence = other.pendingBadConsequence;
     }
 
-    
     //-------------- PUBLIC METHODS ---------------//
     
     /**
@@ -200,7 +199,7 @@ public class Player {
         this.increaseLevels(nLevels);
         int nPrize = p.getTreasures();
         CardDealer dealer = CardDealer.getInstance();
-        
+
         for(int i = 0; i < nPrize; i++){
             hiddenTreasures.add(dealer.nextTreasure());
         }
@@ -316,7 +315,7 @@ public class Player {
         visibleTreasures.remove(t);
         
         if(pendingBadConsequence != null && !pendingBadConsequence.isEmpty()){
-            pendingBadConsequence.substractVisibleTreasure(t);
+            pendingBadConsequence.subtractVisibleTreasure(t);
         }
         CardDealer.getInstance().giveTreasureBack(t);
         dieIfNoTreasures();
@@ -330,7 +329,7 @@ public class Player {
         hiddenTreasures.remove(t);
         
         if(pendingBadConsequence != null && !pendingBadConsequence.isEmpty()){
-            pendingBadConsequence.substractHiddenTreasure(t);
+            pendingBadConsequence.subtractHiddenTreasure(t);
         }
         CardDealer.getInstance().giveTreasureBack(t);
         dieIfNoTreasures();
