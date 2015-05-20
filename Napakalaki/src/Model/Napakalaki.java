@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Napakalaki class
- * Main class of Napakalaki game.
+ * Napakalaki class.
+ * Main class for controlling Napakalaki game.
  * @author andreshp, jlsuarez
  */
 public class Napakalaki {
@@ -90,6 +90,8 @@ public class Napakalaki {
 
     //----------------------- PUBLIC METHODS -----------------------//
 
+    //--------------- GET METHODS ---------------//
+
     /**
      * Get the singlenton instance of the class.
      * @return instance
@@ -99,6 +101,59 @@ public class Napakalaki {
             instance = new Napakalaki();
         }
         return instance;
+    }
+
+    /**
+     * Gets current monster in the game.
+     * @return Current Monster.
+     */
+    public Monster getCurrentMonster(){
+        return currentMonster;        
+    }
+
+    /**
+     * Gets current player in the game.
+     * @return Current Player.
+     */
+    public Player getCurrentPlayer(){
+        return currentPlayer;        
+    }
+    
+    /**
+     * Get Visible Treasures.
+     * @return Current player's visible treasures.
+     */
+    public ArrayList<Treasure> getVisibleTreasures(){
+        return currentPlayer.getVisibleTreasures();
+    }
+    
+    /**
+     * Get Hidden Treasures.
+     * @return Current player's hidden treasures.
+     */
+    public ArrayList<Treasure> getHiddenTreasures(){
+        return currentPlayer.getHiddenTreasures();
+    }
+
+    //--------------- OTHER PUBLIC METHODS ---------------//
+
+    /**
+     * Buy levels before combat a monster.
+     * @param visible Visible treasures used to get levels.
+     * @param hidden Hidden treasures used to get levels.
+     * @return true if and only if level purchase was effective.
+     */
+    public boolean buyLevels(ArrayList <Treasure> visible, ArrayList <Treasure> hidden){
+        return currentPlayer.buyLevels(visible, hidden);
+    }
+
+    /**
+     * Checks if current player can make a treasure visible
+     * @param t Treasure to make visible.
+     * @return True if and only if treasure can be made visible.
+     */
+    public boolean canMakeTreasureVisible(Treasure t){
+        return currentPlayer.canMakeTreasureVisible(t);
     }
 
     /**
@@ -134,7 +189,26 @@ public class Napakalaki {
     public void discardHiddenTreasure(Treasure t){
         currentPlayer.discardHiddenTreasure(t);
     }
-    
+
+    /**
+     * Checks if the game has finished according to last battle result.
+     * @param result Result of the combat.
+     * @return Boolean indicating whether the game has finished.
+     */
+    public boolean endOfGame(CombatResult result){
+        return result == CombatResult.WINANDWINGAME;
+    }
+
+    /**
+     * Initialize  main things needed to play Napakalaki game.
+     * @param players Array with players' names.
+     */
+    public void initGame(ArrayList<String> players){
+        CardDealer.getInstance().initCards();
+        initPlayers(players);
+        nextTurn();
+    }
+
     /**
      * Makes visible a treasure.
      * @param t Treasure to make visible.
@@ -145,81 +219,18 @@ public class Napakalaki {
     }
     
     /**
-     * Buy levels before combat a monster.
-     * @param visible Visible treasures used to get levels.
-     * @param hidden Hidden treasures used to get levels.
-     * @return true if and only if level purchase was effective.
-     */
-    public boolean buyLevels(ArrayList <Treasure> visible, ArrayList <Treasure> hidden){
-        return currentPlayer.buyLevels(visible, hidden);
-    }
-    
-    /**
-     * Initialize  main things needed to play Napakalaki game.
-     * @param players Array with players' names.
-     */
-    public void initGame(ArrayList<String> players){
-        CardDealer.getInstance().initCards();
-        initPlayers(players);
-        nextTurn();
-    }
-    
-    /**
-     * Gets current player in the game.
-     * @return Current Player.
-     */
-    public Player getCurrentPlayer(){
-        return currentPlayer;        
-    }
-    
-    /**
-     * Gets current monster in the game.
-     * @return Current Monster.
-     */
-    public Monster getCurrentMonster(){
-        return currentMonster;        
-    }
-    
-    /**
-     * Checks if current player can make a treasure visible
-     * @param t Treasure to make visible.
-     * @return True if and only if treasure can be made visible.
-     */
-    public boolean canMakeTreasureVisible(Treasure t){
-        return currentPlayer.canMakeTreasureVisible(t);
-    }
-    
-    /**
-     * Get Visible Treasures.
-     * @return Current player's visible treasures.
-     */
-    public ArrayList<Treasure> getVisibleTreasures(){
-        return currentPlayer.getVisibleTreasures();
-    }
-    
-    /**
-     * Get Hidden Treasures.
-     * @return Current player's hidden treasures.
-     */
-    public ArrayList<Treasure> getHiddenTreasures(){
-        return currentPlayer.getHiddenTreasures();
-    }
-    
-    /**
      * Set next turn in the game, if it is possible.
      * @return true if and only if next turn was set properly.
      */
     public boolean nextTurn(){
         boolean stateOK = nextTurnAllowed();
-        CardDealer dealer = CardDealer.getInstance();
         
         if(stateOK){
-            currentMonster = dealer.getInstance().nextMonster();
+            currentMonster = CardDealer.getInstance().nextMonster();
             nextPlayer();
             
             if(currentPlayer.isDead())
-                currentPlayer.initTreasures();
-            
+                currentPlayer.initTreasures();        
         }
         return stateOK;
     }
@@ -230,14 +241,5 @@ public class Napakalaki {
      */
     public boolean nextTurnAllowed(){
         return currentPlayer == null || currentPlayer.validState();
-    }
-    
-    /**
-     * Checks if the game has finished according to last battle result.
-     * @param result Result of the combat.
-     * @return Boolean indicating whether the game has finished.
-     */
-    public boolean endOfGame(CombatResult result){
-        return result == CombatResult.WINANDWINGAME;
     }
 }
