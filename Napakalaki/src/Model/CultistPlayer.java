@@ -9,8 +9,9 @@ package Model;
 import java.util.ArrayList;
 
 /**
- *
- * @author andreshp
+ * Cultist Player Class.
+ * This class represents a cultist player in Napakalaki game.
+ * @author andreshp, jlsuarez
  */
 public class CultistPlayer extends Player {
 
@@ -39,8 +40,7 @@ public class CultistPlayer extends Player {
      */
     private Cultist myCultistCard;
     
-    
-   //--------------- PUBLIC METHODS ---------------//
+    //--------------- CONSTRUCTOR ---------------//
 
     /**
      * Constructor for a cultist player.
@@ -53,20 +53,22 @@ public class CultistPlayer extends Player {
         totalCultistPlayers++;  
     }
     
-    @Override
+    //--------------- PUBLIC METHODS ---------------//
+    
     /**
      * Overrides Player's computeGoldCoinsValue method.
      * @return Player's gold coins multiplied by 2.
      */
+    @Override
     public float computeGoldCoinsValue(ArrayList<Treasure> t) {
         return super.computeGoldCoinsValue(t)*2;
     }
     
-    @Override
     /**
      * Overrides Player's getCombatLevel method.
      * @return Player's combat level plus the cultist bonus.
      */
+    @Override
     public int getCombatLevel() {
         return super.getCombatLevel() + myCultistCard.getSpecialValue();
     }
@@ -79,30 +81,30 @@ public class CultistPlayer extends Player {
         return myCultistCard;
     }
 
-    @Override
     /**
      * Overrides Player's getOpponentLevel method.
      * @param m Monster to fight against.
      * @return Monster's level when fighting against a cultist player.
      */
+    @Override
     public int getOpponentLevel(Monster m){
         return m.getSpecialValue();
     }
 
-    @Override
     /**
      * Overrides Player's shouldConvert method.
      * @return False. A cultist player can't be converted again.
      */
+    @Override
     public boolean shouldConvert(){
         return false;
     }
     
-    @Override
     /**
      * Overrides Player's toString method.
      * @return String with the player info.
      */
+    @Override
     public String toString(){
         return super.toString()
                 + "\nCarta de sectario:"
