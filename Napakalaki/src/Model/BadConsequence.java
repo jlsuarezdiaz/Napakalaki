@@ -141,38 +141,28 @@ public abstract class BadConsequence {
     //--------------- OTHER PUBLIC METHODS ---------------//
 
     /**
-     * Substracts the visible treasure given from the bad consequence.
+     * Subtracts the visible treasure given from the bad consequence.
      * 
      * If the bad consequence just ask for a number of visible treasures then
      * that number is decremented. Else if the bad consequence ask for specific
-     * visible treasures, substract t.getType() from the specific treasures
+     * visible treasures, subtract t.getType() from the specific treasures
      * asked.
      * 
-     * @param t Treasure to substract.
+     * @param t Treasure to subtract.
      */
-    public void substractVisibleTreasure(Treasure t){
-        if (nVisibleTreasures > 0)
-            nVisibleTreasures--;
-        else
-            specificVisibleTreasures.remove(t.getType());
-    }
+    abstract public void subtractVisibleTreasure(Treasure t);
 
     /**
-     * Substracts the hidden treasure given from the bad consequence.
+     * Subtracts the hidden treasure given from the bad consequence.
      * 
      * If the bad consequence just ask for a number of hidden treasures then
      * that number is decremented. Else if the bad consequence ask for specific
-     * hidden treasures, substract t.getType() from the specific treasures
+     * hidden treasures, subtract t.getType() from the specific treasures
      * asked.
      * 
-     * @param t Treasure to substract.
+     * @param t Treasure to subtract.
      */
-    public void substractHiddenTreasure(Treasure t){
-        if (nHiddenTreasures > 0)
-            nHiddenTreasures--;
-        else
-            specificHiddenTreasures.remove(t.getType());
-    }
+    abstract public void subtractHiddenTreasure(Treasure t);
 
     /**
      * Check if the Bad Consequence is empty.
@@ -193,41 +183,7 @@ public abstract class BadConsequence {
      * @return String with the contents.
      */
     public String toString(){
-        // Read only variable with the number of spaces to print in each line.
-        final int num_spaces = 5;
-        
-        String strSpaces = new String(new char[num_spaces]).replace('\0', ' ');
-        String specificVisibleTreasures_str = "", specificHiddenTreasures_str = "";
-        
-        // Get the specific visible treasures as string
-        if (specificVisibleTreasures == null || specificVisibleTreasures.isEmpty()){
-            specificVisibleTreasures_str = " Ninguno";
-        }
-        else{
-            for (TreasureKind treasure : specificVisibleTreasures){
-                specificVisibleTreasures_str += " " + treasure.name();
-            }
-            
-        }
-        
-        // Get the specific hidden treasures as string
-        if (specificHiddenTreasures == null || specificHiddenTreasures.isEmpty()){
-            specificHiddenTreasures_str = " Ninguno";
-        }
-        else{
-            for (TreasureKind treasure : specificHiddenTreasures){
-                specificHiddenTreasures_str += " " + treasure.name();
-            }
-            
-        }
-
-        return strSpaces + "Text = " + text 
-               + "\n"+ strSpaces + "Levels = " + Integer.toString(levels)
-               + "\n"+ strSpaces + "nVisibleTreasures = " + Integer.toString(nVisibleTreasures)
-               + "\n"+ strSpaces + "nHiddenTreasures = " + Integer.toString(nHiddenTreasures)
-               + "\n"+ strSpaces + "specificVisibleTreasures = " + specificVisibleTreasures_str
-               + "\n"+ strSpaces + "specificHiddenTreasures = "  + specificHiddenTreasures_str
-               + "\n"+ strSpaces + "Death = " + Boolean.toString(death);
+        return "Esto es un mal rollo con el siguiente contenido:\n";
     }
     
     /**
