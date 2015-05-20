@@ -58,6 +58,7 @@ public class Cultist implements Card {
      * To String method for a cultist card.
      * @return String with the name and gained levels.
      */
+    @Override
     public String toString(){
         return "Nombre: " + name
                 + ", Gained Levels: " + Integer.toString(gainedLevels);
