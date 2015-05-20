@@ -42,6 +42,15 @@ public class BadConsequenceDeath extends BadConsequence {
     public boolean kills(){
         return death;
     }
+    
+    /**
+     * Get the levels lost by the player as bad consequence.
+     * @return 0 since it is a death bad consequence.
+     */
+    @Override
+    public int getLevels(){
+        return 0;
+    }
 
     //--------------- OTHER PUBLIC METHODS ---------------//
 
