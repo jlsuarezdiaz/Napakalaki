@@ -5,6 +5,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package Model;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  *
  * @author andreshp
@@ -59,4 +62,17 @@ public class BadConsequenceNumberTreasures extends BadConsequence {
                + "\n"+ strSpaces + "nHiddenTreasures = " + Integer.toString(nHiddenTreasures);
     }
 
+    /**
+     * Create a new BadConsequence in order to get the player to be able to carry it out completely.
+     * @param visible Visible treasures of the player.
+     * @param hidden Hidden treasures of the player
+     * @return A new bad consequence reduced according to visible and hidden player treasures.
+     */
+    public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> visible, ArrayList<Treasure> hidden){
+
+        int newnvisible = Integer.min(this.nVisibleTreasures,visible.size());
+        int newnhidden = Integer.min(this.nHiddenTreasures,hidden.size());
+
+        return new BadConsequenceNumberTreasures("Queda por cumplir:", 0, newnvisible, newnhidden);
+    }
 }
