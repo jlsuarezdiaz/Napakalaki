@@ -469,7 +469,7 @@ public class CardDealer {
     /**
      * Get the following cultist in the cultists' deck.
      * 
-     * Since there are only 2 players the deck will never be empty.
+     * Since there are less than 6 players the deck will never be empty.
      * 
      * @return The cultist at the top of the deck.
      */
