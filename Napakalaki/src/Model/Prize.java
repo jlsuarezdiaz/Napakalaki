@@ -63,6 +63,7 @@ public class Prize {
      * Gets a string with the prize's info.
      * @return string with information.
      */
+    @Override
     public String toString(){
         return "Treasures = " + Integer.toString(treasures) + ", Levels = " + Integer.toString(levels);
     }
