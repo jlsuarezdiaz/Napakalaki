@@ -7,6 +7,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -84,5 +85,61 @@ public class BadConsequenceSpecificTreasures extends BadConsequence {
                + "\n"+ strSpaces + "Levels = " + Integer.toString(levels)
                + "\n"+ strSpaces + "specificVisibleTreasures = " + specificVisibleTreasures_str
                + "\n"+ strSpaces + "specificHiddenTreasures = "  + specificHiddenTreasures_str;
+    }
+
+    /**
+     * Create a new BadConsequence in order to get the player to be able to carry it out completely.
+     * @param visible Visible treasures of the player.
+     * @param hidden Hidden treasures of the player
+     * @return A new bad consequence reduced according to visible and hidden player treasures.
+     */
+    @Override
+    public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> visible, ArrayList<Treasure> hidden){
+        
+        ArrayList<TreasureKind> newSpecVisible = new ArrayList(), newSpecHidden = new ArrayList();
+        ArrayList<TreasureKind> mapVis = new ArrayList(), mapHid = new ArrayList();
+
+        // Map the player's tresuvisibleres type to mapVis and mapHid
+        for(Treasure t: visible)
+            mapVis.add(t.getType());
+        for(Treasure t: hidden)
+            mapHid.add(t.getType());
+
+        // Sort the tresure specific lists
+        specificVisibleTreasures.sort(null);
+        specificHiddenTreasures.sort(null);
+        
+        int freqNew = 0, freqPlay = 0;
+        TreasureKind last = null;
+
+        // Adds to newspecvisible the treasures in visible asked by the badCons.
+        for(TreasureKind k: specificVisibleTreasures){
+            if (k != last){
+                last = k;
+                freqNew = 0;
+                freqPlay = Collections.frequency(mapVis, k);
+            }
+            if(freqNew < freqPlay){
+                newSpecVisible.add(k);
+                freqNew++;
+            }
+        }
+
+        freqNew = freqPlay = 0; last = null;
+
+        // Adds to newspechidden the treasures in hidden asked by the badCons.
+        for(TreasureKind k: specificHiddenTreasures){
+            if(k != last){
+               last = k;
+               freqNew = 0;
+               freqPlay = Collections.frequency(mapHid, k);
+            }
+
+            if(freqNew < freqPlay){
+                newSpecHidden.add(k);
+                    freqNew++;
+            }
+        }   
+        return new BadConsequenceSpecificTreasures("Queda por cumplir:", 0, newSpecVisible, newSpecHidden);
     }
 }
