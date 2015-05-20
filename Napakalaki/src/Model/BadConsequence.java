@@ -11,8 +11,8 @@ import java.util.Collections;
 
 /**
  * Bad Consequence Class.
- * It indicates the consequences of losing to the monster.
- * These consequences are lost of levels, treasures and even death.
+ * It indicates the consequences of losing to a monster.
+ * These consequences are levels or treasures lost and even death.
  * 
  * @author andreshp, jlsuarez
  */
@@ -141,6 +141,28 @@ public abstract class BadConsequence {
     //--------------- OTHER PUBLIC METHODS ---------------//
 
     /**
+     * Create a new BadConsequence in order to get the player to be able to carry it out completely.
+     * @param visible Visible treasures of the player.
+     * @param hidden Hidden treasures of the player
+     * @return A new bad consequence reduced according to visible and hidden player treasures.
+     */
+    abstract public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> visible, ArrayList<Treasure> hidden);
+
+    /**
+     * Check if the Bad Consequence is empty.
+     * 
+     * A BadConsequence is empty if every attribute is initialized to 0, false,
+     * null or "" in case of strings.
+     * 
+     * @return Result of the comparison.
+     */
+    public boolean isEmpty(){
+        return  !death && nVisibleTreasures == 0 && nHiddenTreasures == 0 && 
+            (specificVisibleTreasures == null || specificVisibleTreasures.isEmpty()) &&
+            (specificHiddenTreasures == null || specificHiddenTreasures.isEmpty());
+    }
+
+    /**
      * Subtracts the visible treasure given from the bad consequence.
      * 
      * If the bad consequence just ask for a number of visible treasures then
@@ -165,82 +187,12 @@ public abstract class BadConsequence {
     abstract public void subtractHiddenTreasure(Treasure t);
 
     /**
-     * Check if the Bad Consequence is empty.
-     * 
-     * A BadConsequence is empty if every attribute is initialized to 0, false,
-     * null or "" in case of strings.
-     * 
-     * @return Result of the comparison.
-     */
-    public boolean isEmpty(){
-        return  !death && nVisibleTreasures == 0 && nHiddenTreasures == 0 && 
-            (specificVisibleTreasures == null || specificVisibleTreasures.isEmpty()) &&
-            (specificHiddenTreasures == null || specificHiddenTreasures.isEmpty());
-    }
-
-    /**
      * Returns a string with the Bad Consequence instance contents.
+     * @param numSpaces Integer with the number of spaces in the paragraph indentation.
      * @return String with the contents.
      */
-    public String toString(){
-        return "Esto es un mal rollo con el siguiente contenido:\n";
-    }
-    
-    /**
-     * Create a new BadConsequence in order to get the player to be able to carry it out completely.
-     * @param visible Visible treasures of the player.
-     * @param hidden Hidden treasures of the player
-     * @return A new bad consequence reduced according to visible and hidden player treasures.
-     */
-    public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> visible, ArrayList<Treasure> hidden){
-
-        BadConsequence newbad = null;
-        
-        if (this.specificVisibleTreasures == null && this.specificHiddenTreasures == null){
-            int newnvisible = Integer.min(this.nVisibleTreasures,visible.size()),
-                newnhidden = Integer.min(this.nHiddenTreasures,hidden.size());
-            newbad = new BadConsequenceNumberTreasures("Queda por cumplir:", 0, newnvisible, newnhidden);
-        }
-        else{
-            ArrayList<TreasureKind> newspecvisible = new ArrayList(), newspechidden = new ArrayList();
-            ArrayList<TreasureKind> mapvis = new ArrayList(), maphid = new ArrayList();
-            
-            for(Treasure t: visible)
-                mapvis.add(t.getType());
-                       
-            for(Treasure t: hidden)
-                maphid.add(t.getType());
-
-            int freq_new = 0, freq_play = 0;
-            TreasureKind last = null;
-            for(TreasureKind k: specificVisibleTreasures){
-                if(k != last){
-                   last = k;
-                   freq_new = 0;
-                   freq_play = Collections.frequency(mapvis, k);
-                }
-                
-                if(freq_new < freq_play){
-                    newspecvisible.add(k);
-                    freq_new++;
-                }
-            }
-
-            freq_new = freq_play = 0; last = null;
-            for(TreasureKind k: specificHiddenTreasures){
-                if(k != last){
-                   last = k;
-                   freq_new = 0;
-                   freq_play = Collections.frequency(maphid, k);
-                }
-                
-                if(freq_new < freq_play){
-                    newspechidden.add(k);
-                    freq_new++;
-                }
-            }
-            newbad = new BadConsequenceSpecificTreasures("Queda por cumplir:", 0, newspecvisible, newspechidden);
-        }
-        return newbad;
-    }
+    public String toString(int numSpaces){
+        String strSpaces = new String(new char[numSpaces]).replace('\0', ' ');
+        return strSpaces + "Esto es un mal rollo con el siguiente contenido:\n";
+    }    
 }
