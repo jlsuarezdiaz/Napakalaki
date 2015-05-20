@@ -24,61 +24,6 @@ public abstract class BadConsequence {
      * Text that explains what does the bad consequence do.
      */
     protected String text;
-
-    /**
-     * Levels that are lost with the bad consequence.
-     */
-    protected int levels;
-
-    /**
-     * Number of Visible Treasures that are lost. 
-     */
-    protected int nVisibleTreasures;
-
-    /**
-     * Number of Hidden Treasures that are lost. 
-     */
-    protected int nHiddenTreasures;
-
-    /**
-     * Boolean that indicates if the bad consequence is death.
-     */
-    protected boolean death;
-
-    /**
-     * Array with the visible treasures.
-     */
-    protected ArrayList<TreasureKind> specificVisibleTreasures;
-
-    /**
-     * Array with the hidden treasures.
-     */
-    protected ArrayList<TreasureKind> specificHiddenTreasures;
-    
-    
-    //--------------- CONSTRUCTORS ---------------//
-    
-    /**
-     * Constructor that initializes every attribute but the arrays and death.
-     * @param text
-     * @param nVisible
-     * @param nHidden
-     * @param specificVisibleTreasures
-     * @param specificHiddenTreasures
-     * @param death
-     */
-    public BadConsequence(String text, int levels, int nVisible, int nHidden, 
-            ArrayList<TreasureKind> specificVisibleTreasures, ArrayList<TreasureKind> specificHiddenTreasures,
-            boolean death){
-        this.text = text;
-        this.levels = levels;
-        this.nVisibleTreasures = nVisible;
-        this.nHiddenTreasures = nHidden;
-        this.specificVisibleTreasures = specificVisibleTreasures;
-        this.specificHiddenTreasures = specificHiddenTreasures;
-        this.death = death;
-    }
-
     
     //--------------- GET METHODS ---------------//
 
@@ -91,60 +36,24 @@ public abstract class BadConsequence {
     }
 
     /**
-     * Get the levels attribute.
-     * @return levels
+     * Get the levels lost by the player.
+     * 
+     * Each child must implements this method since some of them does not
+     * have the levels attribute.
+     * 
+     * @return levels lost
      */
-    public int getLevels(){
-        return levels;
-    }
-
-    /**
-     * Get the nVisibleTreasures attribute.
-     * @return nVisibleTreasures
-     */
-    public int getNVisibleTreasures(){
-        return nVisibleTreasures;
-    }
-
-    /**
-     * Get the nHiddenTreasures attribute.
-     * @return nHiddenTreasures
-     */
-    public int getNHiddenTreasures(){
-        return nHiddenTreasures;
-    }
-
-    /**
-     * Get the death attribute.
-     * @return death
-     */
-    public boolean kills(){
-        return death;
-    }
-
-    /**
-     * Get the specificVisibleTreasures attribute.
-     * @return specificVisibleTreasures
-     */
-    public ArrayList<TreasureKind> getSpecificVisibleTreasures(){
-        return specificVisibleTreasures;
-    }
-
-    /**
-     * Get the specificHiddenTreasures attribute.
-     * @return specificHiddenTreasures
-     */
-    public ArrayList<TreasureKind> getSpecificHiddenTreasures(){
-        return specificHiddenTreasures;
-    }
+    abstract public int getLevels();
 
     //--------------- OTHER PUBLIC METHODS ---------------//
 
     /**
-     * Create a new BadConsequence in order to get the player to be able to carry it out completely.
+     * Create a new BadConsequence in order to get the player to be able to 
+     * carry it out completely.
      * @param visible Visible treasures of the player.
      * @param hidden Hidden treasures of the player
-     * @return A new bad consequence reduced according to visible and hidden player treasures.
+     * @return A new bad consequence reduced according to visible and hidden 
+     * player treasures.
      */
     abstract public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> visible, ArrayList<Treasure> hidden);
 
@@ -156,11 +65,7 @@ public abstract class BadConsequence {
      * 
      * @return Result of the comparison.
      */
-    public boolean isEmpty(){
-        return  !death && nVisibleTreasures == 0 && nHiddenTreasures == 0 && 
-            (specificVisibleTreasures == null || specificVisibleTreasures.isEmpty()) &&
-            (specificHiddenTreasures == null || specificHiddenTreasures.isEmpty());
-    }
+    abstract public boolean isEmpty();
 
     /**
      * Subtracts the visible treasure given from the bad consequence.
