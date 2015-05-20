@@ -3,6 +3,7 @@
 // Universidad de Granada, March, 2015
 // Programación Orientada a Objetos - Napakalaki
 ////////////////////////////////////////////////////////////////////////////////
+
 package Model;
 
 /**
@@ -13,34 +14,33 @@ package Model;
 public class Treasure implements Card {
     
     //------------- ATTRIBUTES ---------------//
-    
+
     /**
      * Text with treasure's name.
      */
     private String name;
-    
+
     /**
      * Amount of gold coins of the treasure.
      */
     private int goldCoins;
-    
+
     /**
      *  Minimum bonus of the treasure.
      */
     private int minBonus;
-    
+
     /**
      * Maximum bonus of the treasure.
      */
     private int maxBonus;
-    
+
     /**
      * Kind of treasure.
      */
     private TreasureKind type;
-    
-    
-    //--------------- CONSTRUCTORS ---------------//
+
+    //--------------- CONSTRUCTOR ---------------//
     
     /**
      * Class Constructor.
@@ -105,6 +105,11 @@ public class Treasure implements Card {
         return this.type;
     }
     
+    /**
+     * To String method for treasures.
+     * @return String with the treasure content.
+     */
+    @Override
     public String toString(){
         return "Name = " + this.name + "\nGold Coins = " + this.goldCoins + "\nMinimum Bonus = "
                + this.minBonus + "\nMaximum Bonus = " + this.maxBonus + "\nKind of the trasure = "
@@ -113,20 +118,20 @@ public class Treasure implements Card {
 
     //--------------- CARD INTERFACE METHODS ---------------//
 
-    @Override
     /**
      * Override getBasicValue form Card.
      * @return Treasure's minimum bonus.
      */
+    @Override
     public int getBasicValue() {
         return getMinBonus();
     }
 
-    @Override
     /**
      * Override getSpecialValue form Card.
      * @return Treasure's maximum bonus.
      */
+    @Override
     public int getSpecialValue() {
         return getMaxBonus();
     }
