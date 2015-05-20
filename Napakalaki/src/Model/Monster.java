@@ -13,7 +13,7 @@ package Model;
  * 
  * @author andreshp, jlsuarez
  */
-public class Monster implements Card{
+public class Monster implements Card {
     
     //--------------- ATTRIBUTES ---------------//
     
@@ -28,12 +28,12 @@ public class Monster implements Card{
     private int combatLevel;
     
     /**
-     * Prize: consequences of defeating monster.
+     * Prize: defeating the monster consequences.
      */
     private Prize prize;
     
     /**
-     * Consequences of being defeated.
+     * Consequences of being defeated by the monster.
      */
     private BadConsequence badCons;
 
@@ -68,6 +68,7 @@ public class Monster implements Card{
      * @param name Monster's name.
      * @param level Monster's level.
      * @param bc Bad consequence.
+     * @param prize Monster's prize
      * @param levelsChangeAgainstCultistPlayer Integer with the attribute's value.
      */
     public Monster(String name, int level, BadConsequence bc, Prize prize, int levelsChangeAgainstCultistPlayer){
@@ -123,25 +124,25 @@ public class Monster implements Card{
                + "\nLevel = " + Integer.toString(combatLevel) 
                + "\nLevel against cultist player = " + Integer.toString(getSpecialValue())
                + "\nPrize = [" + prize.toString() + "]"
-               + "\nBad Consequence = [\n" + badCons.toString() + "\n]";
+               + "\nBad Consequence = [\n" + badCons.toString(5) + "\n]";
     }
 
     //--------------- CARD INTERFACE METHODS ---------------//
     
-    @Override
     /**
      * Override getBasicValue form Card.
      * @return Monster's combat level.
      */
+    @Override
     public int getBasicValue() {
         return getCombatLevel();
     }
 
-    @Override
     /**
      * Override getSpecialValue form Card.
      * @return Monster's combat level against a cultist player.
      */
+    @Override
     public int getSpecialValue() {
         return getCombatLevel() + levelsChangeAgainstCultistPlayer;
     }
