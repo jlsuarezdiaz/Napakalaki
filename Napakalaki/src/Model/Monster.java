@@ -119,9 +119,11 @@ public class Monster implements Card{
      * @return string with information.
      */
     public String toString(){
-       return "Name = " + this.name + "\nLevel = " + Integer.toString(combatLevel) 
-               + "\nPrize = [" + prize.toString() + "] \nBad Consequence = [\n" + 
-               badCons.toString() + "\n]";
+       return "Name = " + this.name 
+               + "\nLevel = " + Integer.toString(combatLevel) 
+               + "\nLevel against cultist player = " + Integer.toString(getSpecialValue())
+               + "\nPrize = [" + prize.toString() + "]"
+               + "\nBad Consequence = [\n" + badCons.toString() + "\n]";
     }
 
     //--------------- CARD INTERFACE METHODS ---------------//
