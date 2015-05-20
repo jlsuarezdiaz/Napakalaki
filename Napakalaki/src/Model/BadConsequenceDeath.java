@@ -27,6 +27,9 @@ public class BadConsequenceDeath extends BadConsequence {
 
     /**
      * Constructor that initializes the attributes text and death.
+     * @param text Bad Consequence text explaining what it does.
+     * @param death Boolean which indicatess if the player's death is a 
+     * bad consequence.
      */
     public BadConsequenceDeath(String text, boolean death){
         this.text = text;
@@ -34,14 +37,6 @@ public class BadConsequenceDeath extends BadConsequence {
     }
 
     //--------------- GET METHODS ---------------//
-
-    /**
-     * Get the death attribute.
-     * @return death
-     */
-    public boolean kills(){
-        return death;
-    }
     
     /**
      * Get the levels lost by the player as bad consequence.
@@ -50,6 +45,15 @@ public class BadConsequenceDeath extends BadConsequence {
     @Override
     public int getLevels(){
         return 0;
+    }
+
+    /**
+     * Check if the bad consequence kills the player.
+     * @return death
+     */
+    @Override
+    public boolean kills(){
+        return death;
     }
 
     //--------------- OTHER PUBLIC METHODS ---------------//
