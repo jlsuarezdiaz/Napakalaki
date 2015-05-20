@@ -76,110 +76,32 @@ public class CardDealer {
     }
 
     /**
-     * Initialize the treasures' deck.
-     * Every treasure is added to unusedTreasures.
+     * Initialize the cultists' deck.
+     * Every cultist is added to unusedCultists.
      */
-    private void initTreasureCardDeck(){
+    private void initCultistCardDeck(){
+        
+        // Add the cultist cards!
 
-        // Adds the treasures
+        // Cultist 1
+        unusedCultists.add(new Cultist("Sectario", 1));
 
-        // Treasure: ¡Sí mi amo!
-        unusedTreasures.add(new Treasure("¡Sí mi amo!",0,4,7,TreasureKind.HELMET));
+        // Cultist 2
+        unusedCultists.add(new Cultist("Sectario", 2));
 
-        // Treasure: Botas de investigación
-        unusedTreasures.add(new Treasure("Botas de investigación",600,3,4,TreasureKind.SHOE));
+        // Cultist 3
+        unusedCultists.add(new Cultist("Sectario", 1));
 
-        // Treasure: Capucha de Cthulhu
-        unusedTreasures.add(new Treasure("Capucha de Cthulhu",500,3,5,TreasureKind.HELMET));
+        // Cultist 4
+        unusedCultists.add(new Cultist("Sectario", 2));
 
-        // Treasure: A prueba de babas
-        unusedTreasures.add(new Treasure("A prueba de babas",400,2,5,TreasureKind.ARMOR));
+        // Cultist 5
+        unusedCultists.add(new Cultist("Sectario", 1));
 
-        // Treasure: Botas de lluvia ácida
-        unusedTreasures.add(new Treasure("Botas de lluvia ácida",800,1,1,TreasureKind.BOTHHANDS));
-
-        // Treasure: Casco minero
-        unusedTreasures.add(new Treasure("Casco minero",400,2,4,TreasureKind.HELMET));
-
-        // Treasure: Ametralladora Thompson
-        unusedTreasures.add(new Treasure("Ametralladora Thompson",600,4,8,TreasureKind.BOTHHANDS));
-
-        // Treasure: Camiseta de la UGR
-        unusedTreasures.add(new Treasure("Camiseta de la UGR",100,1,7,TreasureKind.ARMOR));
-
-        // Treasure: Clavo de rail ferroviario
-        unusedTreasures.add(new Treasure("Clavo de rail ferroviario",400,3,6,TreasureKind.ONEHAND));
-
-        // Treasure: Cuchillo de Sushi arcano
-        unusedTreasures.add(new Treasure("Cuchillo de Sushi arcano",300,2,3,TreasureKind.ONEHAND));
-
-        // Treasure: Fez alópodo
-        unusedTreasures.add(new Treasure("Fez alópodo",700,3,5,TreasureKind.HELMET));
-
-        // Treasure: Hacha prehistórica
-        unusedTreasures.add(new Treasure("Hacha prehistórica",500,2,5,TreasureKind.ONEHAND));
-
-        // Treasure: El aparato del Pr. Tesla
-        unusedTreasures.add(new Treasure("El aparato del Pr. Tesla",900,4,8,TreasureKind.ARMOR));
-
-        // Treasure: Gaita
-        unusedTreasures.add(new Treasure("Gaita",500,4,5,TreasureKind.BOTHHANDS));
-
-        // Treasure: Insecticida
-        unusedTreasures.add(new Treasure("Insecticida",300,2,3,TreasureKind.ONEHAND));
-
-        // Treasure: Escopeta de 3 cañones
-        unusedTreasures.add(new Treasure("Escopeta de 3 cañones",700,4,6,TreasureKind.BOTHHANDS));
-
-        // Treasure: Garabato místico
-        unusedTreasures.add(new Treasure("Garabato místico",300,2,2,TreasureKind.ONEHAND));
-
-        // Treasure: La fuerza de Mr. T
-        unusedTreasures.add(new Treasure("La fuerza de Mr. T",1000,0,0,TreasureKind.NECKLACE));
-
-        // Treasure: La rebeca metálica
-        unusedTreasures.add(new Treasure("La rebeca metálica",400,2,3,TreasureKind.ARMOR));
-
-        // Treasure: Mazo de los antiguos
-        unusedTreasures.add(new Treasure("Mazo de los antiguos",200,3,4,TreasureKind.ONEHAND));
-
-        // Treasure: Necroplayboycón
-        unusedTreasures.add(new Treasure("Necroplayboycón",300,3,5,TreasureKind.ONEHAND));
-
-        // Treasure: Lanzallamas
-        unusedTreasures.add(new Treasure("Lanzallamas",800,4,8,TreasureKind.BOTHHANDS));
-
-        // Treasure: Necrocomicón
-        unusedTreasures.add(new Treasure("Necrocomicón",100,1,1,TreasureKind.ONEHAND));
-
-        // Treasure: Necronomicón
-        unusedTreasures.add(new Treasure("Necronomicón",800,5,7,TreasureKind.BOTHHANDS));
-
-        // Treasure: Linterna a 2 manos
-        unusedTreasures.add(new Treasure("Linterna a 2 manos",400,3,6,TreasureKind.BOTHHANDS));
-
-        // Treasure: Necrognomicón
-        unusedTreasures.add(new Treasure("Necrognomicón",200,2,4,TreasureKind.ONEHAND));
-
-        // Treasure: Necrotelecom
-        unusedTreasures.add(new Treasure("Necrotelecom",300,2,3,TreasureKind.HELMET));
-
-        // Treasure: Porra preternatural
-        unusedTreasures.add(new Treasure("Porra preternatural",200,2,3,TreasureKind.ONEHAND));
-
-        // Treasure: Tentáculo de pega
-        unusedTreasures.add(new Treasure("Tentáculo de pega",200,0,1,TreasureKind.HELMET));
-
-        // Treasure: Zapato deja-amigos
-        unusedTreasures.add(new Treasure("Zapato deja-amigos",500,0,1,TreasureKind.SHOE));
-
-        // Treasure: Shogulador
-        unusedTreasures.add(new Treasure("Shogulador",600,1,1,TreasureKind.BOTHHANDS));
-
-        // Treasure: Varita de atizamiento
-        unusedTreasures.add(new Treasure("Varita de atizamiento",400,3,4,TreasureKind.ONEHAND));
+        // Cultist 6
+        unusedCultists.add(new Cultist("Sectario", 1));
     }
-    
+
     /**
      * Initialize the monsters' deck.
      * Every monster is added to unusedMonsters.
@@ -189,7 +111,7 @@ public class CardDealer {
         BadConsequence badConsequence;
         Prize prize;
         
-        // Add the monsters
+        // Add the monsters!
 
         // Monster: 3 Byakhees de bonanza
         badConsequence = new BadConsequenceSpecificTreasures("Pierdes tu"
@@ -369,38 +291,116 @@ public class CardDealer {
     }
 
     /**
-     * Initialize the cultists' deck.
-     * Every cultist is added to unusedCultists.
+     * Initialize the treasures' deck.
+     * Every treasure is added to unusedTreasures.
      */
-    private void initCultistCardDeck(){
-        
-        // Add the cultist cards
-        
-        // Cultist 1
-        unusedCultists.add(new Cultist("Sectario", 1));
+    private void initTreasureCardDeck(){
 
-        // Cultist 2
-        unusedCultists.add(new Cultist("Sectario", 2));
+        // Adds the treasures!
 
-        // Cultist 3
-        unusedCultists.add(new Cultist("Sectario", 1));
+        // Treasure: ¡Sí mi amo!
+        unusedTreasures.add(new Treasure("¡Sí mi amo!",0,4,7,TreasureKind.HELMET));
 
-        // Cultist 4
-        unusedCultists.add(new Cultist("Sectario", 2));
+        // Treasure: Botas de investigación
+        unusedTreasures.add(new Treasure("Botas de investigación",600,3,4,TreasureKind.SHOE));
 
-        // Cultist 5
-        unusedCultists.add(new Cultist("Sectario", 1));
+        // Treasure: Capucha de Cthulhu
+        unusedTreasures.add(new Treasure("Capucha de Cthulhu",500,3,5,TreasureKind.HELMET));
 
-        // Cultist 6
-        unusedCultists.add(new Cultist("Sectario", 1));
+        // Treasure: A prueba de babas
+        unusedTreasures.add(new Treasure("A prueba de babas",400,2,5,TreasureKind.ARMOR));
+
+        // Treasure: Botas de lluvia ácida
+        unusedTreasures.add(new Treasure("Botas de lluvia ácida",800,1,1,TreasureKind.BOTHHANDS));
+
+        // Treasure: Casco minero
+        unusedTreasures.add(new Treasure("Casco minero",400,2,4,TreasureKind.HELMET));
+
+        // Treasure: Ametralladora Thompson
+        unusedTreasures.add(new Treasure("Ametralladora Thompson",600,4,8,TreasureKind.BOTHHANDS));
+
+        // Treasure: Camiseta de la UGR
+        unusedTreasures.add(new Treasure("Camiseta de la UGR",100,1,7,TreasureKind.ARMOR));
+
+        // Treasure: Clavo de rail ferroviario
+        unusedTreasures.add(new Treasure("Clavo de rail ferroviario",400,3,6,TreasureKind.ONEHAND));
+
+        // Treasure: Cuchillo de Sushi arcano
+        unusedTreasures.add(new Treasure("Cuchillo de Sushi arcano",300,2,3,TreasureKind.ONEHAND));
+
+        // Treasure: Fez alópodo
+        unusedTreasures.add(new Treasure("Fez alópodo",700,3,5,TreasureKind.HELMET));
+
+        // Treasure: Hacha prehistórica
+        unusedTreasures.add(new Treasure("Hacha prehistórica",500,2,5,TreasureKind.ONEHAND));
+
+        // Treasure: El aparato del Pr. Tesla
+        unusedTreasures.add(new Treasure("El aparato del Pr. Tesla",900,4,8,TreasureKind.ARMOR));
+
+        // Treasure: Gaita
+        unusedTreasures.add(new Treasure("Gaita",500,4,5,TreasureKind.BOTHHANDS));
+
+        // Treasure: Insecticida
+        unusedTreasures.add(new Treasure("Insecticida",300,2,3,TreasureKind.ONEHAND));
+
+        // Treasure: Escopeta de 3 cañones
+        unusedTreasures.add(new Treasure("Escopeta de 3 cañones",700,4,6,TreasureKind.BOTHHANDS));
+
+        // Treasure: Garabato místico
+        unusedTreasures.add(new Treasure("Garabato místico",300,2,2,TreasureKind.ONEHAND));
+
+        // Treasure: La fuerza de Mr. T
+        unusedTreasures.add(new Treasure("La fuerza de Mr. T",1000,0,0,TreasureKind.NECKLACE));
+
+        // Treasure: La rebeca metálica
+        unusedTreasures.add(new Treasure("La rebeca metálica",400,2,3,TreasureKind.ARMOR));
+
+        // Treasure: Mazo de los antiguos
+        unusedTreasures.add(new Treasure("Mazo de los antiguos",200,3,4,TreasureKind.ONEHAND));
+
+        // Treasure: Necroplayboycón
+        unusedTreasures.add(new Treasure("Necroplayboycón",300,3,5,TreasureKind.ONEHAND));
+
+        // Treasure: Lanzallamas
+        unusedTreasures.add(new Treasure("Lanzallamas",800,4,8,TreasureKind.BOTHHANDS));
+
+        // Treasure: Necrocomicón
+        unusedTreasures.add(new Treasure("Necrocomicón",100,1,1,TreasureKind.ONEHAND));
+
+        // Treasure: Necronomicón
+        unusedTreasures.add(new Treasure("Necronomicón",800,5,7,TreasureKind.BOTHHANDS));
+
+        // Treasure: Linterna a 2 manos
+        unusedTreasures.add(new Treasure("Linterna a 2 manos",400,3,6,TreasureKind.BOTHHANDS));
+
+        // Treasure: Necrognomicón
+        unusedTreasures.add(new Treasure("Necrognomicón",200,2,4,TreasureKind.ONEHAND));
+
+        // Treasure: Necrotelecom
+        unusedTreasures.add(new Treasure("Necrotelecom",300,2,3,TreasureKind.HELMET));
+
+        // Treasure: Porra preternatural
+        unusedTreasures.add(new Treasure("Porra preternatural",200,2,3,TreasureKind.ONEHAND));
+
+        // Treasure: Tentáculo de pega
+        unusedTreasures.add(new Treasure("Tentáculo de pega",200,0,1,TreasureKind.HELMET));
+
+        // Treasure: Zapato deja-amigos
+        unusedTreasures.add(new Treasure("Zapato deja-amigos",500,0,1,TreasureKind.SHOE));
+
+        // Treasure: Shogulador
+        unusedTreasures.add(new Treasure("Shogulador",600,1,1,TreasureKind.BOTHHANDS));
+
+        // Treasure: Varita de atizamiento
+        unusedTreasures.add(new Treasure("Varita de atizamiento",400,3,4,TreasureKind.ONEHAND));
     }
 
     /**
-     * Shuffles all the treasures.
-     * Internally, it shuffles unusedTreasures.
+     * Shuffles all the cultist cards.
+     * Internally, it shuffles unusedCultists.
      */
-    private void shuffleTreasures(){
-        Collections.shuffle(unusedTreasures);
+    private void shuffleCultists(){
+        Collections.shuffle(unusedCultists);
     }
 
     /**
@@ -412,11 +412,11 @@ public class CardDealer {
     }
 
     /**
-     * Shuffles all the cultist cards.
-     * Internally, it shuffles unusedCultists.
+     * Shuffles all the treasures.
+     * Internally, it shuffles unusedTreasures.
      */
-    private void shuffleCultists(){
-        Collections.shuffle(unusedCultists);
+    private void shuffleTreasures(){
+        Collections.shuffle(unusedTreasures);
     }
 
     //----------------------- PUBLIC METHODS -----------------------//
@@ -433,41 +433,13 @@ public class CardDealer {
     }
 
     /**
-     * Get the following treasure in the treasures' deck.
-     * If the deck is empty then usedTreasures is assigned to the treasures'
-     * deck and passes to be empty. The treasures' deck is shuffled afterwards.
-     * @return The treasure at the top of the deck.
+     * Adds a monster to the used monsters' deck.
+     * @param m Monster that has been used. 
+     * Precondition: The monster is supposed not to be in the unused 
+     * monsters' deck.
      */
-    public Treasure nextTreasure(){
-        if (unusedTreasures.isEmpty()){
-            unusedTreasures = usedTreasures;
-            usedTreasures = new ArrayList();
-            shuffleTreasures();
-        }
-        return unusedTreasures.remove(unusedTreasures.size() -1);
-    }
-    
-    /**
-     * Get the following monster in the monsters' deck.
-     * If the deck is empty then usedMonsters is assigned to the monsters'
-     * deck and passes to be empty. The monsters' deck is shuffled afterwards.
-     * @return The monster at the top of the deck.
-     */
-    public Monster nextMonster(){
-        if (unusedMonsters.isEmpty()){
-            unusedMonsters = usedMonsters;
-            usedMonsters = new ArrayList();
-            shuffleTreasures();
-        }
-        return unusedMonsters.remove(unusedMonsters.size() -1);
-    }
-
-    /**
-     * Get the following cultist in the cultists' deck.
-     * @return The cultist at the top of the deck.
-     */
-    public Cultist nextCultist(){
-        return unusedCultists.remove(unusedCultists.size() -1);
+    public void giveMonsterBack(Monster m){
+        usedMonsters.add(m);    
     }
 
     /**
@@ -479,17 +451,7 @@ public class CardDealer {
     public void giveTreasureBack(Treasure t){
         usedTreasures.add(t);
     }
-    
-    /**
-     * Adds a monster to the used monsters' deck.
-     * @param m Monster that has been used. 
-     * Precondition: The monster is supposed not to be in the unused 
-     * monsters' deck.
-     */
-    public void giveMonsterBack(Monster m){
-        usedMonsters.add(m);    
-    }
-    
+
     /**
      * Initializes treasures, cultists and monsters decks and shuffles them.
      * 
@@ -502,5 +464,46 @@ public class CardDealer {
         shuffleMonsters();
         initCultistCardDeck();
         shuffleCultists();
+    }
+
+    /**
+     * Get the following cultist in the cultists' deck.
+     * 
+     * Since there are only 2 players the deck will never be empty.
+     * 
+     * @return The cultist at the top of the deck.
+     */
+    public Cultist nextCultist(){
+        return unusedCultists.remove(unusedCultists.size() -1);
+    }
+
+    /**
+     * Get the following monster in the monsters' deck.
+     * If the deck is empty then usedMonsters is assigned to the monsters'
+     * deck and passes to be empty. The monsters' deck is shuffled afterwards.
+     * @return The monster at the top of the deck.
+     */
+    public Monster nextMonster(){
+        if (unusedMonsters.isEmpty()){
+            unusedMonsters = usedMonsters;
+            usedMonsters = new ArrayList();
+            shuffleMonsters();
+        }
+        return unusedMonsters.remove(unusedMonsters.size() -1);
+    }
+
+    /**
+     * Get the following treasure in the treasures' deck.
+     * If the deck is empty then usedTreasures is assigned to the treasures'
+     * deck and passes to be empty. The treasures' deck is shuffled afterwards.
+     * @return The treasure at the top of the deck.
+     */
+    public Treasure nextTreasure(){
+        if (unusedTreasures.isEmpty()){
+            unusedTreasures = usedTreasures;
+            usedTreasures = new ArrayList();
+            shuffleTreasures();
+        }
+        return unusedTreasures.remove(unusedTreasures.size() -1);
     }
 }
