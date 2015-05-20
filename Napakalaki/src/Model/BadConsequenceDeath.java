@@ -6,6 +6,8 @@
 
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author andreshp
@@ -53,5 +55,15 @@ public class BadConsequenceDeath extends BadConsequence {
         return strSpaces + "Text = " + text 
                + "\n"+ strSpaces + "Levels = " + Integer.toString(levels)
                + "\n"+ strSpaces + "Death = " + Boolean.toString(death);
+    }
+
+    /**
+     * Create a new BadConsequence in order to get the player to be able to carry it out completely.
+     * @param visible Visible treasures of the player.
+     * @param hidden Hidden treasures of the player
+     * @return A new death bad consequence.
+     */
+    public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> visible, ArrayList<Treasure> hidden){
+        return new BadConsequenceDeath("Queda por cumplir:", true);
     }
 }
