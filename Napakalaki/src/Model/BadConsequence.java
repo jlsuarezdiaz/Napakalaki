@@ -7,7 +7,6 @@
 package Model;
 
 import java.util.ArrayList; // ArrayList included
-import java.util.Collections;
 
 /**
  * Bad Consequence Class.
@@ -44,7 +43,13 @@ public abstract class BadConsequence {
      * @return levels lost
      */
     abstract public int getLevels();
-
+    
+    /**
+     * Check if the bad consequence kills the player.
+     * @return Boolean which depends on the bad consequence child.
+     */
+    abstract public boolean kills();
+    
     //--------------- OTHER PUBLIC METHODS ---------------//
 
     /**
