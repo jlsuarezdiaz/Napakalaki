@@ -117,8 +117,6 @@ public class CultistPlayer extends Player {
      */
     @Override
     public String toStringXL(){
-        return super.toStringXL()
-                + "\nCarta de sectario:"
-                + "\n    " + myCultistCard.toString();
+        return super.toStringXL();
     }
 }
