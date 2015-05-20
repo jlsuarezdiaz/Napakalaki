@@ -61,19 +61,9 @@ public class BadConsequenceDeath extends BadConsequence {
      * @param hidden Hidden treasures of the player
      * @return A new death bad consequence.
      */
+    @Override
     public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> visible, ArrayList<Treasure> hidden){
         return new BadConsequenceDeath("Queda por cumplir:", true);
-    }
-
-    /**
-     * Subtracts the visible treasure given from the bad consequence.
-     * 
-     * The method does nothing since it is a death bad consequence.
-     * 
-     * @param t Treasure to subtract.
-     */
-    @Override
-    public void subtractVisibleTreasure(Treasure t){
     }
 
     /**
@@ -86,6 +76,17 @@ public class BadConsequenceDeath extends BadConsequence {
     @Override
     public boolean isEmpty(){
         return ! this.death;
+    }
+
+    /**
+     * Subtracts the visible treasure given from the bad consequence.
+     * 
+     * The method does nothing since it is a death bad consequence.
+     * 
+     * @param t Treasure to subtract.
+     */
+    @Override
+    public void subtractVisibleTreasure(Treasure t){
     }
 
     /**
