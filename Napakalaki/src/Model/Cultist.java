@@ -8,20 +8,20 @@ package Model;
 
 /**
  * Cultist card for napakalaki game.
- * @author andreshp
+ * @author andreshp, jlsuarez
  */
-public class Cultist implements Card{
-    
+public class Cultist implements Card {
+
     /**
      * Cultist's name.
      */
     private String name;
-    
+
     /**
      * Levels added to the cultist player.
      */
     private int gainedLevels;
-    
+
     /**
      * Constructor for the cultist class.
      * Initializes name and gainedLevels.
@@ -35,25 +35,29 @@ public class Cultist implements Card{
 
     //--------------- CARD INTERFACE METHODS ---------------//
 
-    @Override
     /**
      * Override getBasicValue form Card.
      * @return The basic gainedLevels of the cultist card.
      */
+    @Override
     public int getBasicValue() {
         return gainedLevels;
     }
 
-    @Override
     /**
      * Override getSpecialValue form Card.
      * @return The gainedLevels of the cultist card taking into account the
-     * cultist player number.
+     * cultist players number.
      */
+    @Override
     public int getSpecialValue() {
-        return getBasicValue()*CultistPlayer.getTotalCultistPlayers();
+        return getBasicValue() * CultistPlayer.getTotalCultistPlayers();
     }
-    
+
+    /**
+     * To String method for a cultist card.
+     * @return String with the name and gained levels.
+     */
     public String toString(){
         return "Nombre: " + name
                 + ", Gained Levels: " + Integer.toString(gainedLevels);
