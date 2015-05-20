@@ -45,7 +45,7 @@ public class CultistPlayer extends Player {
     /**
      * Constructor for a cultist player.
      * @param p Player that is converted to cultist.
-     * @param c Cultist card asigned to the player.
+     * @param c Cultist card assigned to the player.
      */
     public CultistPlayer(Player p, Cultist c) {
         super(p);
@@ -96,5 +96,16 @@ public class CultistPlayer extends Player {
      */
     public boolean shouldConvert(){
         return false;
+    }
+    
+    @Override
+    /**
+     * Overrides Player's toString method.
+     * @return String with the player info.
+     */
+    public String toString(){
+        return super.toString()
+                + "\nCarta de sectario:"
+                + "\n    " + myCultistCard.toString();
     }
 }
