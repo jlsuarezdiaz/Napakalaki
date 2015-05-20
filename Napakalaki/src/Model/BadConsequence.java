@@ -188,7 +188,7 @@ public abstract class BadConsequence {
     
     /**
      * Create a new BadConsequence in order to get the player to be able to carry it out completely.
-     * @param visible Visible trasures of the player.
+     * @param visible Visible treasures of the player.
      * @param hidden Hidden treasures of the player
      * @return A new bad consequence reduced according to visible and hidden player treasures.
      */
