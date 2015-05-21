@@ -8,7 +8,6 @@ package Model;
 
 import java.util.ArrayList; // ArrayList included
 import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * Class for the PDOO practice exam.
@@ -80,7 +79,12 @@ public class Examen {
         pAux = new Player("Jugador Sectario 2");
         CultistPlayer psec2 = new CultistPlayer(pAux, cult2);
 
-        //---------------------- OPERATIONS ---------------------//
+        //--------------------- CARD DEALER ----------------------//
+
+        CardDealer dealer = CardDealer.getInstance();
+        dealer.initCards();
+        
+        //--------------------- OPERATIONS -----------------------//
 
         // Players are printed
         System.out.println("Antes de añadir tesoros:\n");
