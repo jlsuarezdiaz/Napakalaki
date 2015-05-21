@@ -61,7 +61,7 @@ public class NapakalakiView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * 
+     * Shows the frame to the user.
      */
     public void showView() {
         this.setVisible(true);
