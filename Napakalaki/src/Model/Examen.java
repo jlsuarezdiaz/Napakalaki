@@ -126,7 +126,7 @@ public class Examen {
         System.out.println("mc3: " + Integer.toString(psec1.getOpponentLevel(mc3)));
 
         // Do an adjustToFit and set it as pending bad consequence
-        BadConsequence newBadCons = badConsST.adjustToFitTreasureLists(p1.getVisibleTreasures(), p2.getHiddenTreasures());
+        BadConsequence newBadCons = badConsST.adjustToFitTreasureLists(p1.getVisibleTreasures(), p1.getHiddenTreasures());
         p1.setPendingBadConsequence(newBadCons);
         System.out.println("\nTras asignar un bad consequence pendiente:");
         System.out.println(p1.toStringXL() + "\n");  
