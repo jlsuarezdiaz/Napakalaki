@@ -112,7 +112,15 @@ public class Monster implements Card {
     public Prize getPrize(){
         return this.prize;
     }
-
+    
+    /**
+     * Get the level change against cultist player.
+     * @return levelChangeAgainstCultistPlayer
+     */
+    public int getCultistLevelChange(){
+        return this.levelsChangeAgainstCultistPlayer;
+    }
+    
     //--------------- TOSTRING METHOD ---------------//
 
     /**

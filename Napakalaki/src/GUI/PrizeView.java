@@ -12,8 +12,10 @@ import Model.Prize;
  * @author Juan Luis
  */
 public class PrizeView extends javax.swing.JPanel {
-
-    Prize prizeModel;
+    /**
+     * Prize whose view is going to be built
+     */
+    private Prize prizeModel;
     
     /**
      * Creates new form PrizeView

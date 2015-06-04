@@ -5,12 +5,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package GUI;
 
+import Model.Monster;
+
 /**
  *
  * @author Juan Luis
  */
 public class MonsterView extends javax.swing.JPanel {
-
+    
+    /**
+     * BadConsequence whose view is going to be built
+     */
+    private Monster monsterModel;
+    
     /**
      * Creates new form MonsterView
      */
@@ -27,19 +34,96 @@ public class MonsterView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        nameLab = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        levelLab = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        levelChangeCultistLab = new javax.swing.JLabel();
+        prizeView = new GUI.PrizeView();
+        badConsequenceView = new GUI.BadConsequenceView();
+
+        jLabel1.setText("MONSTRUO: ");
+
+        nameLab.setText("Monster");
+
+        jLabel2.setText("Nivel: ");
+
+        levelLab.setText("0");
+
+        jLabel3.setText("Cambio de nivel contra sectarios:");
+
+        levelChangeCultistLab.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(levelLab)
+                            .addComponent(nameLab)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(levelChangeCultistLab))
+                    .addComponent(badConsequenceView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(prizeView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(nameLab))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(levelLab))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(levelChangeCultistLab))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(prizeView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(badConsequenceView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private GUI.BadConsequenceView badConsequenceView;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel levelChangeCultistLab;
+    private javax.swing.JLabel levelLab;
+    private javax.swing.JLabel nameLab;
+    private GUI.PrizeView prizeView;
     // End of variables declaration//GEN-END:variables
+
+    public void setMonster(Monster m){
+        monsterModel = m;
+        this.nameLab.setText(monsterModel.getName());
+        this.levelLab.setText(Integer.toString(monsterModel.getCombatLevel()));
+        this.levelChangeCultistLab.setText(Integer.toString(monsterModel.getCultistLevelChange()));
+        this.badConsequenceView.setBadConsequence(monsterModel.getBadConsequence());
+        this.prizeView.setPrize(monsterModel.getPrize());
+        repaint();
+    }
+    
+ /*   public void showView(){
+        this.setVisible(true);
+    }*/
 }

@@ -6,6 +6,7 @@
 
 package Model;
 
+import GUI.MonsterView;
 import GUI.NapakalakiView;
 import GUI.PlayerNamesCapture;
 import java.util.ArrayList;
@@ -19,11 +20,21 @@ public class Main {
 
         napakalakiView.setNapakalaki(napakalakiModel);
 
+        /*////////////////////////PRUEBA
+        CardDealer.getInstance().initCards();
+        Monster m = CardDealer.getInstance().nextMonster();
+        MonsterView mv = new MonsterView();
+        mv.setMonster(m);
+        mv.showView();
+        //////////////////////////////*/
+        
+        
         // Read the names
         ArrayList<String> names = new ArrayList();
         PlayerNamesCapture namesCapture = new PlayerNamesCapture(napakalakiView, true);
         names = namesCapture.getNames();
         napakalakiModel.initGame(names);
+       
         
         napakalakiView.showView(); 
     }
