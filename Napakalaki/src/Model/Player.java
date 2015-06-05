@@ -203,6 +203,14 @@ public class Player {
     }
 
     /**
+     * Gets the level of the player.
+     * @return Player's level.
+     */
+    public int getLevel(){
+        return level;
+    }
+
+    /**
      * Get player's name.
      * @return player's name.
      */
