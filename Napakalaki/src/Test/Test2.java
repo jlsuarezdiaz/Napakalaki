@@ -47,6 +47,7 @@ public class Test2 {
             cards.giveMonsterBack(monster);
         }
         
+        /*
         // Print monsters with just losing levels as Bad Consequence
         System.out.println("Monsters with just losing levels as Bad Consequence:\n");
         for (int i = 0; i < 19; i++){
@@ -85,7 +86,7 @@ public class Test2 {
             }
             cards.giveMonsterBack(monster);
         }
-        
+        */
         // Print treasures whose bonus does not improve while wearing the necklace
         System.out.println("Treasures whose bonus does not improve while wearing the necklace:\n");
         for(int i = 0; i < 32; i++){
