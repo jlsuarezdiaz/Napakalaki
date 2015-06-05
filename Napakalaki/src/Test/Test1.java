@@ -31,7 +31,7 @@ public class Test1 {
         ArrayList<Monster> monsters = new ArrayList<>();
         BadConsequence badConsequence;
         Prize prize;
-        
+/*        
         //----------------- Add Monsters -----------------//
 
         // Monster: 3 Byakhees de bonanza
@@ -252,5 +252,6 @@ public class Test1 {
                 System.out.println(monster.toString() + "\n");    
             }
         }
+       */
     }
 }
