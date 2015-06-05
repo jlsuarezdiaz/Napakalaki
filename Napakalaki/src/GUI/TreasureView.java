@@ -3,20 +3,56 @@
 // Universidad de Granada, March, 2015
 // Programación Orientada a Objetos - Napakalaki
 ////////////////////////////////////////////////////////////////////////////////
+
 package GUI;
 
+import Model.Treasure;
+
 /**
- *
- * @author andreshp
+ * View for the treasures in Napakalaki game.
+ * @author andreshp, jlsuarez
  */
 public class TreasureView extends javax.swing.JPanel {
 
+    //------------------- VARIABLES -------------------//
+    
     /**
-     * Creates new form TreasureView
+     * Treasure that the view represents.
+     */
+    Treasure treasureModel;
+    
+    //------------------- CONSTRUCTOR -------------------//
+
+    /**
+     * Creates new form TreasureView.
      */
     public TreasureView() {
         initComponents();
     }
+
+    //------------------- PUBLIC METHODS -------------------//
+
+    /**
+     * Set the treasure which the view represents.
+     * Reinitializes the view with the new treasure info.
+     * @param t Treasure to represent.
+     */
+    public void setTreasure (Treasure t) {
+        // Set the new model
+        treasureModel = t;
+
+        // Change the view attributes according to the new treasure. 
+        nameLabel.setText(treasureModel.getName());
+        typeLabel.setText(treasureModel.getType().name());
+        goldCoinsLabel.setText("Gold Coins" + Integer.toString(treasureModel.getGoldCoins()));
+        bonusLabel.setText(Integer.toString(treasureModel.getBasicValue()) +
+                "/" + Integer.toString(treasureModel.getSpecialValue()));
+        
+        // Repaint the view
+        repaint();
+    }
+
+    //----------------------- NOT ADAPTABLE CODE -----------------------//
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,19 +63,73 @@ public class TreasureView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        nameLabel = new javax.swing.JLabel();
+        goldCoinsLabel = new javax.swing.JLabel();
+        bonusLabel = new javax.swing.JLabel();
+        typeLabel = new javax.swing.JLabel();
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setPreferredSize(new java.awt.Dimension(150, 100));
+
+        nameLabel.setText("Treasure Name");
+
+        goldCoinsLabel.setText("Gold Coins: ");
+
+        bonusLabel.setText("0 / 0");
+
+        typeLabel.setText("Treasure Kind");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(goldCoinsLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                        .addComponent(bonusLabel)
+                        .addGap(27, 27, 27))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(typeLabel)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(typeLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bonusLabel)
+                    .addComponent(goldCoinsLabel))
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bonusLabel;
+    private javax.swing.JLabel goldCoinsLabel;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel typeLabel;
     // End of variables declaration//GEN-END:variables
 }
