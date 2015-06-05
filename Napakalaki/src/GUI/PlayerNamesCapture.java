@@ -158,7 +158,7 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
         names.add(name1.getText());
         names.add(name2.getText());
         names.add(name3.getText());
-        this.dispose();
+        this.dispose(); // Return the control to the user
     }//GEN-LAST:event_playActionPerformed
 
     private void name1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name1ActionPerformed
