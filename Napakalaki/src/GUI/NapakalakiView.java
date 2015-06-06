@@ -6,13 +6,12 @@
 
 package GUI;
 
-import Model.CardDealer;
 import Model.CombatResult;
 import Model.Napakalaki;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Class which represents the view of the Napakalaki game.
  * @author andreshp, jlsuarez
  */
 public class NapakalakiView extends javax.swing.JFrame {
@@ -22,6 +21,7 @@ public class NapakalakiView extends javax.swing.JFrame {
     Napakalaki napakalakiModel;
     
     //----------------- PRIVATE METHODS ----------------//
+
     /**
      * Method that disables every buttons and other attributes of the view.
      */
@@ -31,7 +31,12 @@ public class NapakalakiView extends javax.swing.JFrame {
         this.combatButton.setEnabled(false);
         this.playerView.enableButtons(false);
     }
-    
+
+    /**
+     * Prepares the view for the next turn.
+     * The player and the monster are updated.
+     * Just the player is visible. Just the begin combat buttom is enabled.
+     */
     private void prepareNextTurnView(){
         playerView.setPlayer(napakalakiModel.getCurrentPlayer());
         monsterView.setMonster(napakalakiModel.getCurrentMonster());
@@ -41,6 +46,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         combatButton.setEnabled(false);
         beginCombatButton.setEnabled(true);
     }
+
     //----------------- CONSTRUCTOR -----------------//
 
     /**
@@ -58,8 +64,14 @@ public class NapakalakiView extends javax.swing.JFrame {
         playerView.setNapakalaki(n);
     }
     
-    //----------------- OHTER METHODS -----------------//
-
+    /**
+     * Shows the frame to the user.
+     */
+    public void showView() {
+        this.setVisible(true);
+        this.prepareNextTurnView();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -160,6 +172,7 @@ public class NapakalakiView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     //----------------- EVENTS -----------------------//
+
     /**
      * Perform the action of meeting a monster.
      * @param evt  Action Performed event.
@@ -197,9 +210,7 @@ public class NapakalakiView extends javax.swing.JFrame {
                 break;
             case LOSEANDCONVERT:
                 this.combatResultLabel.setText("\n\n Has perdido el combate y te has convertido en sectario");
-                break;
-                
-            
+                break;        
         }
         
         //Update player
@@ -213,25 +224,17 @@ public class NapakalakiView extends javax.swing.JFrame {
     }//GEN-LAST:event_combatButtonActionPerformed
 
     /**
-     * Perform the action of going into next turn
+     * Performs the action of going into next turn.
      * @param evt 
      */
     private void nextTurnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextTurnButtonActionPerformed
-        if(!napakalakiModel.nextTurn())
+        if(!napakalakiModel.nextTurn()){
             JOptionPane.showMessageDialog(null, "No cumples las condiciones para pasar de turno.\n" +
                     "O bien tienes más de 4 tesoros ocultos,\no bien te queda mal rollo por cumplir. ",
-                    "Cannot advance to next turn",JOptionPane.ERROR_MESSAGE);
-        
-        prepareNextTurnView();
+                    "Cannot advance to next turn",JOptionPane.ERROR_MESSAGE);           
+        }
+        else prepareNextTurnView();
     }//GEN-LAST:event_nextTurnButtonActionPerformed
-
-    /**
-     * Shows the frame to the user.
-     */
-    public void showView() {
-        this.setVisible(true);
-        this.prepareNextTurnView();
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton beginCombatButton;
