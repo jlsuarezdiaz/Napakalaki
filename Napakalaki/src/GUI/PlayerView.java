@@ -148,13 +148,15 @@ public class PlayerView extends javax.swing.JPanel {
         nameLabel = new javax.swing.JLabel();
         levelLabel = new javax.swing.JLabel();
         combatLevelLabel = new javax.swing.JLabel();
-        hiddenTreasuresPanel = new javax.swing.JPanel();
-        visibleTreasuresPanel = new javax.swing.JPanel();
         buyLevelsButton = new javax.swing.JButton();
         makeVisibleButton = new javax.swing.JButton();
         discardTreasuresButton = new javax.swing.JButton();
         visibleTreasuresLabel = new javax.swing.JLabel();
         hiddenTreasuresLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        visibleTreasuresPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        hiddenTreasuresPanel = new javax.swing.JPanel();
 
         setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
         setPreferredSize(new java.awt.Dimension(480, 400));
@@ -168,11 +170,6 @@ public class PlayerView extends javax.swing.JPanel {
 
         combatLevelLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         combatLevelLabel.setText("Combat Level");
-
-        hiddenTreasuresPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(10, 5, 50)));
-
-        visibleTreasuresPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(10, 5, 50)));
-        visibleTreasuresPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         buyLevelsButton.setBackground(java.awt.Color.darkGray);
         buyLevelsButton.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
@@ -210,6 +207,15 @@ public class PlayerView extends javax.swing.JPanel {
         hiddenTreasuresLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         hiddenTreasuresLabel.setText("Hidden Treasures");
 
+        visibleTreasuresPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(10, 5, 50)));
+        visibleTreasuresPanel.setAutoscrolls(true);
+        visibleTreasuresPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setViewportView(visibleTreasuresPanel);
+
+        hiddenTreasuresPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(10, 5, 50)));
+        hiddenTreasuresPanel.setAutoscrolls(true);
+        jScrollPane2.setViewportView(hiddenTreasuresPanel);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -218,8 +224,6 @@ public class PlayerView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(visibleTreasuresLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(visibleTreasuresPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(hiddenTreasuresPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(hiddenTreasuresLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -232,7 +236,9 @@ public class PlayerView extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(levelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(combatLevelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(combatLevelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -249,14 +255,14 @@ public class PlayerView extends javax.swing.JPanel {
                     .addComponent(buyLevelsButton)
                     .addComponent(makeVisibleButton)
                     .addComponent(discardTreasuresButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(visibleTreasuresLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(visibleTreasuresPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(4, 4, 4)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(hiddenTreasuresLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hiddenTreasuresPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -319,6 +325,8 @@ public class PlayerView extends javax.swing.JPanel {
     private javax.swing.JButton discardTreasuresButton;
     private javax.swing.JLabel hiddenTreasuresLabel;
     private javax.swing.JPanel hiddenTreasuresPanel;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel levelLabel;
     private javax.swing.JButton makeVisibleButton;
     private javax.swing.JLabel nameLabel;

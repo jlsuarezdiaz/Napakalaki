@@ -19,6 +19,52 @@ public class BadConsequenceView extends javax.swing.JPanel {
     private BadConsequence badConsequenceModel;
     
     /**
+     * Private method to customize letters remarking
+     */
+    private void remark(boolean levels, boolean death, boolean number, boolean specific){
+        if(levels){
+            this.levelsLab.setFont(levelsLab.getFont().deriveFont(levelsLab.getFont().getStyle() | Font.BOLD));
+            this.lTxtLevels.setFont(lTxtLevels.getFont().deriveFont(lTxtLevels.getFont().getStyle() | Font.BOLD));
+        }
+        else{
+            this.levelsLab.setFont(levelsLab.getFont().deriveFont(levelsLab.getFont().getStyle() & ~Font.BOLD));
+            this.lTxtLevels.setFont(lTxtLevels.getFont().deriveFont(lTxtLevels.getFont().getStyle() & ~Font.BOLD));  
+        }
+        if(death){
+           this.deathLab.setVisible(true);
+        }
+        else{
+            this.deathLab.setVisible(false);
+        }
+        if(number){
+            this.lTxtnVisible.setFont(lTxtnVisible.getFont().deriveFont(lTxtnVisible.getFont().getStyle() | Font.BOLD));
+            this.lTxtnHidden.setFont(lTxtnHidden.getFont().deriveFont(lTxtnHidden.getFont().getStyle() | Font.BOLD));
+            this.nVisibleLab.setFont(nVisibleLab.getFont().deriveFont(nVisibleLab.getFont().getStyle() | Font.BOLD));
+            this.nHiddenLab.setFont(nHiddenLab.getFont().deriveFont(nHiddenLab.getFont().getStyle() | Font.BOLD));
+        }
+        else{
+            this.lTxtnVisible.setFont(lTxtnVisible.getFont().deriveFont(lTxtnVisible.getFont().getStyle() & ~Font.BOLD));
+            this.lTxtnHidden.setFont(lTxtnHidden.getFont().deriveFont(lTxtnHidden.getFont().getStyle() & ~Font.BOLD));
+            this.nVisibleLab.setFont(nVisibleLab.getFont().deriveFont(nVisibleLab.getFont().getStyle() & ~Font.BOLD));
+            this.nHiddenLab.setFont(nHiddenLab.getFont().deriveFont(nHiddenLab.getFont().getStyle() & ~Font.BOLD));
+        }
+        if(specific){
+            this.lTxtSpVisible.setFont(lTxtSpVisible.getFont().deriveFont(lTxtSpVisible.getFont().getStyle() | Font.BOLD));
+            this.lTxtSpHidden.setFont(lTxtSpHidden.getFont().deriveFont(lTxtSpHidden.getFont().getStyle() | Font.BOLD));
+            this.spVisibleLab.setFont(spVisibleLab.getFont().deriveFont(spVisibleLab.getFont().getStyle() | Font.BOLD));
+            this.spHiddenLab.setFont(spVisibleLab.getFont().deriveFont(spHiddenLab.getFont().getStyle() | Font.BOLD));
+        }
+        else{
+            this.lTxtSpVisible.setFont(lTxtSpVisible.getFont().deriveFont(lTxtSpVisible.getFont().getStyle() & ~Font.BOLD));
+            this.lTxtSpHidden.setFont(lTxtSpHidden.getFont().deriveFont(lTxtSpHidden.getFont().getStyle() & ~Font.BOLD));
+            this.spVisibleLab.setFont(spVisibleLab.getFont().deriveFont(spVisibleLab.getFont().getStyle() & ~Font.BOLD));
+            this.spHiddenLab.setFont(spVisibleLab.getFont().deriveFont(spHiddenLab.getFont().getStyle() & ~Font.BOLD));
+        }
+        
+
+
+    }
+    /**
      * Creates new form BadConsequenceView
      */
     public BadConsequenceView() {
@@ -56,6 +102,7 @@ public class BadConsequenceView extends javax.swing.JPanel {
 
         nHiddenLab.setText("0");
 
+        textLab.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         textLab.setText("MAL ROLLO:");
 
         lTxtLevels.setText("Niveles:");
@@ -172,28 +219,28 @@ public class BadConsequenceView extends javax.swing.JPanel {
         this.textLab.setText("MAL ROLLO: " + badConsequenceModel.getText());
         this.levelsLab.setText(Integer.toString(badConsequenceModel.getLevels()));
         
+        boolean levels = badConsequenceModel.getLevels() != 0, death = false, number = false, specific = false;
+        
         if(badConsequenceModel instanceof Model.BadConsequenceDeath){
-            deathLab.setVisible(true);
+            death = true;
         }
+        
         else if(badConsequenceModel instanceof Model.BadConsequenceNumberTreasures){
             this.nVisibleLab.setText(Integer.toString(((Model.BadConsequenceNumberTreasures)badConsequenceModel).getNVisibleTreasures()));
             this.nHiddenLab.setText(Integer.toString(((Model.BadConsequenceNumberTreasures)badConsequenceModel).getNHiddenTreasures()));
             
-            if(!badConsequenceModel.isEmpty()){
-                this.lTxtnVisible.setFont(lTxtnVisible.getFont().deriveFont(lTxtnVisible.getFont().getStyle() | Font.BOLD));
-                this.lTxtnHidden.setFont(lTxtnHidden.getFont().deriveFont(lTxtnHidden.getFont().getStyle() | Font.BOLD));
-            }
+            if(!badConsequenceModel.isEmpty()) number = true;
         }
         
         else if(badConsequenceModel instanceof Model.BadConsequenceSpecificTreasures){
             this.spVisibleLab.setText(((Model.BadConsequenceSpecificTreasures)badConsequenceModel).getSpecificVisibleTreasures().toString());
             this.spHiddenLab.setText(((Model.BadConsequenceSpecificTreasures)badConsequenceModel).getSpecificHiddenTreasures().toString());
             
-            if(!badConsequenceModel.isEmpty()){
-                this.lTxtSpVisible.setFont(lTxtSpVisible.getFont().deriveFont(lTxtSpVisible.getFont().getStyle() | Font.BOLD));
-                this.lTxtSpHidden.setFont(lTxtSpHidden.getFont().deriveFont(lTxtSpHidden.getFont().getStyle() | Font.BOLD));
-            }
+            if(!badConsequenceModel.isEmpty()) specific = true;
+            
         }
+        
+        remark(levels,death,number,specific);
         repaint();
     }
 }
