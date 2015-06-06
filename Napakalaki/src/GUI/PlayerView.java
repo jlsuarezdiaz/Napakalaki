@@ -123,7 +123,7 @@ public class PlayerView extends javax.swing.JPanel {
     public void enableButtons(boolean btBuyLevels, boolean btDiscard, boolean btMkVisible){
         this.buyLevelsButton.setEnabled(btBuyLevels);
         this.discardTreasuresButton.setEnabled(btDiscard);
-        this.makeVisibleButton.setVisible(btMkVisible);
+        this.makeVisibleButton.setEnabled(btMkVisible);
     }
     
     /**
