@@ -96,54 +96,55 @@ public class TreasureView extends javax.swing.JPanel {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
-        setBackground(new java.awt.Color(51, 51, 51));
-        setPreferredSize(new java.awt.Dimension(150, 100));
+        setBackground(java.awt.Color.lightGray);
+        setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, null));
+        setForeground(new java.awt.Color(20, 20, 20));
+        setPreferredSize(new java.awt.Dimension(130, 80));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
             }
         });
 
+        nameLabel.setFont(new java.awt.Font("Ubuntu", 3, 12)); // NOI18N
+        nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nameLabel.setText("Treasure Name");
 
+        goldCoinsLabel.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+        goldCoinsLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         goldCoinsLabel.setText("Gold Coins: ");
 
+        bonusLabel.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+        bonusLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         bonusLabel.setText("0 / 0");
 
+        typeLabel.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+        typeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typeLabel.setText("Treasure Kind");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(goldCoinsLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                        .addComponent(bonusLabel)
-                        .addGap(27, 27, 27))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(typeLabel)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(goldCoinsLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(bonusLabel)
+                .addContainerGap())
+            .addComponent(typeLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(typeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(typeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bonusLabel)
-                    .addComponent(goldCoinsLabel))
-                .addGap(20, 20, 20))
+                    .addComponent(goldCoinsLabel)
+                    .addComponent(bonusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
