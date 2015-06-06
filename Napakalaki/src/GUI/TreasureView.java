@@ -7,6 +7,7 @@
 package GUI;
 
 import Model.Treasure;
+import java.awt.Color;
 
 /**
  * View for the treasures in Napakalaki game.
@@ -20,6 +21,7 @@ public class TreasureView extends javax.swing.JPanel {
      * Treasure that the view represents.
      */
     Treasure treasureModel;
+    boolean selected;
     
     //------------------- CONSTRUCTOR -------------------//
 
@@ -28,9 +30,26 @@ public class TreasureView extends javax.swing.JPanel {
      */
     public TreasureView() {
         initComponents();
+        selected = false;
     }
 
     //------------------- PUBLIC METHODS -------------------//
+
+    /**
+     * Get the treasure that the view represents.
+     * @return treasureModel
+     */
+    public Treasure getTreasure(){
+        return treasureModel;
+    }
+
+    /**
+     * Check if the treasure is selected.
+     * @return selected attribute.
+     */
+    public boolean isSelected(){
+        return selected;
+    }
 
     /**
      * Set the treasure which the view represents.
@@ -52,7 +71,7 @@ public class TreasureView extends javax.swing.JPanel {
         repaint();
     }
 
-    //----------------------- NOT ADAPTABLE CODE -----------------------//
+    //----------------------- DESIGN CODE -----------------------//
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,7 +96,13 @@ public class TreasureView extends javax.swing.JPanel {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setPreferredSize(new java.awt.Dimension(150, 100));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         nameLabel.setText("Treasure Name");
 
@@ -122,6 +147,20 @@ public class TreasureView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        boolean opaque= false;
+        if (selected == false){
+            selected = true;
+            opaque = true;
+            setBackground(Color.BLUE);
+        }
+        else{
+            setBackground(Color.GRAY);
+            selected = false;
+        }
+        setOpaque(opaque);
+        repaint();
+    }//GEN-LAST:event_formMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bonusLabel;
