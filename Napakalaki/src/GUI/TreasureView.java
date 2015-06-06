@@ -8,6 +8,7 @@ package GUI;
 
 import Model.Treasure;
 import java.awt.Color;
+import java.awt.Font;
 
 /**
  * View for the treasures in Napakalaki game.
@@ -60,10 +61,27 @@ public class TreasureView extends javax.swing.JPanel {
         // Set the new model
         treasureModel = t;
 
+        // Compute the font size needed for the treasure name.
+        String name = treasureModel.getName();
+        Font labelFont = nameLabel.getFont();
+        
+        int stringWidth = nameLabel.getFontMetrics(labelFont).stringWidth(name);
+        double componentWidth = 120;
+
+        // If the name is larger than the label width then the font size is reduced.
+        if (stringWidth > componentWidth){
+            // Find out how much the font can grow in width.
+            double widthRatio = componentWidth / (double) stringWidth;
+            int newFontSize = (int)(labelFont.getSize() * widthRatio);
+            // Set the label's font size to the newly determined size.
+            nameLabel.setFont(new Font(labelFont.getName(), Font.BOLD + Font.ITALIC, newFontSize));
+        }
+        
+       
         // Change the view attributes according to the new treasure. 
-        nameLabel.setText(treasureModel.getName());
+        nameLabel.setText(name);
         typeLabel.setText(treasureModel.getType().name());
-        goldCoinsLabel.setText("Gold Coins" + Integer.toString(treasureModel.getGoldCoins()));
+        goldCoinsLabel.setText("Gold Coins: " + Integer.toString(treasureModel.getGoldCoins()));
         bonusLabel.setText(Integer.toString(treasureModel.getBasicValue()) +
                 "/" + Integer.toString(treasureModel.getSpecialValue()));
         
@@ -99,6 +117,8 @@ public class TreasureView extends javax.swing.JPanel {
         setBackground(java.awt.Color.lightGray);
         setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, null));
         setForeground(new java.awt.Color(20, 20, 20));
+        setMinimumSize(new java.awt.Dimension(65, 40));
+        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(130, 80));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -109,6 +129,7 @@ public class TreasureView extends javax.swing.JPanel {
         nameLabel.setFont(new java.awt.Font("Ubuntu", 3, 12)); // NOI18N
         nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nameLabel.setText("Treasure Name");
+        nameLabel.setMaximumSize(new java.awt.Dimension(126, 24));
 
         goldCoinsLabel.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
         goldCoinsLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -126,11 +147,11 @@ public class TreasureView extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(goldCoinsLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bonusLabel)
                 .addContainerGap())
             .addComponent(typeLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -153,10 +174,10 @@ public class TreasureView extends javax.swing.JPanel {
         if (selected == false){
             selected = true;
             opaque = true;
-            setBackground(Color.BLUE);
+            setBackground(Color.LIGHT_GRAY);
         }
         else{
-            setBackground(Color.GRAY);
+            setBackground(Color.WHITE);
             selected = false;
         }
         setOpaque(opaque);
