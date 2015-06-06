@@ -109,16 +109,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Next Turn"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nextTurnButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="beginCombatButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Begin Combat Phase"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="beginCombatButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="combatButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Combat!"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="combatButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="combatResultLabel">
       <Properties>

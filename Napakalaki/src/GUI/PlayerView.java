@@ -6,9 +6,12 @@
 
 package GUI;
 
+import Model.Napakalaki;
 import Model.Player;
 import Model.Treasure;
+import java.awt.Component;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -23,6 +26,11 @@ public class PlayerView extends javax.swing.JPanel {
      * Player that the view represents.
      */
     Player playerModel;
+    
+    /**
+     * Instance of Napakalaki model.
+     */
+    Napakalaki napakalakiModel;
     
     //------------------- CONSTRUCTOR -------------------//
 
@@ -73,10 +81,25 @@ public class PlayerView extends javax.swing.JPanel {
         );
 
         buyLevelsButton.setText("Buy Levels");
+        buyLevelsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyLevelsButtonActionPerformed(evt);
+            }
+        });
 
         makeVisibleButton.setText("Make Visible");
+        makeVisibleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                makeVisibleButtonActionPerformed(evt);
+            }
+        });
 
         discardTreasuresButton.setText("Discard Treasures");
+        discardTreasuresButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                discardTreasuresButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -113,7 +136,7 @@ public class PlayerView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(levelLabel)
                     .addComponent(combatLevelLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
@@ -129,6 +152,59 @@ public class PlayerView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Performs the action of making treasures visible.
+     * @param evt Action Performed event.
+     */
+    private void makeVisibleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeVisibleButtonActionPerformed
+        //Get GUI info.
+        ArrayList<Treasure> selHidden = getSelectedTreasures(hiddenTreasuresPanel);
+        //Send message to Model
+        for(Treasure t: selHidden){
+            if(!napakalakiModel.makeTreasureVisible(t))
+                JOptionPane.showMessageDialog(null, "El tesoro " + t.getName() + ", de tipo " + t.getType().toString() + 
+                        ", no se puede hacer visible en este momento :S", "Cannot made visible", JOptionPane.WARNING_MESSAGE);
+        }
+        //Update view
+        setPlayer(napakalakiModel.getCurrentPlayer());
+    }//GEN-LAST:event_makeVisibleButtonActionPerformed
+
+    /**
+     * Performs the action of buying levels.
+     * @param evt Action Performed event.
+     */
+    private void buyLevelsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyLevelsButtonActionPerformed
+        //Get GUI  info.
+        ArrayList<Treasure> selVisible = getSelectedTreasures(visibleTreasuresPanel);
+        ArrayList<Treasure> selHidden = getSelectedTreasures(hiddenTreasuresPanel);
+        //Send message to Model
+        if(!napakalakiModel.buyLevels(selVisible, selHidden))
+            JOptionPane.showMessageDialog(null, "No se verifican las condiciones para comprar niveles. Compra cancelada.",
+                    "Cannot buy levels",JOptionPane.ERROR_MESSAGE);
+        //Update view
+        setPlayer(napakalakiModel.getCurrentPlayer());
+    }//GEN-LAST:event_buyLevelsButtonActionPerformed
+
+    /**
+     * Performs the action of discarding treasures.
+     * @param evt Action Performed event.
+     */
+    private void discardTreasuresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discardTreasuresButtonActionPerformed
+        //Get GUI info
+        ArrayList<Treasure> selVisible = getSelectedTreasures(visibleTreasuresPanel);
+        ArrayList<Treasure> selHidden = getSelectedTreasures(hiddenTreasuresPanel);
+        
+        //Send message to Model
+        for(Treasure t: selVisible)
+            napakalakiModel.discardVisibleTreasure(t);
+        for(Treasure t: selHidden)
+            napakalakiModel.discardHiddenTreasure(t);
+        
+        //Update view
+        setPlayer(napakalakiModel.getCurrentPlayer());
+    }//GEN-LAST:event_discardTreasuresButtonActionPerformed
+
+    
     //------------------- PUBLIC METHODS -------------------//
 
     /**
@@ -152,6 +228,14 @@ public class PlayerView extends javax.swing.JPanel {
         repaint();
         revalidate();
     }
+    
+    /**
+     * Update Napakalaki model to the view.
+     * @param n Napakalaki instance.
+     */
+    public void setNapakalaki(Napakalaki n){
+        napakalakiModel = n;
+    }
 
     public void fillTreasurePanel(JPanel aPanel, ArrayList<Treasure> aList) {
         // Deletes old information
@@ -169,6 +253,40 @@ public class PlayerView extends javax.swing.JPanel {
         aPanel.revalidate();
     }
 
+    public ArrayList<Treasure> getSelectedTreasures(JPanel aPanel) {
+        // Se recorren los tesoros que contiene el panel,
+        // almacenando en un vector aquellos que están seleccionados.
+        // Finalmente se devuelve dicho vector.
+        TreasureView tv;
+        ArrayList<Treasure> output = new ArrayList();
+        for (Component c : aPanel.getComponents()) {
+            tv = (TreasureView) c;
+            if ( tv.isSelected() )
+                output.add ( tv.getTreasure() );
+            }
+        return output;
+    }
+    
+    /**
+     * Set each button in playerView enabled or disabled.
+     * @param btBuyLevels state for buyLevelsButton
+     * @param btDiscard state for discardTreasuresButton
+     * @param btMkVisible state for makeVisibleButton
+     */
+    public void enableButtons(boolean btBuyLevels, boolean btDiscard, boolean btMkVisible){
+        this.buyLevelsButton.setEnabled(btBuyLevels);
+        this.discardTreasuresButton.setEnabled(btDiscard);
+        this.makeVisibleButton.setVisible(btMkVisible);
+    }
+    
+    /**
+     * Set all buttons in playerView enabled or disabled.
+     * @param enabled boolean indicating enabled state.
+     */
+    public void enableButtons(boolean enabled){
+        enableButtons(enabled,enabled,enabled);
+    }
+    
     //----------------------- NOT ADAPTABLE CODE -----------------------//
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

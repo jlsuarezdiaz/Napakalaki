@@ -20,15 +20,6 @@ public class Main {
 
         napakalakiView.setNapakalaki(napakalakiModel);
 
-        /*////////////////////////PRUEBA
-        CardDealer.getInstance().initCards();
-        Monster m = CardDealer.getInstance().nextMonster();
-        MonsterView mv = new MonsterView();
-        mv.setMonster(m);
-        mv.showView();
-        //////////////////////////////*/
-        
-        
         // Read the names
         ArrayList<String> names = new ArrayList();
         PlayerNamesCapture namesCapture = new PlayerNamesCapture(napakalakiView, true);
