@@ -38,6 +38,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         monsterView.setVisible(false);
         playerView.enableButtons(true);
         nextTurnButton.setEnabled(false);
+        combatButton.setEnabled(false);
     }
     //----------------- CONSTRUCTOR -----------------//
 
