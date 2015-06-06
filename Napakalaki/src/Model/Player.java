@@ -345,7 +345,7 @@ public class Player {
         }
         // If the player loses the fight
         else{
-            int escape = Dice.getInstance().nextNumber();
+            int escape = Dice.getInstance().nextNumber(name, "Lanza el dado para intentar escapar...");
             if(escape < 5){
                 BadConsequence bad = m.getBadConsequence();
                 boolean amIdead = bad.kills();
@@ -413,7 +413,7 @@ public class Player {
      */
     public void initTreasures(){
         this.bringToLife();
-        int number = Dice.getInstance().nextNumber();
+        int number = Dice.getInstance().nextNumber(name,"Lanza el dado para equiparte de tesoros.");
         int times = (number == 1)? 1 : (number == 6) ? 3 : 2;
         
         for(int i = 1; i <= times; i++)
@@ -458,7 +458,7 @@ public class Player {
      * @return True if the player should be converted. False otherwise.
      */
     protected boolean shouldConvert(){
-        return Dice.getInstance().nextNumber() == 6;
+        return Dice.getInstance().nextNumber(name,"Lanza el dado para conocer tu futuro.") == 6;
     }
 
     /**
