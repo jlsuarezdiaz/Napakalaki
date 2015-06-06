@@ -39,6 +39,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         playerView.enableButtons(true);
         nextTurnButton.setEnabled(false);
         combatButton.setEnabled(false);
+        beginCombatButton.setEnabled(true);
     }
     //----------------- CONSTRUCTOR -----------------//
 
@@ -229,6 +230,7 @@ public class NapakalakiView extends javax.swing.JFrame {
                     "O bien tienes más de 4 tesoros ocultos,\no bien te queda mal rollo por cumplir. ",
                     "Cannot advance to next turn",JOptionPane.ERROR_MESSAGE);
         
+        prepareNextTurnView();
     }//GEN-LAST:event_nextTurnButtonActionPerformed
 
     /**
