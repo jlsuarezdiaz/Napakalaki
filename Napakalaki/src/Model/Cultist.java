@@ -33,6 +33,14 @@ public class Cultist implements Card {
         this.gainedLevels = gainedLevels;
     }    
 
+    //--------------------- GETTERS ------------------------//
+    public int getBonus(){
+        return gainedLevels;
+    }
+    
+    public String getName(){
+        return name;
+    }
     //--------------- CARD INTERFACE METHODS ---------------//
 
     /**
