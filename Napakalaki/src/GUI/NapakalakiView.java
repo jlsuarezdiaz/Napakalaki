@@ -46,6 +46,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         combatButton.setEnabled(false);
         beginCombatButton.setEnabled(true);
         combatResultLabel.setVisible(false);
+        nextPlayerLabel.setVisible(false);
     }
     
     /**
@@ -56,6 +57,8 @@ public class NapakalakiView extends javax.swing.JFrame {
     private void prepareViewBeforeNextTurn(){
         playerView.enableButtons(false,true,true);
         nextTurnButton.setEnabled(true);
+        nextPlayerLabel.setVisible(true);
+        nextPlayerLabel.setText("Next Player: " + napakalakiModel.nextPlayerName());
         combatButton.setEnabled(false);
         beginCombatButton.setEnabled(false);
         playerView.enableMakeVisibleIfNotPending();
@@ -102,6 +105,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         beginCombatButton = new javax.swing.JButton();
         combatButton = new javax.swing.JButton();
         combatResultLabel = new javax.swing.JLabel();
+        nextPlayerLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,6 +117,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         jLabel1.setText("Napakalaki");
 
         nextTurnButton.setBackground(java.awt.Color.darkGray);
+        nextTurnButton.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         nextTurnButton.setForeground(java.awt.Color.white);
         nextTurnButton.setText("Next Turn");
         nextTurnButton.setFocusPainted(false);
@@ -126,7 +131,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         });
 
         beginCombatButton.setBackground(java.awt.Color.darkGray);
-        beginCombatButton.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        beginCombatButton.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         beginCombatButton.setForeground(java.awt.Color.white);
         beginCombatButton.setText("Begin Combat");
         beginCombatButton.setFocusPainted(false);
@@ -140,6 +145,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         });
 
         combatButton.setBackground(java.awt.Color.darkGray);
+        combatButton.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         combatButton.setForeground(java.awt.Color.white);
         combatButton.setText("Combat!");
         combatButton.setFocusPainted(false);
@@ -155,6 +161,9 @@ public class NapakalakiView extends javax.swing.JFrame {
         combatResultLabel.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         combatResultLabel.setText("Combat Result:");
 
+        nextPlayerLabel.setFont(new java.awt.Font("Ubuntu", 2, 14)); // NOI18N
+        nextPlayerLabel.setText("Next Player...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -166,7 +175,10 @@ public class NapakalakiView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nextTurnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(nextTurnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nextPlayerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(playerView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(53, 53, 53)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -188,7 +200,8 @@ public class NapakalakiView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nextTurnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(beginCombatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(combatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nextPlayerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -275,6 +288,7 @@ public class NapakalakiView extends javax.swing.JFrame {
     private javax.swing.JLabel combatResultLabel;
     private javax.swing.JLabel jLabel1;
     private GUI.MonsterView monsterView;
+    private javax.swing.JLabel nextPlayerLabel;
     private javax.swing.JButton nextTurnButton;
     private GUI.PlayerView playerView;
     // End of variables declaration//GEN-END:variables

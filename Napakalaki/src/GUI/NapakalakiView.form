@@ -30,7 +30,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="nextTurnButton" min="-2" pref="160" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="nextTurnButton" min="-2" pref="160" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="nextPlayerLabel" min="-2" pref="137" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="playerView" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
@@ -61,6 +65,7 @@
                   <Component id="nextTurnButton" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                   <Component id="beginCombatButton" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                   <Component id="combatButton" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="nextPlayerLabel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -104,6 +109,9 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="40" green="40" id="darkGray" palette="1" red="40" type="palette"/>
         </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Ubuntu" size="15" style="1"/>
+        </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
         </Property>
@@ -129,7 +137,7 @@
           <Color blue="40" green="40" id="darkGray" palette="1" red="40" type="palette"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Ubuntu" size="15" style="0"/>
+          <Font name="Ubuntu" size="15" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
@@ -154,6 +162,9 @@
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="40" green="40" id="darkGray" palette="1" red="40" type="palette"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Ubuntu" size="15" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
@@ -180,6 +191,14 @@
           <Font name="Dialog" size="11" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Combat Result:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="nextPlayerLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Ubuntu" size="14" style="2"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Next Player..."/>
       </Properties>
     </Component>
   </SubComponents>
