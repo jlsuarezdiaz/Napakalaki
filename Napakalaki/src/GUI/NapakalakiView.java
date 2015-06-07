@@ -108,6 +108,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         nextPlayerLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Napakalaki");
 
         playerView.setMinimumSize(new java.awt.Dimension(500, 400));
         playerView.setPreferredSize(new java.awt.Dimension(500, 400));

@@ -252,6 +252,7 @@ public class PlayerView extends javax.swing.JPanel {
 
         visibleTreasuresPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(10, 5, 50)));
         visibleTreasuresPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        visibleTreasuresPanel.setPreferredSize(new java.awt.Dimension(16, 98));
         visibleScrollPanel.setViewportView(visibleTreasuresPanel);
 
         hiddenTreasuresPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(10, 5, 50)));

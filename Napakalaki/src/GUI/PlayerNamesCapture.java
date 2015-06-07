@@ -115,6 +115,7 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Napakalaki");
 
         play.setBackground(java.awt.Color.blue);
         play.setForeground(java.awt.Color.white);
@@ -154,10 +155,6 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
                 nPlayersSpinnerKeyTyped(evt);
             }
         });
-
-        playersPanel.setBorder(null);
-
-        namesPanel.setBorder(null);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("(1 - 6)");
