@@ -35,7 +35,7 @@ public class NapakalakiView extends javax.swing.JFrame {
     /**
      * Prepares the view for the next turn.
      * The player and the monster are updated.
-     * Just the player is visible. Just the begin combat button is enabled.
+     * Just the player is visible. Just the begin combat buttom is enabled.
      */
     private void prepareNextTurnView(){
         playerView.setPlayer(napakalakiModel.getCurrentPlayer());
@@ -45,21 +45,9 @@ public class NapakalakiView extends javax.swing.JFrame {
         nextTurnButton.setEnabled(false);
         combatButton.setEnabled(false);
         beginCombatButton.setEnabled(true);
+        combatResultLabel.setVisible(false);
     }
-    
-    /**
-     * Prepares the view before next turn.
-     * Just next turn, discard button and (depending on pending bad consequence) make visible
-     * buttons are enabled.
-     */
-    private void prepareViewBeforeNextTurn(){
-        playerView.enableButtons(false,true,true);
-        nextTurnButton.setEnabled(true);
-        combatButton.setEnabled(false);
-        beginCombatButton.setEnabled(false);
-        playerView.enableMakeVisibleIfNotPending();
-    }
-    
+
     //----------------- CONSTRUCTOR -----------------//
 
     /**
@@ -94,15 +82,18 @@ public class NapakalakiView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        playerView = new GUI.PlayerView();
         jLabel1 = new javax.swing.JLabel();
         monsterView = new GUI.MonsterView();
         nextTurnButton = new javax.swing.JButton();
         beginCombatButton = new javax.swing.JButton();
         combatButton = new javax.swing.JButton();
         combatResultLabel = new javax.swing.JLabel();
-        playerView = new GUI.PlayerView();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        playerView.setMinimumSize(new java.awt.Dimension(500, 400));
+        playerView.setPreferredSize(new java.awt.Dimension(500, 400));
 
         jLabel1.setFont(new java.awt.Font("Purisa", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -151,9 +142,6 @@ public class NapakalakiView extends javax.swing.JFrame {
         combatResultLabel.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         combatResultLabel.setText("Combat Result:");
 
-        playerView.setMinimumSize(new java.awt.Dimension(500, 400));
-        playerView.setPreferredSize(new java.awt.Dimension(500, 400));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -176,7 +164,7 @@ public class NapakalakiView extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(monsterView, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(combatResultLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap(26, Short.MAX_VALUE))))
+                        .addContainerGap(50, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,21 +183,18 @@ public class NapakalakiView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(combatResultLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(playerView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nextTurnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextTurnButtonActionPerformed
-        if(!napakalakiModel.nextTurn()){
-            JOptionPane.showMessageDialog(null, "No cumples las condiciones para pasar de turno.\n" +
-                "O bien tienes más de 4 tesoros ocultos,\no bien te queda mal rollo por cumplir. ",
-                "Cannot advance to next turn",JOptionPane.ERROR_MESSAGE);
-        }
-        else prepareNextTurnView();
-    }//GEN-LAST:event_nextTurnButtonActionPerformed
+    //----------------- EVENTS -----------------------//
 
+    /**
+     * Perform the action of meeting a monster.
+     * @param evt  Action Performed event.
+     */
     private void beginCombatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginCombatButtonActionPerformed
         monsterView.setVisible(true);
         playerView.enableButtons(false);
@@ -217,42 +202,60 @@ public class NapakalakiView extends javax.swing.JFrame {
         this.beginCombatButton.setEnabled(false);
     }//GEN-LAST:event_beginCombatButtonActionPerformed
 
+    /**
+     * Perform the action of battling
+     * @param evt Action Performed event
+     */
     private void combatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combatButtonActionPerformed
         //Send message to Model
         CombatResult result = napakalakiModel.combat();
         switch (result) {
-            case WINANDWINGAME :
-            this.combatResultLabel.setText("¡¡¡ H A S   G A N A D O   L A   P A R T I D A !!!");
-            disableAfterEndOfGame();
-            break;
+            case WINANDWINGAME : 
+                this.combatResultLabel.setText("¡¡¡ H A S   G A N A D O   L A   P A R T I D A !!!");
+                disableAfterEndOfGame();
+                break;
             case WIN :
-            this.combatResultLabel.setText("\n\n Ganaste el combate");
-            break;
+                this.combatResultLabel.setText("\n\n Ganaste el combate");
+                break;
             case LOSE :
-            this.combatResultLabel.setText("\n\n Has perdido el combate, te toca cumplir el mal rollo");
-            break;
+                this.combatResultLabel.setText("\n\n Has perdido el combate, te toca cumplir el mal rollo");
+                break;
             case LOSEANDESCAPE :
-            this.combatResultLabel.setText("\n\n Perdiste el combate pero has logrado escapar");
-            break;
+                this.combatResultLabel.setText("\n\n Perdiste el combate pero has logrado escapar");
+                break;
             case LOSEANDDIE :
-            this.combatResultLabel.setText("\n\n Perdiste el combate y además estás muerto");
-            break;
+                this.combatResultLabel.setText("\n\n Perdiste el combate y además estás muerto");
+                break;
             case LOSEANDCONVERT:
-            this.combatResultLabel.setText("\n\n Has perdido el combate y te has convertido en sectario");
-            break;
+                this.combatResultLabel.setText("\n\n Has perdido el combate y te has convertido en sectario");
+                break;        
         }
-
+        
         //Update player
         playerView.setPlayer(napakalakiModel.getCurrentPlayer());
-
+        
         // Enable buttons
-        if(result != CombatResult.WINANDWINGAME){
-            prepareViewBeforeNextTurn();
-        }
-
+        playerView.enableButtons(false,true,true);
+        nextTurnButton.setEnabled(true);
+        combatButton.setEnabled(false);
+        beginCombatButton.setEnabled(false);
+        
         // Set Visible combatResultLabel
         this.combatResultLabel.setVisible(true);
     }//GEN-LAST:event_combatButtonActionPerformed
+
+    /**
+     * Performs the action of going into next turn.
+     * @param evt 
+     */
+    private void nextTurnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextTurnButtonActionPerformed
+        if(!napakalakiModel.nextTurn()){
+            JOptionPane.showMessageDialog(null, "No cumples las condiciones para pasar de turno.\n" +
+                    "O bien tienes más de 4 tesoros ocultos,\no bien te queda mal rollo por cumplir. ",
+                    "Cannot advance to next turn",JOptionPane.ERROR_MESSAGE);           
+        }
+        else prepareNextTurnView();
+    }//GEN-LAST:event_nextTurnButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton beginCombatButton;
