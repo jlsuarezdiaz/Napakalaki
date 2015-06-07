@@ -179,7 +179,7 @@ public class BadConsequenceSpecificTreasures extends BadConsequence {
      */
     @Override
     public void subtractHiddenTreasure(Treasure t){
-        specificVisibleTreasures.remove(t.getType());
+        specificHiddenTreasures.remove(t.getType());
     }
 
     /**
