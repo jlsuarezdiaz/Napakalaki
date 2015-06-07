@@ -6,13 +6,19 @@
 
 package GUI;
 
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
- *
+ * Class with a view to obtain players name at the 
+ * begining of Napakalaki game.
  * @author andreshp, jlsuarez
  */
 public class PlayerNamesCapture extends javax.swing.JDialog {
@@ -20,6 +26,51 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
     //------------------ ATTRIBUTES ------------------//
 
     ArrayList<String> names;
+
+    //-------------------- PRIVATE --------------------//
+
+    /**
+     * Fills the panels with new labels and text fields.
+     * There is one label and text field per player.
+     * @param numPlayers Number of players in the game.
+     */
+    public void fillPanels(int numPlayers) {
+        // Deletes old information
+        playersPanel.removeAll();
+        namesPanel.removeAll();
+        Dimension dim;
+
+
+        // Adds n players 
+        for (int i = 0; i < numPlayers; i++) {
+            dim = new Dimension(70,22);
+            JLabel player = new JLabel();
+            player.setText("Player " + Integer.toString(i+1) + ": ");
+            player.setSize(dim);
+            player.setMinimumSize(dim);
+            player.setMaximumSize(dim);
+            player.setPreferredSize(dim);
+            player.setVisible (true);
+            playersPanel.add(player);            
+            dim = new Dimension(100,22);
+            JTextField name = new JTextField();
+            name.setText("Name...");
+            name.setSize(dim);
+            name.setMinimumSize(dim);
+            name.setMaximumSize(dim);
+            name.setPreferredSize(dim);
+            name.setVisible(true);
+            namesPanel.add(name);
+        }
+
+        // Update the panels
+        playersPanel.repaint();
+        playersPanel.revalidate();
+        namesPanel.repaint();
+        namesPanel.revalidate();
+        this.repaint();
+        this.revalidate();
+    }
 
     //------------------ CONSTRUCTOR ------------------//
 
@@ -39,6 +90,7 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
     //----------------- GET & SET METHODS -----------------//
 
     public ArrayList<String> getNames() {
+        this.fillPanels((int) nPlayersSpinner.getValue());
         this.setVisible(true);
         return names;
     }
@@ -56,18 +108,18 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
 
         play = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
-        player1 = new javax.swing.JLabel();
-        player2 = new javax.swing.JLabel();
-        player3 = new javax.swing.JLabel();
-        name1 = new javax.swing.JTextField();
-        name2 = new javax.swing.JTextField();
-        name3 = new javax.swing.JTextField();
+        nPlayersLabel = new javax.swing.JLabel();
+        nPlayersSpinner = new javax.swing.JSpinner();
+        playersPanel = new javax.swing.JPanel();
+        namesPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        NPlayersSpinner = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        play.setBackground(java.awt.Color.blue);
+        play.setForeground(java.awt.Color.white);
         play.setText("Play");
+        play.setFocusPainted(false);
         play.setName("ButtonPlay"); // NOI18N
         play.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +127,8 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
             }
         });
 
+        cancel.setBackground(java.awt.Color.red);
+        cancel.setForeground(java.awt.Color.white);
         cancel.setText("Cancel");
         cancel.setName("ButtonCancel"); // NOI18N
         cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -83,32 +137,30 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
             }
         });
 
-        player1.setText("Player 1");
+        nPlayersLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nPlayersLabel.setText("Number of Players: ");
 
-        player2.setText("Player 2");
-
-        player3.setText("Player 3");
-
-        name1.setName("name1"); // NOI18N
-        name1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                name1ActionPerformed(evt);
-            }
-        });
-
-        name2.setName("name2"); // NOI18N
-
-        name3.setName("name3"); // NOI18N
-
-        jLabel1.setText("Number of Players: ");
-
-        NPlayersSpinner.setModel(new javax.swing.SpinnerNumberModel(3, 2, 5, 1));
-        NPlayersSpinner.setValue(3);
-        NPlayersSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+        nPlayersSpinner.setModel(new javax.swing.SpinnerNumberModel(2, 1, 6, 1));
+        nPlayersSpinner.setAlignmentX(1.0F);
+        nPlayersSpinner.setAlignmentY(1.0F);
+        nPlayersSpinner.setValue(3);
+        nPlayersSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                NPlayersSpinnerStateChanged(evt);
+                nPlayersSpinnerStateChanged(evt);
             }
         });
+        nPlayersSpinner.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nPlayersSpinnerKeyTyped(evt);
+            }
+        });
+
+        playersPanel.setBorder(null);
+
+        namesPanel.setBorder(null);
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("(1 - 6)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,64 +168,41 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(player3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(name3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(player2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(name2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(player1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(name1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(playersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(namesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nPlayersLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                    .addComponent(cancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(play, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(play, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(48, 48, 48))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(NPlayersSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(85, 85, 85))
+                        .addGap(12, 12, 12)
+                        .addComponent(nPlayersSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(player1)
-                    .addComponent(name1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(play))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(player2)
-                            .addComponent(name2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(cancel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(player3)
-                        .addComponent(name3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NPlayersSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(113, Short.MAX_VALUE))
+                        .addComponent(play)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cancel)
+                        .addGap(20, 20, 20)
+                        .addComponent(nPlayersLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(nPlayersSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 126, Short.MAX_VALUE))
+                    .addComponent(playersPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(namesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-
-        name1.getAccessibleContext().setAccessibleName("name1");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -183,30 +212,27 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void playActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playActionPerformed
-        names.add(name1.getText());
-        names.add(name2.getText());
-        names.add(name3.getText());
+        for (Component text : namesPanel.getComponents()){
+            names.add( ((JTextField)text).getText());
+        }
         this.dispose(); // Return the control to the user
     }//GEN-LAST:event_playActionPerformed
 
-    private void name1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_name1ActionPerformed
+    private void nPlayersSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_nPlayersSpinnerStateChanged
+        this.fillPanels((int) nPlayersSpinner.getValue());
+    }//GEN-LAST:event_nPlayersSpinnerStateChanged
 
-    private void NPlayersSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_NPlayersSpinnerStateChanged
-        
-    }//GEN-LAST:event_NPlayersSpinnerStateChanged
+    private void nPlayersSpinnerKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nPlayersSpinnerKeyTyped
+        this.fillPanels((int) nPlayersSpinner.getValue());
+    }//GEN-LAST:event_nPlayersSpinnerKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSpinner NPlayersSpinner;
     private javax.swing.JButton cancel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField name1;
-    private javax.swing.JTextField name2;
-    private javax.swing.JTextField name3;
+    private javax.swing.JLabel nPlayersLabel;
+    private javax.swing.JSpinner nPlayersSpinner;
+    private javax.swing.JPanel namesPanel;
     private javax.swing.JButton play;
-    private javax.swing.JLabel player1;
-    private javax.swing.JLabel player2;
-    private javax.swing.JLabel player3;
+    private javax.swing.JPanel playersPanel;
     // End of variables declaration//GEN-END:variables
 }
