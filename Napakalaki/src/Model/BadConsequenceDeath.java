@@ -67,7 +67,7 @@ public class BadConsequenceDeath extends BadConsequence {
      */
     @Override
     public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> visible, ArrayList<Treasure> hidden){
-        return new BadConsequenceDeath("Queda por cumplir:", true);
+        return new BadConsequenceDeath("", true);
     }
 
     /**

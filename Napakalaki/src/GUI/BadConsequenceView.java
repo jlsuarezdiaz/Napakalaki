@@ -69,7 +69,12 @@ public class BadConsequenceView extends javax.swing.JPanel {
         badConsequenceModel = bc;
 
         // Visualize general information
-        this.textLabel.setText("<html>" + badConsequenceModel.getText() + "<html>");
+        if(badConsequenceModel.getText() == "")
+            this.textLabel.setVisible(false);
+        else
+            this.textLabel.setText("<html>" + badConsequenceModel.getText() + "<html>");
+        
+        boolean areLevels = badConsequenceModel.getLevels() != 0;
         this.levelsLabel.setText("Levels Lost: " + 
                 Integer.toString(badConsequenceModel.getLevels()));
         
@@ -82,14 +87,15 @@ public class BadConsequenceView extends javax.swing.JPanel {
                     Integer.toString(((Model.BadConsequenceNumberTreasures)badConsequenceModel).getNVisibleTreasures()));
             this.nHiddenLab.setText("Hidden Treasures Number: " +
                     Integer.toString(((Model.BadConsequenceNumberTreasures)badConsequenceModel).getNHiddenTreasures()));
-            this.setComponentsVisibility(false, true, true, true, false, false, false, false);
+            this.setComponentsVisibility(false, areLevels, true, true, false, false, false, false);
         }        
         else if(badConsequenceModel instanceof Model.BadConsequenceSpecificTreasures){
             ArrayList<TreasureKind> vTreasures = ((Model.BadConsequenceSpecificTreasures)badConsequenceModel).getSpecificVisibleTreasures();
             ArrayList<TreasureKind> hTreasures = ((Model.BadConsequenceSpecificTreasures)badConsequenceModel).getSpecificHiddenTreasures();
+            boolean showvis = !vTreasures.isEmpty(), showhid = !hTreasures.isEmpty();
             this.spVisibleLab.setText(vTreasures.isEmpty()? "None" : vTreasures.toString());            
             this.spHiddenLab.setText(hTreasures.isEmpty()? "None" : hTreasures.toString());
-            this.setComponentsVisibility(false, true, false, false, true, true, true, true);
+            this.setComponentsVisibility(false, areLevels, false, false, showvis, showhid, showvis, showhid);
         }
         setPreferredSize(getPreferredSize());
         repaint();

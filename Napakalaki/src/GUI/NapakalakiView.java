@@ -47,6 +47,19 @@ public class NapakalakiView extends javax.swing.JFrame {
         beginCombatButton.setEnabled(true);
         combatResultLabel.setVisible(false);
     }
+    
+    /**
+     * Prepares the view before next turn.
+     * Just next turn, discard button and (depending on pending bad consequence) make visible
+     * buttons are enabled.
+     */
+    private void prepareViewBeforeNextTurn(){
+        playerView.enableButtons(false,true,true);
+        nextTurnButton.setEnabled(true);
+        combatButton.setEnabled(false);
+        beginCombatButton.setEnabled(false);
+        playerView.enableMakeVisibleIfNotPending();
+    }
 
     //----------------- CONSTRUCTOR -----------------//
 
@@ -181,9 +194,10 @@ public class NapakalakiView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(monsterView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(combatResultLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(playerView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addComponent(combatResultLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 144, Short.MAX_VALUE))
+                    .addComponent(playerView, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -235,10 +249,8 @@ public class NapakalakiView extends javax.swing.JFrame {
         playerView.setPlayer(napakalakiModel.getCurrentPlayer());
         
         // Enable buttons
-        playerView.enableButtons(false,true,true);
-        nextTurnButton.setEnabled(true);
-        combatButton.setEnabled(false);
-        beginCombatButton.setEnabled(false);
+        if(result != CombatResult.WINANDWINGAME)
+            prepareViewBeforeNextTurn();
         
         // Set Visible combatResultLabel
         this.combatResultLabel.setVisible(true);

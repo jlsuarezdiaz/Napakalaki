@@ -101,7 +101,7 @@ public class BadConsequenceNumberTreasures extends BadConsequence {
         int newnvisible = Integer.min(this.nVisibleTreasures,visible.size());
         int newnhidden = Integer.min(this.nHiddenTreasures,hidden.size());
 
-        return new BadConsequenceNumberTreasures("Queda por cumplir:", 0, newnvisible, newnhidden);
+        return new BadConsequenceNumberTreasures("", 0, newnvisible, newnhidden);
     }
 
     /**

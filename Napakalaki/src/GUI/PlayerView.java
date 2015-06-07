@@ -59,6 +59,16 @@ public class PlayerView extends javax.swing.JPanel {
         
         fillTreasurePanel(visibleTreasuresPanel, playerModel.getVisibleTreasures());
         fillTreasurePanel(hiddenTreasuresPanel, playerModel.getHiddenTreasures());
+        
+        if(playerModel.getPendingBadConsequence() == null || playerModel.getPendingBadConsequence().isEmpty()){
+            pendingBadView.setVisible(false);
+            pendingOKLabel.setVisible(true);
+        }
+        else{
+            pendingBadView.setBadConsequence(p.getPendingBadConsequence());
+            pendingBadView.setVisible(true);
+            pendingOKLabel.setVisible(false);
+        }
 
         // Repaint the view
         repaint();
@@ -164,6 +174,9 @@ public class PlayerView extends javax.swing.JPanel {
         visibleTreasuresPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         hiddenTreasuresPanel = new javax.swing.JPanel();
+        pendingBadView = new GUI.BadConsequenceView();
+        jLabel1 = new javax.swing.JLabel();
+        pendingOKLabel = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
         setPreferredSize(new java.awt.Dimension(480, 400));
@@ -237,6 +250,12 @@ public class PlayerView extends javax.swing.JPanel {
         hiddenTreasuresPanel.setPreferredSize(new java.awt.Dimension(16, 98));
         jScrollPane2.setViewportView(hiddenTreasuresPanel);
 
+        jLabel1.setText("Pending Bad Consequence:");
+
+        pendingOKLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        pendingOKLabel.setForeground(new java.awt.Color(0, 153, 0));
+        pendingOKLabel.setText("¡Todo el mal rollo está cumplido!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -252,16 +271,24 @@ public class PlayerView extends javax.swing.JPanel {
                         .addComponent(combatLevelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(buyLevelsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(makeVisibleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(discardTreasuresButton, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
-                            .addComponent(hiddenTreasuresLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                                .addComponent(discardTreasuresButton, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
+                            .addComponent(hiddenTreasuresLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pendingOKLabel)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pendingBadView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,11 +308,17 @@ public class PlayerView extends javax.swing.JPanel {
                 .addComponent(visibleTreasuresLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(hiddenTreasuresLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(pendingOKLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pendingBadView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -337,11 +370,14 @@ public class PlayerView extends javax.swing.JPanel {
     private javax.swing.JButton discardTreasuresButton;
     private javax.swing.JLabel hiddenTreasuresLabel;
     private javax.swing.JPanel hiddenTreasuresPanel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel levelLabel;
     private javax.swing.JButton makeVisibleButton;
     private javax.swing.JLabel nameLabel;
+    private GUI.BadConsequenceView pendingBadView;
+    private javax.swing.JLabel pendingOKLabel;
     private javax.swing.JLabel visibleTreasuresLabel;
     private javax.swing.JPanel visibleTreasuresPanel;
     // End of variables declaration//GEN-END:variables

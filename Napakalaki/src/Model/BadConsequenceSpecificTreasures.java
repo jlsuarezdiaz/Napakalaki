@@ -138,7 +138,7 @@ public class BadConsequenceSpecificTreasures extends BadConsequence {
                     freqNew++;
             }
         }   
-        return new BadConsequenceSpecificTreasures("Queda por cumplir:", 0, newSpecVisible, newSpecHidden);
+        return new BadConsequenceSpecificTreasures("", 0, newSpecVisible, newSpecHidden);
     }
 
     /**
