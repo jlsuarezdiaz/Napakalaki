@@ -219,6 +219,13 @@ public class Napakalaki {
     }
     
     /**
+     * Provides the name of the next player.
+     */
+    public String nextPlayerName(){
+        return this.players.get((currentPlayerIndex+1) % players.size()).getName();
+    }
+
+    /**
      * Set next turn in the game, if it is possible.
      * @return true if and only if next turn was set properly.
      */
