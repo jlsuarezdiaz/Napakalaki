@@ -6,70 +6,92 @@
 package GUI;
 
 import Model.BadConsequence;
+import Model.TreasureKind;
 import java.awt.Font;
+import java.util.ArrayList;
 
 /**
  *
  * @author Juan Luis
  */
 public class BadConsequenceView extends javax.swing.JPanel {
+       //------------------- ATTRIBUTES -------------------//
+ 
     /**
      * BadConsequence whose view is going to be built
      */
     private BadConsequence badConsequenceModel;
     
+    //------------------- PRIVATE METHODS -------------------//
+
     /**
-     * Private method to customize letters remarking
+     * Set the components visibility.
+     * @param deathLabel
+     * @param lTxtSpVisible
+     * @param splTxtSpHidden
+     * @param spVisibleLab
+     * @param spHiddenLab
+     * @param nVisibleLab
+     * @param nHiddenLab
+     * @param levelsLabel 
      */
-    private void remark(boolean levels, boolean death, boolean number, boolean specific){
-        if(levels){
-            this.levelsLab.setFont(levelsLab.getFont().deriveFont(levelsLab.getFont().getStyle() | Font.BOLD));
-            this.lTxtLevels.setFont(lTxtLevels.getFont().deriveFont(lTxtLevels.getFont().getStyle() | Font.BOLD));
-        }
-        else{
-            this.levelsLab.setFont(levelsLab.getFont().deriveFont(levelsLab.getFont().getStyle() & ~Font.BOLD));
-            this.lTxtLevels.setFont(lTxtLevels.getFont().deriveFont(lTxtLevels.getFont().getStyle() & ~Font.BOLD));  
-        }
-        if(death){
-           this.deathLab.setVisible(true);
-        }
-        else{
-            this.deathLab.setVisible(false);
-        }
-        if(number){
-            this.lTxtnVisible.setFont(lTxtnVisible.getFont().deriveFont(lTxtnVisible.getFont().getStyle() | Font.BOLD));
-            this.lTxtnHidden.setFont(lTxtnHidden.getFont().deriveFont(lTxtnHidden.getFont().getStyle() | Font.BOLD));
-            this.nVisibleLab.setFont(nVisibleLab.getFont().deriveFont(nVisibleLab.getFont().getStyle() | Font.BOLD));
-            this.nHiddenLab.setFont(nHiddenLab.getFont().deriveFont(nHiddenLab.getFont().getStyle() | Font.BOLD));
-        }
-        else{
-            this.lTxtnVisible.setFont(lTxtnVisible.getFont().deriveFont(lTxtnVisible.getFont().getStyle() & ~Font.BOLD));
-            this.lTxtnHidden.setFont(lTxtnHidden.getFont().deriveFont(lTxtnHidden.getFont().getStyle() & ~Font.BOLD));
-            this.nVisibleLab.setFont(nVisibleLab.getFont().deriveFont(nVisibleLab.getFont().getStyle() & ~Font.BOLD));
-            this.nHiddenLab.setFont(nHiddenLab.getFont().deriveFont(nHiddenLab.getFont().getStyle() & ~Font.BOLD));
-        }
-        if(specific){
-            this.lTxtSpVisible.setFont(lTxtSpVisible.getFont().deriveFont(lTxtSpVisible.getFont().getStyle() | Font.BOLD));
-            this.lTxtSpHidden.setFont(lTxtSpHidden.getFont().deriveFont(lTxtSpHidden.getFont().getStyle() | Font.BOLD));
-            this.spVisibleLab.setFont(spVisibleLab.getFont().deriveFont(spVisibleLab.getFont().getStyle() | Font.BOLD));
-            this.spHiddenLab.setFont(spVisibleLab.getFont().deriveFont(spHiddenLab.getFont().getStyle() | Font.BOLD));
-        }
-        else{
-            this.lTxtSpVisible.setFont(lTxtSpVisible.getFont().deriveFont(lTxtSpVisible.getFont().getStyle() & ~Font.BOLD));
-            this.lTxtSpHidden.setFont(lTxtSpHidden.getFont().deriveFont(lTxtSpHidden.getFont().getStyle() & ~Font.BOLD));
-            this.spVisibleLab.setFont(spVisibleLab.getFont().deriveFont(spVisibleLab.getFont().getStyle() & ~Font.BOLD));
-            this.spHiddenLab.setFont(spVisibleLab.getFont().deriveFont(spHiddenLab.getFont().getStyle() & ~Font.BOLD));
-        }
-        
-
-
+    private void setComponentsVisibility(boolean deathLabel, boolean levelsLabel,
+            boolean nVisibleLab, boolean nHiddenLab, boolean lTxtSpVisible, 
+            boolean lTxtSpHidden, boolean spVisibleLab, boolean spHiddenLab){
+        this.deathLab.setVisible(deathLabel);
+        this.levelsLabel.setVisible(levelsLabel);        
+        this.nVisibleLab.setVisible(nVisibleLab);
+        this.nHiddenLab.setVisible(nHiddenLab);
+        this.lTxtSpVisible.setVisible(lTxtSpVisible);
+        this.lTxtSpHidden.setVisible(lTxtSpHidden);
+        this.spVisibleLab.setVisible(spVisibleLab);
+        this.spHiddenLab.setVisible(spHiddenLab);
     }
+
+    //------------------- CONSTRUCTOR -------------------//
+ 
     /**
      * Creates new form BadConsequenceView
      */
     public BadConsequenceView() {
         initComponents();
         deathLab.setVisible(false);
+    }
+
+    //------------------- PUBLIC METHODS -------------------//
+
+    /**
+     * Sets the bad consequence model represented by the view.
+     * @param bc BadConsequence to represent.
+     */
+    public void setBadConsequence(BadConsequence bc){
+        badConsequenceModel = bc;
+
+        // Visualize general information
+        this.textLabel.setText("<html>" + badConsequenceModel.getText() + "<html>");
+        this.levelsLabel.setText("Levels Lost: " + 
+                Integer.toString(badConsequenceModel.getLevels()));
+        
+        // Modify the bad consequence view according to the type of bad cosnequence.
+        if(badConsequenceModel instanceof Model.BadConsequenceDeath){
+            this.setComponentsVisibility(true, false, false, false, false, false, false, false);
+        }
+        else if(badConsequenceModel instanceof Model.BadConsequenceNumberTreasures){
+            this.nVisibleLab.setText("Visible Treasures Number: " + 
+                    Integer.toString(((Model.BadConsequenceNumberTreasures)badConsequenceModel).getNVisibleTreasures()));
+            this.nHiddenLab.setText("Hidden Treasures Number: " +
+                    Integer.toString(((Model.BadConsequenceNumberTreasures)badConsequenceModel).getNHiddenTreasures()));
+            this.setComponentsVisibility(false, true, true, true, false, false, false, false);
+        }        
+        else if(badConsequenceModel instanceof Model.BadConsequenceSpecificTreasures){
+            ArrayList<TreasureKind> vTreasures = ((Model.BadConsequenceSpecificTreasures)badConsequenceModel).getSpecificVisibleTreasures();
+            ArrayList<TreasureKind> hTreasures = ((Model.BadConsequenceSpecificTreasures)badConsequenceModel).getSpecificHiddenTreasures();
+            this.spVisibleLab.setText(vTreasures.isEmpty()? "None" : vTreasures.toString());            
+            this.spHiddenLab.setText(hTreasures.isEmpty()? "None" : hTreasures.toString());
+            this.setComponentsVisibility(false, true, false, false, true, true, true, true);
+        }
+        setPreferredSize(getPreferredSize());
+        repaint();
     }
 
     /**
@@ -81,111 +103,84 @@ public class BadConsequenceView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lTxtnVisible = new javax.swing.JLabel();
-        nVisibleLab = new javax.swing.JLabel();
-        lTxtnHidden = new javax.swing.JLabel();
-        nHiddenLab = new javax.swing.JLabel();
-        textLab = new javax.swing.JLabel();
-        lTxtLevels = new javax.swing.JLabel();
-        levelsLab = new javax.swing.JLabel();
         lTxtSpVisible = new javax.swing.JLabel();
         spVisibleLab = new javax.swing.JLabel();
         lTxtSpHidden = new javax.swing.JLabel();
         spHiddenLab = new javax.swing.JLabel();
         deathLab = new javax.swing.JLabel();
+        textLabel = new javax.swing.JLabel();
+        nVisibleLab = new javax.swing.JLabel();
+        nHiddenLab = new javax.swing.JLabel();
+        tittleLabel = new javax.swing.JLabel();
+        levelsLabel = new javax.swing.JLabel();
 
-        lTxtnVisible.setText("Número de Tesoros Visibles:");
+        lTxtSpVisible.setText("Specific Visible Treasures:");
 
-        nVisibleLab.setText("0");
+        spVisibleLab.setText("None");
 
-        lTxtnHidden.setText("Número de Tesoros Ocultos:");
+        lTxtSpHidden.setText("Specific Hidden Treasures:");
 
-        nHiddenLab.setText("0");
-
-        textLab.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        textLab.setText("MAL ROLLO:");
-
-        lTxtLevels.setText("Niveles:");
-
-        levelsLab.setText("0");
-
-        lTxtSpVisible.setText("Tesoros Visibles específicos:");
-
-        spVisibleLab.setText("Ninguno");
-
-        lTxtSpHidden.setText("Tesoros Ocultos específicos:");
-
-        spHiddenLab.setText("Ninguno");
+        spHiddenLab.setText("None");
 
         deathLab.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         deathLab.setForeground(new java.awt.Color(255, 0, 0));
-        deathLab.setText("CAUSA LA MUERTE");
+        deathLab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        deathLab.setText("You Are Dead");
+
+        textLabel.setFont(new java.awt.Font("Ubuntu", 2, 14)); // NOI18N
+        textLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textLabel.setText("You will fail the exam.");
+
+        nVisibleLab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nVisibleLab.setText("Visible Treasures Number: 0");
+
+        nHiddenLab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nHiddenLab.setText("Hidden Treasures Number: 0");
+
+        tittleLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        tittleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tittleLabel.setText("Bad Consequence");
+
+        levelsLabel.setText("Levels: 0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nHiddenLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lTxtSpVisible)
+                            .addComponent(levelsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nVisibleLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lTxtSpHidden)
+                            .addComponent(spHiddenLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(spVisibleLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 16, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(spVisibleLab))
-                                    .addComponent(lTxtSpVisible)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lTxtSpHidden, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(spHiddenLab))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lTxtLevels)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(levelsLab))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(lTxtnHidden)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(nHiddenLab))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(lTxtnVisible)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(nVisibleLab))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(deathLab)))
-                        .addGap(0, 156, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(textLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(tittleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(deathLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(textLab, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addComponent(tittleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deathLab)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lTxtLevels)
-                    .addComponent(levelsLab))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lTxtnVisible)
-                    .addComponent(nVisibleLab))
+                .addComponent(levelsLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lTxtnHidden)
-                    .addComponent(nHiddenLab))
+                .addComponent(nVisibleLab)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nHiddenLab)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lTxtSpVisible)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -201,46 +196,15 @@ public class BadConsequenceView extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel deathLab;
-    private javax.swing.JLabel lTxtLevels;
     private javax.swing.JLabel lTxtSpHidden;
     private javax.swing.JLabel lTxtSpVisible;
-    private javax.swing.JLabel lTxtnHidden;
-    private javax.swing.JLabel lTxtnVisible;
-    private javax.swing.JLabel levelsLab;
+    private javax.swing.JLabel levelsLabel;
     private javax.swing.JLabel nHiddenLab;
     private javax.swing.JLabel nVisibleLab;
     private javax.swing.JLabel spHiddenLab;
     private javax.swing.JLabel spVisibleLab;
-    private javax.swing.JLabel textLab;
+    private javax.swing.JLabel textLabel;
+    private javax.swing.JLabel tittleLabel;
     // End of variables declaration//GEN-END:variables
 
-    public void setBadConsequence(BadConsequence bc){
-        badConsequenceModel = bc;
-        this.textLab.setText("MAL ROLLO: " + badConsequenceModel.getText());
-        this.levelsLab.setText(Integer.toString(badConsequenceModel.getLevels()));
-        
-        boolean levels = badConsequenceModel.getLevels() != 0, death = false, number = false, specific = false;
-        
-        if(badConsequenceModel instanceof Model.BadConsequenceDeath){
-            death = true;
-        }
-        
-        else if(badConsequenceModel instanceof Model.BadConsequenceNumberTreasures){
-            this.nVisibleLab.setText(Integer.toString(((Model.BadConsequenceNumberTreasures)badConsequenceModel).getNVisibleTreasures()));
-            this.nHiddenLab.setText(Integer.toString(((Model.BadConsequenceNumberTreasures)badConsequenceModel).getNHiddenTreasures()));
-            
-            if(!badConsequenceModel.isEmpty()) number = true;
-        }
-        
-        else if(badConsequenceModel instanceof Model.BadConsequenceSpecificTreasures){
-            this.spVisibleLab.setText(((Model.BadConsequenceSpecificTreasures)badConsequenceModel).getSpecificVisibleTreasures().toString());
-            this.spHiddenLab.setText(((Model.BadConsequenceSpecificTreasures)badConsequenceModel).getSpecificHiddenTreasures().toString());
-            
-            if(!badConsequenceModel.isEmpty()) specific = true;
-            
-        }
-        
-        remark(levels,death,number,specific);
-        repaint();
-    }
 }
