@@ -24,6 +24,15 @@ public class PrizeView extends javax.swing.JPanel {
         initComponents();
     }
 
+    //------------------- SET METHODS -------------------//
+
+    public void setPrize(Prize p){
+        prizeModel = p;
+        treasuresLabel.setText("Treasures: " + Integer.toString(prizeModel.getTreasures()));
+        levelsLabel.setText("Levels: " + Integer.toString(prizeModel.getLevels()));
+        repaint();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,74 +42,49 @@ public class PrizeView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        treasuresLab = new javax.swing.JLabel();
-        levelsLab = new javax.swing.JLabel();
+        prizeLabel = new javax.swing.JLabel();
+        treasuresLabel = new javax.swing.JLabel();
+        levelsLabel = new javax.swing.JLabel();
 
-        jLabel1.setText("Tesoros: ");
+        prizeLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        prizeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        prizeLabel.setText("Prize");
 
-        jLabel2.setText("Niveles: ");
+        treasuresLabel.setText("Treasures: ");
 
-        jLabel3.setText("PREMIO:");
-
-        treasuresLab.setText("0");
-
-        levelsLab.setText("0");
+        levelsLabel.setText("Levels:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(levelsLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(treasuresLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(treasuresLab))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(levelsLab))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel3)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                        .addComponent(prizeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 9, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(treasuresLab))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(levelsLab))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(prizeLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(treasuresLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(levelsLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel levelsLab;
-    private javax.swing.JLabel treasuresLab;
+    private javax.swing.JLabel levelsLabel;
+    private javax.swing.JLabel prizeLabel;
+    private javax.swing.JLabel treasuresLabel;
     // End of variables declaration//GEN-END:variables
-
-    public void setPrize(Prize p){
-        prizeModel = p;
-        treasuresLab.setText(Integer.toString(prizeModel.getTreasures()));
-        levelsLab.setText(Integer.toString(prizeModel.getLevels()));
-        repaint();
-    }
 }
