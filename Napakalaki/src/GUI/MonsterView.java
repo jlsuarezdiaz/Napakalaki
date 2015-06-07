@@ -3,26 +3,49 @@
 // Universidad de Granada, March, 2015
 // Programación Orientada a Objetos - Napakalaki
 ////////////////////////////////////////////////////////////////////////////////
+
 package GUI;
 
 import Model.Monster;
 
 /**
- *
- * @author Juan Luis
+ * View for a monster in Napakalaki game.
+ * @author andreshp, jlsuarez
  */
 public class MonsterView extends javax.swing.JPanel {
     
+    //------------------- ATTRIBUTES -------------------//
+
     /**
      * BadConsequence whose view is going to be built
      */
     private Monster monsterModel;
     
+    //------------------- CONSTRUCTOR -------------------//
+
     /**
      * Creates new form MonsterView
      */
     public MonsterView() {
         initComponents();
+    }
+
+    //------------------- SET METHODS -------------------//
+
+    /**
+     * Set the monster that the view represents.
+     * Actualizes each element in the view.
+     * @param m Monster
+     */
+    public void setMonster(Monster m){
+        monsterModel = m;
+        this.nameLabel.setText("Monster: " + monsterModel.getName());
+        this.levelLabel.setText("Levels: " + Integer.toString(monsterModel.getCombatLevel()));
+        this.levelChangeCultistLabel.setText("Levels Against Cultist Player: " + 
+                Integer.toString(monsterModel.getSpecialValue()));
+        this.badConsequenceView.setBadConsequence(monsterModel.getBadConsequence());
+        this.prizeView.setPrize(monsterModel.getPrize());
+        repaint();
     }
 
     /**
@@ -34,26 +57,21 @@ public class MonsterView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        nameLab = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        levelLab = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        levelChangeCultistLab = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        levelLabel = new javax.swing.JLabel();
+        levelChangeCultistLabel = new javax.swing.JLabel();
         prizeView = new GUI.PrizeView();
         badConsequenceView = new GUI.BadConsequenceView();
 
-        jLabel1.setText("MONSTRUO: ");
+        setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
 
-        nameLab.setText("Monster");
+        nameLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nameLabel.setText("Monster: Teacher");
 
-        jLabel2.setText("Nivel: ");
+        levelLabel.setText("Level: 0");
 
-        levelLab.setText("0");
-
-        jLabel3.setText("Cambio de nivel contra sectarios:");
-
-        levelChangeCultistLab.setText("0");
+        levelChangeCultistLabel.setText("Level Against Cultist Player: 0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -62,70 +80,38 @@ public class MonsterView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(levelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(levelChangeCultistLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(badConsequenceView, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(prizeView, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                        .addComponent(badConsequenceView, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(levelLab)
-                            .addComponent(nameLab)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(levelChangeCultistLab)))
-                .addContainerGap())
+                        .addComponent(prizeView, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 12, Short.MAX_VALUE))
+                    .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(nameLab))
+                .addComponent(nameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(levelLab))
+                .addComponent(levelLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(levelChangeCultistLab))
+                .addComponent(levelChangeCultistLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(badConsequenceView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prizeView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(prizeView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(badConsequenceView, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private GUI.BadConsequenceView badConsequenceView;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel levelChangeCultistLab;
-    private javax.swing.JLabel levelLab;
-    private javax.swing.JLabel nameLab;
+    private javax.swing.JLabel levelChangeCultistLabel;
+    private javax.swing.JLabel levelLabel;
+    private javax.swing.JLabel nameLabel;
     private GUI.PrizeView prizeView;
     // End of variables declaration//GEN-END:variables
-
-    public void setMonster(Monster m){
-        monsterModel = m;
-        this.nameLab.setText(monsterModel.getName());
-        this.levelLab.setText(Integer.toString(monsterModel.getCombatLevel()));
-        this.levelChangeCultistLab.setText(Integer.toString(monsterModel.getCultistLevelChange()));
-        this.badConsequenceView.setBadConsequence(monsterModel.getBadConsequence());
-        this.prizeView.setPrize(monsterModel.getPrize());
-        repaint();
-    }
-    
- /*   public void showView(){
-        this.setVisible(true);
-    }*/
 }
