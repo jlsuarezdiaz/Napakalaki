@@ -3,19 +3,20 @@
 // Universidad de Granada, March, 2015
 // Programación Orientada a Objetos - Napakalaki
 ////////////////////////////////////////////////////////////////////////////////
+
 package GUI;
 
 import Model.BadConsequence;
 import Model.TreasureKind;
-import java.awt.Font;
 import java.util.ArrayList;
 
 /**
- *
- * @author Juan Luis
+ * View for a Bad Consequence in Napakalaki game.
+ * @author andreshp, jlsuarez
  */
 public class BadConsequenceView extends javax.swing.JPanel {
-       //------------------- ATTRIBUTES -------------------//
+ 
+    //------------------- ATTRIBUTES -------------------//
  
     /**
      * BadConsequence whose view is going to be built
@@ -103,16 +104,28 @@ public class BadConsequenceView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        nVisibleLab = new javax.swing.JLabel();
+        nHiddenLab = new javax.swing.JLabel();
+        tittleLabel = new javax.swing.JLabel();
+        levelsLabel = new javax.swing.JLabel();
         lTxtSpVisible = new javax.swing.JLabel();
         spVisibleLab = new javax.swing.JLabel();
         lTxtSpHidden = new javax.swing.JLabel();
         spHiddenLab = new javax.swing.JLabel();
         deathLab = new javax.swing.JLabel();
         textLabel = new javax.swing.JLabel();
-        nVisibleLab = new javax.swing.JLabel();
-        nHiddenLab = new javax.swing.JLabel();
-        tittleLabel = new javax.swing.JLabel();
-        levelsLabel = new javax.swing.JLabel();
+
+        nVisibleLab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nVisibleLab.setText("Visible Treasures Number: 0");
+
+        nHiddenLab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nHiddenLab.setText("Hidden Treasures Number: 0");
+
+        tittleLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        tittleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tittleLabel.setText("Bad Consequence");
+
+        levelsLabel.setText("Levels: 0");
 
         lTxtSpVisible.setText("Specific Visible Treasures:");
 
@@ -131,18 +144,6 @@ public class BadConsequenceView extends javax.swing.JPanel {
         textLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textLabel.setText("You will fail the exam.");
 
-        nVisibleLab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        nVisibleLab.setText("Visible Treasures Number: 0");
-
-        nHiddenLab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        nHiddenLab.setText("Hidden Treasures Number: 0");
-
-        tittleLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        tittleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tittleLabel.setText("Bad Consequence");
-
-        levelsLabel.setText("Levels: 0");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -150,7 +151,6 @@ public class BadConsequenceView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nHiddenLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -161,10 +161,11 @@ public class BadConsequenceView extends javax.swing.JPanel {
                             .addComponent(spHiddenLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(spVisibleLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 16, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tittleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(deathLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(textLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tittleLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(deathLab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -172,7 +173,7 @@ public class BadConsequenceView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(tittleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deathLab)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -206,5 +207,4 @@ public class BadConsequenceView extends javax.swing.JPanel {
     private javax.swing.JLabel textLabel;
     private javax.swing.JLabel tittleLabel;
     // End of variables declaration//GEN-END:variables
-
 }

@@ -19,10 +19,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="textLabel" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="nHiddenLab" alignment="0" max="32767" attributes="0"/>
+                          <Component id="nHiddenLab" max="32767" attributes="0"/>
                           <Component id="lTxtSpVisible" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="levelsLabel" alignment="0" max="32767" attributes="0"/>
                           <Component id="nVisibleLab" alignment="0" max="32767" attributes="0"/>
@@ -32,8 +31,9 @@
                       </Group>
                       <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="textLabel" alignment="0" max="32767" attributes="0"/>
                           <Component id="tittleLabel" alignment="0" max="32767" attributes="0"/>
                           <Component id="deathLab" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -48,7 +48,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="tittleLabel" min="-2" pref="22" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="textLabel" min="-2" pref="38" max="-2" attributes="0"/>
+              <Component id="textLabel" min="-2" pref="59" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="deathLab" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -71,6 +71,32 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Component class="javax.swing.JLabel" name="nVisibleLab">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="2"/>
+        <Property name="text" type="java.lang.String" value="Visible Treasures Number: 0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="nHiddenLab">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="2"/>
+        <Property name="text" type="java.lang.String" value="Hidden Treasures Number: 0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="tittleLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Ubuntu" size="15" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Bad Consequence"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="levelsLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Levels: 0"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JLabel" name="lTxtSpVisible">
       <Properties>
         <Property name="text" type="java.lang.String" value="Specific Visible Treasures:"/>
@@ -110,32 +136,6 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="You will fail the exam."/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="nVisibleLab">
-      <Properties>
-        <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="Visible Treasures Number: 0"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="nHiddenLab">
-      <Properties>
-        <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="Hidden Treasures Number: 0"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="tittleLabel">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Ubuntu" size="15" style="1"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Bad Consequence"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="levelsLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Levels: 0"/>
       </Properties>
     </Component>
   </SubComponents>
