@@ -233,10 +233,12 @@ public class NapakalakiView extends javax.swing.JFrame {
         playerView.setPlayer(napakalakiModel.getCurrentPlayer());
 
         // Enable buttons
-        playerView.enableButtons(false,true,true);
-        nextTurnButton.setEnabled(true);
-        combatButton.setEnabled(false);
-        beginCombatButton.setEnabled(false);
+        if(result != CombatResult.WINANDWINGAME){
+            playerView.enableButtons(false,true,true);
+            nextTurnButton.setEnabled(true);
+            combatButton.setEnabled(false);
+            beginCombatButton.setEnabled(false);
+        }
 
         // Set Visible combatResultLabel
         this.combatResultLabel.setVisible(true);
