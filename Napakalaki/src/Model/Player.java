@@ -242,6 +242,14 @@ public class Player {
     public ArrayList<Treasure> getHiddenTreasures(){
         return this.hiddenTreasures;
     }
+    
+    /**
+     * Get pending Bad Consequence.
+     * @return pendingBadConsequence.
+     */
+    public BadConsequence getPendingBadConsequence(){
+        return this.pendingBadConsequence;
+    }
 
     //--------------- OTHER PUBLIC METHODS ---------------//
 

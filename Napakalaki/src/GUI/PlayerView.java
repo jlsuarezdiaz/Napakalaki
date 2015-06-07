@@ -133,6 +133,13 @@ public class PlayerView extends javax.swing.JPanel {
     public void enableButtons(boolean enabled){
         enableButtons(enabled,enabled,enabled);
     }
+    
+    public void enableMakeVisibleIfNotPending(){
+        if(playerModel.getPendingBadConsequence().isEmpty())
+            makeVisibleButton.setEnabled(true);
+        else
+            makeVisibleButton.setEnabled(false);
+    }
 
     //----------------------- GENERATED CODE -----------------------//
 
@@ -315,6 +322,7 @@ public class PlayerView extends javax.swing.JPanel {
 
         //Update view
         setPlayer(napakalakiModel.getCurrentPlayer());
+        enableMakeVisibleIfNotPending();
     }//GEN-LAST:event_discardTreasuresButtonActionPerformed
 
    

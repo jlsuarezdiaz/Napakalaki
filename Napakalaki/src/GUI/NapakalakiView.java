@@ -35,7 +35,7 @@ public class NapakalakiView extends javax.swing.JFrame {
     /**
      * Prepares the view for the next turn.
      * The player and the monster are updated.
-     * Just the player is visible. Just the begin combat buttom is enabled.
+     * Just the player is visible. Just the begin combat button is enabled.
      */
     private void prepareNextTurnView(){
         playerView.setPlayer(napakalakiModel.getCurrentPlayer());
@@ -46,7 +46,20 @@ public class NapakalakiView extends javax.swing.JFrame {
         combatButton.setEnabled(false);
         beginCombatButton.setEnabled(true);
     }
-
+    
+    /**
+     * Prepares the view before next turn.
+     * Just next turn, discard button and (depending on pending bad consequence) make visible
+     * buttons are enabled.
+     */
+    private void prepareViewBeforeNextTurn(){
+        playerView.enableButtons(false,true,true);
+        nextTurnButton.setEnabled(true);
+        combatButton.setEnabled(false);
+        beginCombatButton.setEnabled(false);
+        playerView.enableMakeVisibleIfNotPending();
+    }
+    
     //----------------- CONSTRUCTOR -----------------//
 
     /**
@@ -234,10 +247,7 @@ public class NapakalakiView extends javax.swing.JFrame {
 
         // Enable buttons
         if(result != CombatResult.WINANDWINGAME){
-            playerView.enableButtons(false,true,true);
-            nextTurnButton.setEnabled(true);
-            combatButton.setEnabled(false);
-            beginCombatButton.setEnabled(false);
+            prepareViewBeforeNextTurn();
         }
 
         // Set Visible combatResultLabel
