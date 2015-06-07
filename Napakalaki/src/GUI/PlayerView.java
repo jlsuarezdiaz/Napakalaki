@@ -135,7 +135,7 @@ public class PlayerView extends javax.swing.JPanel {
     }
     
     public void enableMakeVisibleIfNotPending(){
-        if(playerModel.getPendingBadConsequence().isEmpty())
+        if(playerModel.getPendingBadConsequence() == null || playerModel.getPendingBadConsequence().isEmpty())
             makeVisibleButton.setEnabled(true);
         else
             makeVisibleButton.setEnabled(false);
