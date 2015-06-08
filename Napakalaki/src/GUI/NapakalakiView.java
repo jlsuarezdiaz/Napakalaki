@@ -71,7 +71,6 @@ public class NapakalakiView extends javax.swing.JFrame {
      */
     public NapakalakiView() {
         initComponents();
-        
     }
 
     //----------------- GET & SET METHODS -----------------//
@@ -215,6 +214,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     //----------------- EVENTS -----------------------//
