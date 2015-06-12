@@ -349,7 +349,7 @@ public class PlayerView extends javax.swing.JPanel {
         for(Treasure t: selHidden){
             if(!napakalakiModel.makeTreasureVisible(t))
             JOptionPane.showMessageDialog(null, "El tesoro " + t.getName() + ", de tipo " + t.getType().toString() +
-                ", no se puede hacer visible en este momento :S", "Cannot made visible", JOptionPane.WARNING_MESSAGE);
+                ", no se puede hacer visible en este momento.", "Cannot made visible", JOptionPane.WARNING_MESSAGE);
         }
         //Update view
         setPlayer(napakalakiModel.getCurrentPlayer());
