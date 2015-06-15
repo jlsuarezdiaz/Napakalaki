@@ -5,11 +5,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package Test;
 
+import GUI.BadConsequenceView;
 import GUI.TreasureView;
 import Model.BadConsequence;
 import Model.BadConsequenceDeath;
 import Model.BadConsequenceNumberTreasures;
 import Model.BadConsequenceSpecificTreasures;
+import Model.Cultist;
+import Model.CultistPlayer;
+import Model.Napakalaki;
 import Model.Player;
 import Model.Treasure;
 import Model.TreasureKind;
@@ -21,6 +25,12 @@ import java.util.Arrays;
  * @author Juan Luis
  */
 public class TestExamenJuanlu extends javax.swing.JFrame {
+    
+    Treasure t1,t2,t3,t4,t5,t6;
+    ArrayList<Treasure> vt, ht;
+    BadConsequence b1,b2,b3;
+    Player p;
+    BadConsequenceView b1View,b2view,b3View;
 
     /**
      * Creates new form TestExamenJuanlu
@@ -28,24 +38,24 @@ public class TestExamenJuanlu extends javax.swing.JFrame {
     public TestExamenJuanlu() {
         initComponents();
         
-        Treasure t1 = new Treasure("Juanlu",2000,10,15, TreasureKind.BOTHHANDS);
-        Treasure t2 = new Treasure("Dropbox MSN",800,8,10,TreasureKind.ONEHAND);
-        Treasure t3 = new Treasure("Bota de CR7",1200,2,8,TreasureKind.SHOE);
-        Treasure t4 = new Treasure("La fuerza de Mr. A.",1001,0,0,TreasureKind.NECKLACE);
-        Treasure t5 = new Treasure("La cabeza de mi hermano",0,3,9,TreasureKind.HELMET);
-        Treasure t6 = new Treasure("Camiseta de R",400,2,8,TreasureKind.ARMOR);
+        t1 = new Treasure("Juanlu",2000,10,15, TreasureKind.BOTHHANDS);
+        t2 = new Treasure("Dropbox MSN",800,8,10,TreasureKind.ONEHAND);
+        t3 = new Treasure("Bota de CR7",1200,2,8,TreasureKind.SHOE);
+        t4 = new Treasure("La fuerza de Mr. A.",1001,0,0,TreasureKind.NECKLACE);
+        t5 = new Treasure("La cabeza de mi hermano",0,3,9,TreasureKind.HELMET);
+        t6 = new Treasure("Camiseta de R",400,2,8,TreasureKind.ARMOR);
         
-        ArrayList<Treasure> vt = new ArrayList(Arrays.asList(t1,t2,t4));
-        ArrayList<Treasure> ht = new ArrayList(Arrays.asList(t3,t5,t6));
+        vt = new ArrayList(Arrays.asList(t1,t2,t4));
+        ht = new ArrayList(Arrays.asList(t3,t5,t6));
         
-        BadConsequence b1 = new BadConsequenceSpecificTreasures("Pierdes todos tus tesoros de manos visibles y pies ocultos.", 2,
+        b1 = new BadConsequenceSpecificTreasures("Pierdes todos tus tesoros de manos visibles y pies ocultos.", 2,
                 new ArrayList(Arrays.asList(TreasureKind.ONEHAND,TreasureKind.ONEHAND,TreasureKind.BOTHHANDS)) ,
                         new ArrayList(Arrays.asList(TreasureKind.SHOE)));
         
-        BadConsequence b2 = new BadConsequenceNumberTreasures("Los exámenes rebuscados te hacen perder 4 niveles y todos tus tesoros visibles",
+        b2 = new BadConsequenceNumberTreasures("Los exámenes rebuscados te hacen perder 4 niveles y todos tus tesoros visibles",
                   4, 99,0);
         
-        BadConsequence b3 = new BadConsequenceDeath("Suspendes PDOO por los exámenes de 20 minutos. Mueres", true);
+        b3 = new BadConsequenceDeath("Suspendes PDOO por los exámenes de 20 minutos. Mueres", true);
         
         // Deletes old information
         visibleTreasuresPanel.removeAll();
@@ -77,13 +87,23 @@ public class TestExamenJuanlu extends javax.swing.JFrame {
         hiddenTreasuresPanel.repaint();
         hiddenTreasuresPanel.revalidate();
         
+        b1View = new BadConsequenceView();
+        b2view = new BadConsequenceView();
+        b3View = new BadConsequenceView();
         b1View.setBadConsequence(b1);
         b2view.setBadConsequence(b2);
         b3View.setBadConsequence(b3);
+        b1View.setVisible(true);
+        b2view.setVisible(true);
+        b3View.setVisible(true);
+        badConsPanel.add(b1View);
+        badConsPanel.add(b2view);
+        badConsPanel.add(b3View);
         
-        Player p = new Player("Suspendedor");
+        p = new Player("Suspendedor");
+        p.setVisibleTreasureList(new ArrayList(Arrays.asList(new Treasure("Tesoro para no DieIfNoTreasures",100,1,1,TreasureKind.ONEHAND))));
         playerView1.setPlayer(p);
-        
+        playerView1.enableButtons(false);
         
         this.repaint();
     }
@@ -99,18 +119,19 @@ public class TestExamenJuanlu extends javax.swing.JFrame {
 
         hiddenTreasuresPanel = new javax.swing.JPanel();
         visibleTreasuresPanel = new javax.swing.JPanel();
-        b1View = new GUI.BadConsequenceView();
-        b2view = new GUI.BadConsequenceView();
-        b3View = new GUI.BadConsequenceView();
         playerView1 = new GUI.PlayerView();
         btAdjust = new javax.swing.JButton();
         btBuy = new javax.swing.JButton();
         btCultist = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        badConsPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        hiddenTreasuresPanel.setBackground(new java.awt.Color(255, 255, 255));
         hiddenTreasuresPanel.setBorder(new javax.swing.border.MatteBorder(null));
 
+        visibleTreasuresPanel.setBackground(new java.awt.Color(255, 255, 255));
         visibleTreasuresPanel.setBorder(new javax.swing.border.MatteBorder(null));
 
         btAdjust.setText("Adjust");
@@ -121,8 +142,21 @@ public class TestExamenJuanlu extends javax.swing.JFrame {
         });
 
         btBuy.setText("Buy");
+        btBuy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuyActionPerformed(evt);
+            }
+        });
 
         btCultist.setText("Make Cultist");
+        btCultist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCultistActionPerformed(evt);
+            }
+        });
+
+        badConsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(badConsPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,22 +166,18 @@ public class TestExamenJuanlu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(b1View, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(b2view, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(hiddenTreasuresPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(visibleTreasuresPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(b3View, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btAdjust, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btBuy, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btCultist, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(hiddenTreasuresPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(visibleTreasuresPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btAdjust, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btBuy, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btCultist, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(playerView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,11 +196,8 @@ public class TestExamenJuanlu extends javax.swing.JFrame {
                                 .addComponent(btCultist)))
                         .addGap(18, 18, 18)
                         .addComponent(hiddenTreasuresPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(b1View, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(b2view, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(b3View, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(11, 11, 11)
+                        .addComponent(jScrollPane1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -178,8 +205,28 @@ public class TestExamenJuanlu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAdjustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdjustActionPerformed
-        
+        b1 = b1.adjustToFitTreasureLists(vt, ht);
+        b2 = b2.adjustToFitTreasureLists(vt, ht);
+        b3 = b3.adjustToFitTreasureLists(vt, ht);
+
+        b1View.setBadConsequence(b1);
+        b2view.setBadConsequence(b2);
+        b3View.setBadConsequence(b3);
+        this.repaint();
     }//GEN-LAST:event_btAdjustActionPerformed
+
+    private void btBuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuyActionPerformed
+        p.buyLevels(vt, ht);
+        playerView1.setPlayer(p);
+        this.repaint();
+    }//GEN-LAST:event_btBuyActionPerformed
+
+    private void btCultistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCultistActionPerformed
+        Cultist c = new Cultist("JUANLUCTARIO", 5);
+        p = new CultistPlayer(p, c);
+        playerView1.setPlayer(p);
+        this.repaint();
+    }//GEN-LAST:event_btCultistActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,13 +268,12 @@ public class TestExamenJuanlu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private GUI.BadConsequenceView b1View;
-    private GUI.BadConsequenceView b2view;
-    private GUI.BadConsequenceView b3View;
+    private javax.swing.JPanel badConsPanel;
     private javax.swing.JButton btAdjust;
     private javax.swing.JButton btBuy;
     private javax.swing.JButton btCultist;
     private javax.swing.JPanel hiddenTreasuresPanel;
+    private javax.swing.JScrollPane jScrollPane1;
     private GUI.PlayerView playerView1;
     private javax.swing.JPanel visibleTreasuresPanel;
     // End of variables declaration//GEN-END:variables

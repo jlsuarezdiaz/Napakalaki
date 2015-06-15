@@ -505,7 +505,7 @@ public class Player {
      * Set the player visible treasures.
      * It does a deep copy.
      */ 
-    void setVisibleTreasureList(ArrayList<Treasure> treasures){
+    public void setVisibleTreasureList(ArrayList<Treasure> treasures){
         this.visibleTreasures.clear();
         for (Treasure t : treasures){
             this.visibleTreasures.add(new Treasure(t));
@@ -516,7 +516,7 @@ public class Player {
      * Set the player hidden treasures.
      * It does a deep copy.
      */ 
-    void setHiddenTreasureList(ArrayList<Treasure> treasures){
+    public void setHiddenTreasureList(ArrayList<Treasure> treasures){
         this.hiddenTreasures.clear();
         for (Treasure t : treasures){
             this.hiddenTreasures.add(new Treasure(t));
