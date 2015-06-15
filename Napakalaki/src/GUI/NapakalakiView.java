@@ -243,19 +243,19 @@ public class NapakalakiView extends javax.swing.JFrame {
                 disableAfterEndOfGame();
                 break;
             case WIN :
-                this.combatResultLabel.setText("\n\n Ganaste el combate");
+                this.combatResultLabel.setText("Ganaste el combate");
                 break;
             case LOSE :
-                this.combatResultLabel.setText("\n\n Has perdido el combate, te toca cumplir el mal rollo");
+                this.combatResultLabel.setText("Has perdido el combate, te toca cumplir el mal rollo");
                 break;
             case LOSEANDESCAPE :
-                this.combatResultLabel.setText("\n\n Perdiste el combate pero has logrado escapar");
+                this.combatResultLabel.setText("Perdiste el combate pero has logrado escapar");
                 break;
             case LOSEANDDIE :
-                this.combatResultLabel.setText("\n\n Perdiste el combate y además estás muerto");
+                this.combatResultLabel.setText("Perdiste el combate y además estás muerto");
                 break;
             case LOSEANDCONVERT:
-                this.combatResultLabel.setText("\n\n Has perdido el combate y te has convertido en sectario");
+                this.combatResultLabel.setText("Has perdido el combate y te has convertido en sectario");
                 break;        
         }
         
