@@ -78,7 +78,7 @@ public class ExamView extends javax.swing.JFrame {
         TreasureView tv;
         ArrayList<Treasure> output = new ArrayList();
         for (Component c : aPanel.getComponents()) {
-//            tv = (TreasureView) ;
+            tv = (TreasureView) c;
             if (tv.isSelected()) output.add(tv.getTreasure());
         }
         return output;
