@@ -3,7 +3,7 @@
 // Universidad de Granada, March, 2015
 // Programación Orientada a Objetos - Napakalaki
 ////////////////////////////////////////////////////////////////////////////////
-package Test;
+package GUI;
 
 import GUI.BadConsequenceView;
 import GUI.TreasureView;
