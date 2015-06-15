@@ -69,19 +69,24 @@ public class ExamView extends javax.swing.JFrame {
     }
 
     /**
-     * Get the selected treasures from the given pael.
-     * @param aPanel Panel from which the treasures are taken.
-     * @return Array with the treasures.
+     * Delete the selected treasures of the given panel.
+     * @param aPanel Panel from which the treasures are deleted.
      */
-    public ArrayList<Treasure> getSelectedTreasures(JPanel aPanel) {
+    public void deleteSelectedTreasures(JPanel aPanel) {
+        Component[] components = aPanel.getComponents();
+        int numComponents = aPanel.getComponentCount();
+        aPanel.removeAll();
+        
         // For each treasure in the panel take the ones selected.
         TreasureView tv;
-        ArrayList<Treasure> output = new ArrayList();
-        for (Component c : aPanel.getComponents()) {
-            tv = (TreasureView) c;
-            if (tv.isSelected()) output.add(tv.getTreasure());
+        for (int i = 0; i < numComponents; i++) {
+            tv = (TreasureView) components[i];
+            if (tv.isSelected()) cd.giveTreasureBack(tv.getTreasure());
+            else aPanel.add(components[i]);
         }
-        return output;
+        // Repaint the panel.
+        aPanel.repaint();
+        aPanel.revalidate();
     }
     
     //-------------------- PUBLIC METHODS --------------------//
@@ -129,6 +134,7 @@ public class ExamView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         myMonstersPanel = new javax.swing.JPanel();
+        deleteTreasuresButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -188,6 +194,18 @@ public class ExamView extends javax.swing.JFrame {
         myMonstersPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 100), 3));
         jScrollPane1.setViewportView(myMonstersPanel);
 
+        deleteTreasuresButton.setText("Delete Selected Treasures");
+        deleteTreasuresButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteTreasuresButtonMouseClicked(evt);
+            }
+        });
+        deleteTreasuresButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteTreasuresButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -203,35 +221,34 @@ public class ExamView extends javax.swing.JFrame {
                         .addComponent(myMonstersLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(91, 91, 91))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(nextMonsterButton, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                                    .addComponent(takeMonsterButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(takeMonsterButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(nextMonsterButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addComponent(nextMonsterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(initDecksButton, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(takeTreasureButton, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                                            .addComponent(nextTreasureButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(nextTreasurePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(30, 30, 30))))
+                                    .addComponent(takeTreasureButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(nextTreasureButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(deleteTreasuresButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(initDecksButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(nextTreasurePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,8 +270,10 @@ public class ExamView extends javax.swing.JFrame {
                                 .addGap(40, 40, 40)
                                 .addComponent(nextTreasureButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(takeTreasureButton)))
-                        .addGap(12, 12, 12)
+                                .addComponent(takeTreasureButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(deleteTreasuresButton)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,6 +331,14 @@ public class ExamView extends javax.swing.JFrame {
         nextMonster();
     }//GEN-LAST:event_takeMonsterButtonMouseClicked
 
+    private void deleteTreasuresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteTreasuresButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteTreasuresButtonActionPerformed
+
+    private void deleteTreasuresButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteTreasuresButtonMouseClicked
+        deleteSelectedTreasures(this.myTreasuresPanel);
+    }//GEN-LAST:event_deleteTreasuresButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -349,6 +376,7 @@ public class ExamView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton deleteTreasuresButton;
     private javax.swing.JButton initDecksButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
