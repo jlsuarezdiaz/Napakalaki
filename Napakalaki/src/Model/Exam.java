@@ -9,8 +9,8 @@ package Model;
 import GUI.ExamView;
 
 /**
- *
- * @author andreshp
+ * Main for the exam.
+ * @author andreshp, jlsuarez
  */
 public class Exam {
     public static void main(String[] args) {
