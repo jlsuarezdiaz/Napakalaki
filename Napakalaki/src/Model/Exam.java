@@ -15,6 +15,6 @@ import GUI.ExamView;
 public class Exam {
     public static void main(String[] args) {
         ExamView examView = new ExamView();
-        examView.showView(); 
-    }    
+        examView.showView();
+    }
 }
