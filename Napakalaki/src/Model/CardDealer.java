@@ -100,6 +100,9 @@ public class CardDealer {
 
         // Cultist 6
         unusedCultists.add(new Cultist("Sectario", 1));
+        
+        // ------------- POST-PDOO CULTISTS ---------------//
+        unusedCultists.add(new Cultist("Andresectario",4));
     }
 
     /**
@@ -288,6 +291,24 @@ public class CardDealer {
                 + "Pierdes 2 niveles", 2, 0, 0);
         prize = new Prize(1,1);
         unusedMonsters.add(new Monster ("Lolitagooth", 2, badConsequence, prize, 3));
+        
+        // -------------- POST - PDOO MONSTERS -----------------------------------------//
+        // Monster: Mlastral
+        badConsequence = new BadConsequenceDeath("Suspendes PDOO por los exámenes rebuscados " +
+                "y de 20 minutos. Estás muerto.", true);
+        prize = new Prize(1,1);
+        unusedMonsters.add(new Monster ("mlastral",28,badConsequence,prize,10));
+        
+        // Monster: Aros
+        badConsequence = new BadConsequenceDeath("Desperdicias toda la vida esperando a las notas. Mueres.", true);
+        prize = new Prize(2,2);
+        unusedMonsters.add(new Monster("aros",12,badConsequence,prize,4));
+        
+        // Monster: Rodrigo
+        badConsequence = new BadConsequenceNumberTreasures("Te roba la matrícula, y ya de paso " +
+                "todos tus tesoros ocultos y unos pocos niveles.", 4, 0, 99);
+        prize = new Prize(4,2);
+        unusedMonsters.add(new Monster("Rodrigo",9,badConsequence,prize,-1));
     }
 
     /**
@@ -393,6 +414,14 @@ public class CardDealer {
 
         // Treasure: Varita de atizamiento
         unusedTreasures.add(new Treasure("Varita de atizamiento",400,3,4,TreasureKind.ONEHAND));
+        
+        // --------------- POST-PDOO TREASURES --------------------------//
+        
+        // Treasure: Juanlu
+        unusedTreasures.add(new Treasure("Juanlu",1200,8,10,TreasureKind.BOTHHANDS));
+        
+        // Treasure: Camiseta de R
+        unusedTreasures.add(new Treasure("Camiseta de R",200,2,8,TreasureKind.ARMOR));
     }
 
     /**
